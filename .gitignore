@@ -4,3 +4,6 @@
 
 # JDT-specific (Eclipse Java Development Tools)     
 .classpath
+
+#Eclipse setting Alex
+.settings
