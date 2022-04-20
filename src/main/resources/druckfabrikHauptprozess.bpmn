@@ -198,7 +198,7 @@
       <bpmn:incoming>Flow_17n3v8j</bpmn:incoming>
       <bpmn:outgoing>Flow_1aag78l</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:intermediateCatchEvent id="Event_1nqcx55" name="5 Werktage vergangen">
+    <bpmn:intermediateCatchEvent id="Event_1nqcx55" name="7 Tage vergangen">
       <bpmn:incoming>Flow_1t3krrj</bpmn:incoming>
       <bpmn:outgoing>Flow_1wfuglc</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1uso5ue">
@@ -624,9 +624,6 @@
           <dc:Bounds x="4347" y="2365" width="86" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1x2zuzz_di" bpmnElement="Activity_0dm81x3">
-        <dc:Bounds x="4150" y="2300" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_03x7hkj_di" bpmnElement="Gateway_03x7hkj" isMarkerVisible="true">
         <dc:Bounds x="3985" y="2315" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -717,7 +714,7 @@
       <bpmndi:BPMNShape id="Event_1nqcx55_di" bpmnElement="Event_1nqcx55">
         <dc:Bounds x="1452" y="637" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1442" y="680" width="57" height="27" />
+          <dc:Bounds x="1426" y="680" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1p76ykp_di" bpmnElement="Event_1p76ykp">
@@ -785,6 +782,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_19vbksm_di" bpmnElement="Activity_0vk8u53">
         <dc:Bounds x="4990" y="1610" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x2zuzz_di" bpmnElement="Activity_0dm81x3">
+        <dc:Bounds x="4150" y="2300" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0o6y11m_di" bpmnElement="TextAnnotation_0o6y11m">
         <dc:Bounds x="4610" y="1839" width="220" height="83" />
