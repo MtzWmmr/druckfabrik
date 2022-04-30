@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ycwsec" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ycwsec" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_0867asc">
     <bpmn:participant id="Participant_1bjq88u" name="Kunde" />
     <bpmn:participant id="Participant_0xifhz8" name="Bestellung liefertermin hintzufügen" processRef="Process_143t7ze" />
-    <bpmn:participant id="Participant_0vu7uw4" name="Druckfabrik Hauptprozess" processRef="DruckfabrikHauptprozess" />
+    <bpmn:participant id="Participant_0vu7uw4" name="Druckfabrik Hauptprozess" processRef="DruckfabrikHauptprozessTestID" />
     <bpmn:participant id="Participant_1bj5xxs" name="Kreditinstitut" />
     <bpmn:participant id="Participant_10qe5a8" name="Lieferanten" />
     <bpmn:messageFlow id="Flow_05642ol" name="Anfrage" sourceRef="Participant_1bjq88u" targetRef="StartEvent_1" />
@@ -39,7 +39,7 @@
   <bpmn:category id="Category_0yxb9n8">
     <bpmn:categoryValue id="CategoryValue_0ll07ed" />
   </bpmn:category>
-  <bpmn:process id="DruckfabrikHauptprozess" name="Druckfabrik Hauptprozess" isExecutable="true">
+  <bpmn:process id="DruckfabrikHauptprozessTestID" name="Druckfabrik Hauptprozess" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0bujr0d">
       <bpmn:lane id="Lane_12ukjzc" name="Einkauf">
         <bpmn:flowNodeRef>Activity_0ljqzdi</bpmn:flowNodeRef>
@@ -92,12 +92,12 @@
         <bpmn:flowNodeRef>Activity_07tq7yu</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ejx4k3" name="Finanzabteilung">
-        <bpmn:flowNodeRef>Activity_1ylv7g6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1jpf9g4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_07ss5ey</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ylv7g6</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sendTask id="Activity_0l8ems7" name="Auftragsbestätigung mit  Liefertermin senden">
+    <bpmn:sendTask id="Activity_0l8ems7" name="Auftragsbestätigung mit  Liefertermin senden" camunda:class="edu.thi.druckfabrik.DummyKlasse">
       <bpmn:incoming>Flow_0suwnb1</bpmn:incoming>
       <bpmn:outgoing>Flow_0gn2tdn</bpmn:outgoing>
     </bpmn:sendTask>
@@ -112,7 +112,7 @@
     </bpmn:userTask>
     <bpmn:endEvent id="Event_0eswwug" name="Absage gesendet">
       <bpmn:incoming>Flow_0ufi56p</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0llovai" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0llovai" messageRef="Message_02dq463" />
     </bpmn:endEvent>
     <bpmn:exclusiveGateway id="Gateway_03x7hkj" name="Ressourcen lieferfähig?">
       <bpmn:incoming>Flow_0om20mi</bpmn:incoming>
@@ -128,23 +128,23 @@
       <bpmn:outgoing>Flow_11itewy</bpmn:outgoing>
       <bpmn:outgoing>Flow_00fukhi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1nufaqa" name="Ressourcenverfügbarkeit prüfen">
+    <bpmn:serviceTask id="Activity_1nufaqa" name="Ressourcenverfügbarkeit prüfen" camunda:class="edu.thi.druckfabrik.DummyKlasse">
       <bpmn:incoming>Flow_1b87gif</bpmn:incoming>
       <bpmn:outgoing>Flow_0kw3efy</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:intermediateThrowEvent id="Event_16ubw3w" name="Bestellbestätigung gesendet">
       <bpmn:incoming>Flow_01a2fqm</bpmn:incoming>
       <bpmn:outgoing>Flow_1b87gif</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_05axfvb" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_05axfvb" messageRef="Message_1lfe903" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:serviceTask id="Activity_1vuyo8r" name="Bestellung anlegen">
+    <bpmn:serviceTask id="Activity_1vuyo8r" name="Bestellung anlegen" camunda:class="edu.thi.druckfabrik.DummyKlasse">
       <bpmn:incoming>Flow_1fiz8j3</bpmn:incoming>
       <bpmn:outgoing>Flow_01a2fqm</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:intermediateCatchEvent id="Event_0e5ghcl" name="Änderungswünsche  eingetroffen">
       <bpmn:incoming>Flow_112gxxi</bpmn:incoming>
       <bpmn:outgoing>Flow_1we5i14</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0ez8nt7" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ez8nt7" messageRef="Message_0nrqha9" />
     </bpmn:intermediateCatchEvent>
     <bpmn:endEvent id="Event_0xotfvo" name="Keine Kundenantwort in vereinbarter Zeit">
       <bpmn:incoming>Flow_0a7vxtx</bpmn:incoming>
@@ -167,12 +167,12 @@
     <bpmn:intermediateCatchEvent id="Event_09571h3" name="Bestellung eingetroffen">
       <bpmn:incoming>Flow_020h6y1</bpmn:incoming>
       <bpmn:outgoing>Flow_1fiz8j3</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1waq8km" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1waq8km" messageRef="Message_0eywzqb" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateCatchEvent id="Event_0rqjnhi" name="Angebot abgelehnt">
       <bpmn:incoming>Flow_0zij4cv</bpmn:incoming>
       <bpmn:outgoing>Flow_0rzaq58</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1f9op18" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1f9op18" messageRef="Message_0y2wi9e" />
     </bpmn:intermediateCatchEvent>
     <bpmn:eventBasedGateway id="Gateway_0p7ft4j">
       <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
@@ -181,14 +181,14 @@
       <bpmn:outgoing>Flow_083tm39</bpmn:outgoing>
       <bpmn:outgoing>Flow_020h6y1</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:sendTask id="Activity_1y12qqx" name="Angebot und Prototyp versenden">
+    <bpmn:sendTask id="Activity_1y12qqx" name="Angebot und Prototyp versenden" camunda:class="edu.thi.druckfabrik.DummyKlasse">
       <bpmn:incoming>Flow_16qle1g</bpmn:incoming>
       <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:intermediateThrowEvent id="Event_01dqa8r" name="Rückfrage gesendet">
       <bpmn:incoming>Flow_00yxzl8</bpmn:incoming>
       <bpmn:outgoing>Flow_0vk4zyc</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1hmf9mz" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1hmf9mz" messageRef="Message_0avitzq" />
     </bpmn:intermediateThrowEvent>
     <bpmn:endEvent id="Event_0zm5aql" name="Keine Kundenantwort in vereinbarter Zeit">
       <bpmn:incoming>Flow_1wfuglc</bpmn:incoming>
@@ -208,7 +208,7 @@
     <bpmn:intermediateCatchEvent id="Event_1p76ykp" name="Veränderte Anfrage eingetroffen">
       <bpmn:incoming>Flow_1xr2nnt</bpmn:incoming>
       <bpmn:outgoing>Flow_0iw64nr</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1xrpgi5" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1xrpgi5" messageRef="Message_0fpuyaj" />
     </bpmn:intermediateCatchEvent>
     <bpmn:eventBasedGateway id="Gateway_0xlw85d">
       <bpmn:incoming>Flow_0vk4zyc</bpmn:incoming>
@@ -234,18 +234,26 @@
     </bpmn:userTask>
     <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
       <bpmn:outgoing>Flow_17n3v8j</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_17r4f1m" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0zjy98m" sourceRef="Activity_0vk8u53" targetRef="Activity_0a8mdu5" />
     <bpmn:sequenceFlow id="Flow_0gn2tdn" sourceRef="Activity_0l8ems7" targetRef="Activity_1od81p3" />
     <bpmn:sequenceFlow id="Flow_0suwnb1" sourceRef="Gateway_07qkvsj" targetRef="Activity_0l8ems7" />
     <bpmn:sequenceFlow id="Flow_15bnrj5" sourceRef="Activity_1rho2q0" targetRef="Gateway_07qkvsj" />
-    <bpmn:sequenceFlow id="Flow_1kzv24z" name="Yes" sourceRef="Gateway_03x7hkj" targetRef="Activity_1rho2q0" />
+    <bpmn:sequenceFlow id="Flow_1kzv24z" name="Yes" sourceRef="Gateway_03x7hkj" targetRef="Activity_1rho2q0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0ufi56p" sourceRef="Activity_0dm81x3" targetRef="Event_0eswwug" />
-    <bpmn:sequenceFlow id="Flow_1t7yzyj" name="No" sourceRef="Gateway_03x7hkj" targetRef="Activity_0dm81x3" />
+    <bpmn:sequenceFlow id="Flow_1t7yzyj" name="No" sourceRef="Gateway_03x7hkj" targetRef="Activity_0dm81x3">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0om20mi" sourceRef="Activity_0ljqzdi" targetRef="Gateway_03x7hkj" />
-    <bpmn:sequenceFlow id="Flow_11itewy" name="No" sourceRef="Gateway_0d1cxy2" targetRef="Activity_0ljqzdi" />
-    <bpmn:sequenceFlow id="Flow_00fukhi" name="Yes" sourceRef="Gateway_0d1cxy2" targetRef="Gateway_07qkvsj" />
+    <bpmn:sequenceFlow id="Flow_11itewy" name="No" sourceRef="Gateway_0d1cxy2" targetRef="Activity_0ljqzdi">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_00fukhi" name="Yes" sourceRef="Gateway_0d1cxy2" targetRef="Gateway_07qkvsj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0kw3efy" sourceRef="Activity_1nufaqa" targetRef="Gateway_0d1cxy2" />
     <bpmn:sequenceFlow id="Flow_1b87gif" sourceRef="Event_16ubw3w" targetRef="Activity_1nufaqa" />
     <bpmn:sequenceFlow id="Flow_01a2fqm" sourceRef="Activity_1vuyo8r" targetRef="Event_16ubw3w" />
@@ -268,8 +276,12 @@
     <bpmn:sequenceFlow id="Flow_1xr2nnt" sourceRef="Gateway_0xlw85d" targetRef="Event_1p76ykp" />
     <bpmn:sequenceFlow id="Flow_0vk4zyc" sourceRef="Event_01dqa8r" targetRef="Gateway_0xlw85d" />
     <bpmn:sequenceFlow id="Flow_00yxzl8" sourceRef="Activity_1n6x1mt" targetRef="Event_01dqa8r" />
-    <bpmn:sequenceFlow id="Flow_1pauvnq" name="Yes" sourceRef="Gateway_095g47v" targetRef="Gateway_1qskg4y" />
-    <bpmn:sequenceFlow id="Flow_0txol3d" name="No" sourceRef="Gateway_095g47v" targetRef="Activity_1n6x1mt" />
+    <bpmn:sequenceFlow id="Flow_1pauvnq" name="Yes" sourceRef="Gateway_095g47v" targetRef="Gateway_1qskg4y">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0txol3d" name="No" sourceRef="Gateway_095g47v" targetRef="Activity_1n6x1mt">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ud43w0" sourceRef="Activity_13702i1" targetRef="Gateway_095g47v" />
     <bpmn:sequenceFlow id="Flow_17n3v8j" sourceRef="StartEvent_1" targetRef="Gateway_1aqeyo4" />
     <bpmn:sequenceFlow id="Flow_0sia8ks" sourceRef="Activity_0a8mdu5" targetRef="Activity_1ylv7g6" />
@@ -277,12 +289,8 @@
       <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
       <bpmn:outgoing>Flow_0sia8ks</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:subProcess id="Activity_1ylv7g6" name="Rechnungserstellung Subprozess">
-      <bpmn:incoming>Flow_0sia8ks</bpmn:incoming>
-      <bpmn:outgoing>Flow_0b7rrcy</bpmn:outgoing>
-    </bpmn:subProcess>
     <bpmn:sequenceFlow id="Flow_1ymr7ck" sourceRef="Activity_1od81p3" targetRef="Activity_0vk8u53" />
-    <bpmn:businessRuleTask id="Activity_1od81p3" name="Kundenstatus prüfen">
+    <bpmn:businessRuleTask id="Activity_1od81p3" name="Kundenstatus prüfen" camunda:class="edu.thi.druckfabrik.DummyKlasse">
       <bpmn:incoming>Flow_0gn2tdn</bpmn:incoming>
       <bpmn:outgoing>Flow_1ymr7ck</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -290,7 +298,7 @@
     <bpmn:intermediateCatchEvent id="Event_1jpf9g4" name="Zahlung empfangen">
       <bpmn:incoming>Flow_0b7rrcy</bpmn:incoming>
       <bpmn:outgoing>Flow_0hmqpvl</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0s17sqr" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0s17sqr" messageRef="Message_04tz6yn" />
     </bpmn:intermediateCatchEvent>
     <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
       <bpmn:incoming>Flow_0hmqpvl</bpmn:incoming>
@@ -303,7 +311,7 @@
       <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_1kz1vz3" sourceRef="Gateway_134xxza" targetRef="Activity_1wl6j4z" />
-    <bpmn:callActivity id="Activity_1wl6j4z" name="Druck subprocess">
+    <bpmn:callActivity id="Activity_1wl6j4z" name="Druck subprocess" calledElement="anfrageEvaluieren">
       <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
       <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
     </bpmn:callActivity>
@@ -318,7 +326,7 @@
       <bpmn:outgoing>Flow_16qle1g</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_1tdyxcd" sourceRef="Activity_1wl6j4z" targetRef="Gateway_08pdrch" />
-    <bpmn:callActivity id="Activity_0vk8u53" name="Druck Subprozess">
+    <bpmn:callActivity id="Activity_0vk8u53" name="Druck Subprozess" calledElement="anfrageEvaluieren">
       <bpmn:incoming>Flow_1ymr7ck</bpmn:incoming>
       <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
     </bpmn:callActivity>
@@ -326,6 +334,10 @@
       <bpmn:incoming>Flow_1t7yzyj</bpmn:incoming>
       <bpmn:outgoing>Flow_0ufi56p</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:callActivity id="Activity_1ylv7g6" name="Rechnungserstellung Subprozess" calledElement="anfrageEvaluieren">
+      <bpmn:incoming>Flow_0sia8ks</bpmn:incoming>
+      <bpmn:outgoing>Flow_0b7rrcy</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:textAnnotation id="TextAnnotation_0o6y11m">
       <bpmn:text>Dies könnte wahrscheinlich auch ein Subprozess sein</bpmn:text>
     </bpmn:textAnnotation>
@@ -339,6 +351,15 @@
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0aae3lv" sourceRef="Activity_1od81p3" targetRef="TextAnnotation_0nhgcnq" />
   </bpmn:process>
+  <bpmn:message id="Message_0avitzq" name="Message_2uvoleh" />
+  <bpmn:message id="Message_0fpuyaj" name="Message_0mobv5l" />
+  <bpmn:message id="Message_0eywzqb" name="Message_0kfcl8n" />
+  <bpmn:message id="Message_0y2wi9e" name="Message_2t4i5pg" />
+  <bpmn:message id="Message_0nrqha9" name="Message_14a7r41" />
+  <bpmn:message id="Message_1lfe903" name="Message_3foqvgj" />
+  <bpmn:message id="Message_02dq463" name="Message_1sb125a" />
+  <bpmn:message id="Message_04tz6yn" name="Message_383eata" />
+  <bpmn:message id="Message_17r4f1m" name="Message_3mnndth" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0867asc">
       <bpmndi:BPMNShape id="Participant_08oxvwk_di" bpmnElement="Participant_1bjq88u" isHorizontal="true">
@@ -750,7 +771,7 @@
       <bpmndi:BPMNShape id="Activity_0ctfe7i_di" bpmnElement="Activity_0a8mdu5">
         <dc:Bounds x="5250" y="1210" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0f6f2yr_di" bpmnElement="Activity_1ylv7g6">
+      <bpmndi:BPMNShape id="Activity_0dulyt3_di" bpmnElement="Activity_1ylv7g6">
         <dc:Bounds x="5510" y="2710" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_07e9qh1_di" bpmnElement="Activity_1od81p3">
