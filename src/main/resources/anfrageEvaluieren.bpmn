@@ -34,7 +34,7 @@
       <bpmn:outgoing>Flow_1t3krrj</bpmn:outgoing>
       <bpmn:outgoing>Flow_1xr2nnt</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:userTask id="Activity_1n6x1mt" name="Rückfrage formulieren">
+    <bpmn:userTask id="Activity_1n6x1mt" name="Rückfrage formulieren" camunda:assignee="kermit">
       <bpmn:incoming>Flow_0txol3d</bpmn:incoming>
       <bpmn:outgoing>Flow_00yxzl8</bpmn:outgoing>
     </bpmn:userTask>
@@ -98,6 +98,18 @@
       <bpmndi:BPMNShape id="Participant_0dmfaf2_di" bpmnElement="Participant_0dmfaf2" isHorizontal="true">
         <dc:Bounds x="160" y="411" width="1650" height="579" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_18adm4q_di" bpmnElement="Flow_18adm4q">
+        <di:waypoint x="815" y="615" />
+        <di:waypoint x="815" y="830" />
+        <di:waypoint x="1682" y="830" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="824" y="713" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jos78s_di" bpmnElement="Flow_1jos78s">
+        <di:waypoint x="470" y="590" />
+        <di:waypoint x="575" y="590" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1btr14u_di" bpmnElement="Flow_1btr14u">
         <di:waypoint x="1553" y="676" />
         <di:waypoint x="1682" y="676" />
@@ -141,18 +153,6 @@
       <bpmndi:BPMNEdge id="Flow_00yxzl8_di" bpmnElement="Flow_00yxzl8">
         <di:waypoint x="1055" y="590" />
         <di:waypoint x="1112" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1jos78s_di" bpmnElement="Flow_1jos78s">
-        <di:waypoint x="470" y="590" />
-        <di:waypoint x="575" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_18adm4q_di" bpmnElement="Flow_18adm4q">
-        <di:waypoint x="815" y="615" />
-        <di:waypoint x="815" y="830" />
-        <di:waypoint x="1682" y="830" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="824" y="713" width="12" height="14" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_01dqa8r_di" bpmnElement="Event_01dqa8r">
         <dc:Bounds x="1112" y="572" width="36" height="36" />
