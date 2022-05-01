@@ -54,11 +54,8 @@
           <camunda:formField id="postleitzahl" label="Postleitzahl:" type="string" defaultValue="${postleitzahl}" />
           <camunda:formField id="stadt" label="Stadt:" type="string" defaultValue="${stadt}" />
           <camunda:formField id="link" label="Link:" type="string" defaultValue="${link}" />
-          <camunda:formField id="valide" label="Anfrage valide?" type="boolean">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="telefonnummer" label="Telefonnummer:" type="string" defaultValue="${telefonnummer}" />
+          <camunda:formField id="valide" label="Anfrage valide?" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jos78s</bpmn:incoming>
