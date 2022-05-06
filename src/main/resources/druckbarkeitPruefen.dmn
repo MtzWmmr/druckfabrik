@@ -34,16 +34,16 @@
       <output id="Output_1" label="Druckbarkeit" name="druckbar" typeRef="boolean" />
       <rule id="DecisionRule_0q42p2b">
         <inputEntry id="UnaryTests_1vahspm">
-          <text>[1..50]</text>
+          <text>[1..600]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1d5j4pz">
-          <text>[1..100]</text>
+          <text>[1..500]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0v4hdl2">
-          <text>[1..100]</text>
+          <text>[1..500]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0cqjkuk">
-          <text>[25..100000]</text>
+          <text>[25..150000000]</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1hy7qwl">
           <text>true</text>
@@ -51,7 +51,7 @@
       </rule>
       <rule id="DecisionRule_02t6ftp">
         <inputEntry id="UnaryTests_19f7stm">
-          <text>&lt;1, &gt;50</text>
+          <text>&lt;1, &gt;600</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1p50z5p">
           <text></text>
@@ -71,7 +71,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0rt2hlf">
-          <text>&lt;1, &gt;100</text>
+          <text>&lt;1, &gt;500</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1i4q9rk">
           <text></text>
@@ -91,7 +91,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_036q9au">
-          <text>&lt;1, &gt;100</text>
+          <text>&lt;1, &gt;500</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0b2i6cl">
           <text></text>
@@ -111,7 +111,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1dvure5">
-          <text>&lt;25, &gt;100000</text>
+          <text>&lt;25, &gt;150000000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0wvlqrj">
           <text>false</text>

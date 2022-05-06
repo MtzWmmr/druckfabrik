@@ -10,7 +10,7 @@
     <bpmn:intermediateThrowEvent id="Event_01dqa8r" name="Rückfrage gesendet">
       <bpmn:incoming>Flow_00yxzl8</bpmn:incoming>
       <bpmn:outgoing>Flow_0vk4zyc</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1hmf9mz" messageRef="Message_1f24z2k" camunda:expression="&#34;order&#34;" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1hmf9mz" messageRef="Message_1f24z2k" camunda:class="edu.thi.druckfabrik.RueckfrageMail" />
     </bpmn:intermediateThrowEvent>
     <bpmn:exclusiveGateway id="Gateway_1aqeyo4">
       <bpmn:incoming>Flow_0iw64nr</bpmn:incoming>
@@ -35,6 +35,25 @@
       <bpmn:outgoing>Flow_1xr2nnt</bpmn:outgoing>
     </bpmn:eventBasedGateway>
     <bpmn:userTask id="Activity_1n6x1mt" name="Rückfrage formulieren" camunda:assignee="kermit">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="rueckfragegrund" label="Grund für Rückfrage" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+            <camunda:value id="datei" name="Datei fehlt" />
+            <camunda:value id="angaben" name="Angaben unvollständig" />
+            <camunda:value id="invalide" name="Angaben invalide" />
+            <camunda:value id="informationen" name="Mehr Informationen notwendig" />
+            <camunda:value id="sonstiges" name="Sonstiges" />
+          </camunda:formField>
+          <camunda:formField id="rueckfragetext" label="Inhalt der Rückfrage:" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0txol3d</bpmn:incoming>
       <bpmn:outgoing>Flow_00yxzl8</bpmn:outgoing>
     </bpmn:userTask>
@@ -46,16 +65,18 @@
     <bpmn:userTask id="Activity_13702i1" name="Anfrage verifzieren" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="nachname" label="Nachname:" type="string" defaultValue="${nachname}" />
-          <camunda:formField id="vorname" label="Vorname:" type="string" defaultValue="${vorname}" />
-          <camunda:formField id="email" label="E-Mail:" type="string" defaultValue="${email}" />
-          <camunda:formField id="strasse" label="Straße:" type="string" defaultValue="${strasse}" />
-          <camunda:formField id="hausnummer" label="Hausnummer:" type="string" defaultValue="${hausnummer}" />
-          <camunda:formField id="postleitzahl" label="Postleitzahl:" type="string" defaultValue="${postleitzahl}" />
-          <camunda:formField id="stadt" label="Stadt:" type="string" defaultValue="${stadt}" />
+          <camunda:formField id="nachname" label="Nachname:" type="string" defaultValue="${kunde.nachname}" />
+          <camunda:formField id="vorname" label="Vorname:" type="string" defaultValue="${kunde.vorname}" />
+          <camunda:formField id="email" label="E-Mail:" type="string" defaultValue="${kunde.email}" />
+          <camunda:formField id="strasse" label="Straße:" type="string" defaultValue="${kunde.strasse}" />
+          <camunda:formField id="hausnummer" label="Hausnummer:" type="string" defaultValue="${kunde.hausnummer}" />
+          <camunda:formField id="postleitzahl" label="Postleitzahl:" type="string" defaultValue="${kunde.postleitzahl}" />
+          <camunda:formField id="stadt" label="Stadt:" type="string" defaultValue="${kunde.stadt}" />
           <camunda:formField id="link" label="Link:" type="string" defaultValue="${link}" />
-          <camunda:formField id="telefonnummer" label="Telefonnummer:" type="string" defaultValue="${telefonnummer}" />
+          <camunda:formField id="telefonnummer" label="Telefonnummer:" type="string" defaultValue="${kunde.telefonnummer}" />
           <camunda:formField id="valide" label="Anfrage valide?" type="boolean" />
+          <camunda:formField id="anrede" label="Anrede" type="string" defaultValue="${kunde.anrede}" />
+          <camunda:formField id="stammkunde" label="Stammkunde" type="boolean" defaultValue="${kunde.stammkunde}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jos78s</bpmn:incoming>
