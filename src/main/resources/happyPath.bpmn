@@ -6,7 +6,6 @@
     <bpmn:participant id="Participant_1bjq88u" name="Kunde" />
     <bpmn:messageFlow id="Flow_1viju4j" name="Auftragsbestätigung" sourceRef="Activity_1vuyo8r" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_1m78ui0" name="Bestellbestätigung" sourceRef="Activity_1vuyo8r" targetRef="Participant_1bjq88u" />
-    <bpmn:messageFlow id="Flow_0n7m140" name="Bestellung des Kunden" sourceRef="Participant_1bjq88u" targetRef="Event_09571h3" />
     <bpmn:messageFlow id="Flow_16cs8f6" name="Angebot und Prototyp" sourceRef="Activity_1y12qqx" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_05642ol" name="Kundenanfrage zu 3D-Druck Objekt" sourceRef="Participant_1bjq88u" targetRef="StartEvent_1" />
     <bpmn:messageFlow id="Flow_0xukdau" name="Rechnung" sourceRef="Activity_1ylv7g6" targetRef="Participant_1bjq88u" />
@@ -14,6 +13,9 @@
     <bpmn:messageFlow id="Flow_0g1tkar" name="Rückfrage zu Kundenanfrage" sourceRef="Anfrageevaluieren_ID" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_0s6x8yq" name="Veränderte Kundenanfrage zu 3D-Druck Objekt" sourceRef="Participant_1bjq88u" targetRef="Anfrageevaluieren_ID" />
     <bpmn:messageFlow id="Flow_14ma33p" name="Gedruckte 3D-Objekte" sourceRef="Activity_0a8mdu5" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_0n7m140" name="Bestellung des Kunden" sourceRef="Participant_1bjq88u" targetRef="Activity_04wxzln" />
+    <bpmn:messageFlow id="Flow_1qqaa6i" name="Bestellbestätigung" sourceRef="Activity_04wxzln" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_0qxvrqa" name="Auftragsbestätigung mit Liefertermin" sourceRef="Activity_04wxzln" targetRef="Participant_1bjq88u" />
   </bpmn:collaboration>
   <bpmn:process id="DruckfabrikHauptprozess" name="Druckfabrik Hauptprozess" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0bujr0d">
@@ -27,9 +29,9 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_1vm9kei" name="Versandabteilung">
         <bpmn:flowNodeRef>Activity_0a8mdu5</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_09571h3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_08pdrch</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1y12qqx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_04wxzln</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0zux3ma" name="3D Kreativteam">
         <bpmn:flowNodeRef>Gateway_134xxza</bpmn:flowNodeRef>
@@ -195,6 +197,7 @@
         <dc:Bounds x="215" y="378" width="4740" height="303" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0zux3ma_di" bpmnElement="Lane_0zux3ma" isHorizontal="true">
+
         <dc:Bounds x="215" y="681" width="4740" height="303" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1vm9kei_di" bpmnElement="Lane_1vm9kei" isHorizontal="true">
@@ -374,6 +377,24 @@
           <dc:Bounds x="1012" y="588" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0nhgcnq_di" bpmnElement="TextAnnotation_0nhgcnq">
+        <dc:Bounds x="3258" y="1318" width="100" height="124" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_08ki1wi_di" bpmnElement="TextAnnotation_08ki1wi">
+        <dc:Bounds x="3685" y="1378" width="100" height="138" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_06bq0r1_di" bpmnElement="TextAnnotation_06bq0r1">
+        <dc:Bounds x="2010" y="1010" width="99.99274099883856" height="81.30081300813008" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cw771h_di" bpmnElement="Activity_04wxzln">
+        <dc:Bounds x="2300" y="1098" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1oor8cd_di" bpmnElement="Event_0mn753d">
+        <dc:Bounds x="657" y="549" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="682" y="588" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0aae3lv_di" bpmnElement="Association_0aae3lv">
         <di:waypoint x="3574" y="1412" />
         <di:waypoint x="3588" y="1368" />
@@ -460,6 +481,20 @@
         <di:waypoint x="4125" y="140" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="4134" y="289" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qqaa6i_di" bpmnElement="Flow_1qqaa6i">
+        <di:waypoint x="2336" y="1096" />
+        <di:waypoint x="2336" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2309" y="279" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qxvrqa_di" bpmnElement="Flow_0qxvrqa">
+        <di:waypoint x="2379" y="1098" />
+        <di:waypoint x="2379" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2377" y="180" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
