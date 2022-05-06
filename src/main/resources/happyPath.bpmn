@@ -35,7 +35,6 @@
         <bpmn:flowNodeRef>Gateway_134xxza</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Prototypentwickeln_ID</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1da0z73</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_110ph0n</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_142dh9c" name="Vertrieb">
         <bpmn:flowNodeRef>Anfrageevaluieren_ID</bpmn:flowNodeRef>
@@ -60,7 +59,7 @@
     <bpmn:sequenceFlow id="Flow_1fiz8j3" sourceRef="Event_09571h3" targetRef="Activity_1vuyo8r" />
     <bpmn:sequenceFlow id="Flow_0gatfmn" sourceRef="Activity_1y12qqx" targetRef="Event_09571h3" />
     <bpmn:sequenceFlow id="Flow_0sjlf0v" sourceRef="Activity_07tq7yu" targetRef="Gateway_08pdrch" />
-    <bpmn:sequenceFlow id="Flow_1ud43w0" sourceRef="Anfrageevaluieren_ID" targetRef="Activity_110ph0n" />
+    <bpmn:sequenceFlow id="Flow_1ud43w0" sourceRef="Anfrageevaluieren_ID" targetRef="Prototypentwickeln_ID" />
     <bpmn:sequenceFlow id="Flow_0sia8ks" sourceRef="Activity_0a8mdu5" targetRef="Activity_1ylv7g6" />
     <bpmn:sequenceFlow id="Flow_0myikyz" sourceRef="Gateway_134xxza" targetRef="Activity_07tq7yu" />
     <bpmn:sequenceFlow id="Flow_1kz1vz3" sourceRef="Gateway_134xxza" targetRef="Activity_1wl6j4z" />
@@ -92,8 +91,8 @@
         <camunda:in source="startdate" target="startdate" />
         <camunda:in source="anrede" target="anrede" />
         <camunda:out sourceExpression="${anrede}" target="anrede" />
-        <camunda:in source="kunde" target="kunde" />
-        <camunda:out sourceExpression="${kunde}" target="kunde" />
+        <camunda:in source="stammkunde" target="stammkunde" />
+        <camunda:out sourceExpression="${stammkunde}" target="stammkunde" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0eid57j</bpmn:incoming>
       <bpmn:outgoing>Flow_1ud43w0</bpmn:outgoing>
@@ -156,7 +155,7 @@
     <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
       <bpmn:extensionElements>
         <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
-        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageToBean" event="start" />
+        <camunda:executionListener class="edu.thi.druckfabrik.StammkundeErmittlung" event="start" />
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_0eid57j</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
@@ -170,23 +169,13 @@
         <camunda:in source="link" target="link" />
         <camunda:out source="Prototyp" target="Prototyp" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0wflinz</bpmn:incoming>
+      <bpmn:incoming>Flow_1ud43w0</bpmn:incoming>
       <bpmn:outgoing>Flow_0ac8wmz</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:boundaryEvent id="Event_1da0z73" name="Plagiatversuch liegt vor" attachedToRef="Prototypentwickeln_ID">
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1jlvb6d" />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_0ac8wmz" sourceRef="Prototypentwickeln_ID" targetRef="Gateway_134xxza" />
-    <bpmn:sequenceFlow id="Flow_0wflinz" sourceRef="Activity_110ph0n" targetRef="Prototypentwickeln_ID" />
-    <bpmn:userTask id="Activity_110ph0n" name="AAAAAAAAAAA">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="FormField_2de4s61" label="kunde nachname" type="string" defaultValue="${kunde.nachname}" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1ud43w0</bpmn:incoming>
-      <bpmn:outgoing>Flow_0wflinz</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_0nhgcnq">
       <bpmn:text>Kundenstatus prüfen sollte früher im prozess bereits ausgeführt werden und variablen gespeichert</bpmn:text>
     </bpmn:textAnnotation>
@@ -257,7 +246,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ud43w0_di" bpmnElement="Flow_1ud43w0">
         <di:waypoint x="955" y="567" />
-        <di:waypoint x="955" y="808" />
+        <di:waypoint x="955" y="848" />
+        <di:waypoint x="1295" y="848" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sjlf0v_di" bpmnElement="Flow_0sjlf0v">
         <di:waypoint x="1935" y="538" />
@@ -305,10 +295,6 @@
       <bpmndi:BPMNEdge id="Flow_0l3joww_di" bpmnElement="Flow_0l3joww">
         <di:waypoint x="2180" y="1138" />
         <di:waypoint x="2235" y="1138" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wflinz_di" bpmnElement="Flow_0wflinz">
-        <di:waypoint x="1020" y="848" />
-        <di:waypoint x="1295" y="848" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_19idyq1_di" bpmnElement="Activity_1ylv7g6">
         <dc:Bounds x="4335" y="1933" width="100" height="80" />
@@ -384,9 +370,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_06bq0r1_di" bpmnElement="TextAnnotation_06bq0r1">
         <dc:Bounds x="2340" y="1010" width="100" height="81" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06ziek8_di" bpmnElement="Activity_110ph0n">
-        <dc:Bounds x="920" y="808" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0zhw1iz_di" bpmnElement="Event_1da0z73">
         <dc:Bounds x="1377" y="870" width="36" height="36" />
