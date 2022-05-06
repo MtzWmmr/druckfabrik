@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_03rjpr9" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <decision id="druckbarkeitPruefen" name="Druckbar?">
+    <informationRequirement id="InformationRequirement_0o5up02">
+      <requiredInput href="#InputData_08o73mp" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0ng3vpz">
+      <requiredInput href="#InputData_13gerjr" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0m7k232">
+      <requiredInput href="#InputData_1rs7hwn" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1rsf84f" hitPolicy="ANY">
+      <input id="Input_1" label="Höhe">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>hoehe</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0f3s32z" label="Breite">
+        <inputExpression id="LiteralExpression_074y43e" typeRef="long">
+          <text>breite</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sntjvb" label="Länge">
+        <inputExpression id="LiteralExpression_1p84a4z" typeRef="long">
+          <text>laenge</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_18faepb" label="Volumen">
+        <inputExpression id="LiteralExpression_0ky2vcq" typeRef="long">
+          <text>breite*laenge*hoehe</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Druckbarkeit" name="druckbar" typeRef="boolean" />
+      <rule id="DecisionRule_0q42p2b">
+        <inputEntry id="UnaryTests_1vahspm">
+          <text>[1..50]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d5j4pz">
+          <text>[1..100]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v4hdl2">
+          <text>[1..100]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cqjkuk">
+          <text>[25..100000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hy7qwl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02t6ftp">
+        <inputEntry id="UnaryTests_19f7stm">
+          <text>&lt;1, &gt;50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p50z5p">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17g92kb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06dyc8h">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b7cuvo">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hmurkt">
+        <inputEntry id="UnaryTests_1pdchx0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rt2hlf">
+          <text>&lt;1, &gt;100</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i4q9rk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qtjrs8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h2i8uh">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tgs1rp">
+        <inputEntry id="UnaryTests_0mzpx0z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e9t9xq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_036q9au">
+          <text>&lt;1, &gt;100</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b2i6cl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c9zhal">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0c36f1d">
+        <inputEntry id="UnaryTests_0k0xojz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17vbv6o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a38url">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dvure5">
+          <text>&lt;25, &gt;100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wvlqrj">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_08o73mp" name="Höhe" />
+  <inputData id="InputData_13gerjr" name="Breite" />
+  <inputData id="InputData_1rs7hwn" name="Länge" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="druckbarkeitPruefen">
+        <dc:Bounds height="80" width="180" x="370" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1mw22a3" dmnElementRef="InputData_08o73mp">
+        <dc:Bounds height="45" width="125" x="397" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_13c9qiz" dmnElementRef="InformationRequirement_0o5up02">
+        <di:waypoint x="460" y="337" />
+        <di:waypoint x="460" y="200" />
+        <di:waypoint x="460" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1pa4fpd" dmnElementRef="InputData_13gerjr">
+        <dc:Bounds height="45" width="125" x="637" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0r9zhbw" dmnElementRef="InformationRequirement_0ng3vpz">
+        <di:waypoint x="700" y="337" />
+        <di:waypoint x="505" y="200" />
+        <di:waypoint x="505" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_12hh7u0" dmnElementRef="InputData_1rs7hwn">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_05ymuod" dmnElementRef="InformationRequirement_0m7k232">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="415" y="200" />
+        <di:waypoint x="415" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
