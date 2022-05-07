@@ -54,7 +54,6 @@
     <bpmn:sequenceFlow id="Flow_0hmqpvl" sourceRef="Event_1jpf9g4" targetRef="Event_07ss5ey" />
     <bpmn:sequenceFlow id="Flow_0b7rrcy" sourceRef="Activity_1ylv7g6" targetRef="Event_1jpf9g4" />
     <bpmn:sequenceFlow id="Flow_1ymr7ck" sourceRef="Activity_1od81p3" targetRef="Activity_0vk8u53" />
-    <bpmn:sequenceFlow id="Flow_0eid57j" sourceRef="StartEvent_1" targetRef="Anfrageevaluieren_ID" />
     <bpmn:sequenceFlow id="Flow_0zjy98m" sourceRef="Activity_0vk8u53" targetRef="Activity_0a8mdu5" />
     <bpmn:sequenceFlow id="Flow_01a2fqm" sourceRef="Activity_1vuyo8r" targetRef="Activity_1od81p3" />
     <bpmn:sequenceFlow id="Flow_1fiz8j3" sourceRef="Event_09571h3" targetRef="Activity_1vuyo8r" />
@@ -94,7 +93,7 @@
         <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
         <camunda:executionListener class="edu.thi.druckfabrik.StammkundeErmittlung" event="start" />
       </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_0eid57j</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
     </bpmn:startEvent>
     <bpmn:callActivity id="Activity_1y12qqx" name="Angebot und Prototyp versenden" calledElement="AngebotUndPrototypVersenden_ID">
@@ -175,7 +174,7 @@
         <camunda:in source="stammkunde" target="stammkunde" />
         <camunda:out sourceExpression="${stammkunde}" target="stammkunde" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0eid57j</bpmn:incoming>
+      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
       <bpmn:outgoing>Flow_1ud43w0</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:callActivity id="Activity_1ylv7g6" name="Rechnungserstellung Subprozess" calledElement="rechnungsErstellungsProzess_ID">
@@ -191,6 +190,7 @@
     <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
       <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1x7u12e" sourceRef="StartEvent_1" targetRef="Anfrageevaluieren_ID" />
     <bpmn:textAnnotation id="TextAnnotation_06bq0r1">
       <bpmn:text>Hier noch modellieren wenn Bestellung nicht eingeht</bpmn:text>
     </bpmn:textAnnotation>
@@ -296,10 +296,6 @@
         <di:waypoint x="3995" y="1138" />
         <di:waypoint x="4075" y="1138" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0eid57j_di" bpmnElement="Flow_0eid57j">
-        <di:waypoint x="323" y="530" />
-        <di:waypoint x="905" y="530" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ymr7ck_di" bpmnElement="Flow_1ymr7ck">
         <di:waypoint x="3575" y="1447" />
         <di:waypoint x="3815" y="1447" />
@@ -315,6 +311,10 @@
       <bpmndi:BPMNEdge id="Flow_0l3joww_di" bpmnElement="Flow_0l3joww">
         <di:waypoint x="2180" y="1138" />
         <di:waypoint x="2235" y="1138" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x7u12e_di" bpmnElement="Flow_1x7u12e">
+        <di:waypoint x="323" y="530" />
+        <di:waypoint x="905" y="530" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0qla0yd_di" bpmnElement="Prototypentwickeln_ID">
         <dc:Bounds x="1295" y="808" width="100" height="80" />
