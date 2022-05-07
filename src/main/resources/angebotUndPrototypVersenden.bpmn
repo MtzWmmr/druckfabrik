@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_16kqbyv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_16kqbyv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_1putgef">
+    <bpmn:participant id="Participant_0anyurr" name="angebotUndPrototypVersenden" processRef="AngebotUndPrototypVersenden_ID" />
+    <bpmn:participant id="Participant_1i9plnd" name="Kunde" />
+    <bpmn:messageFlow id="Flow_1xb386g" name="Paket mit Prototyp(en) und Angebot" sourceRef="Activity_03lbmci" targetRef="Participant_1i9plnd" />
+  </bpmn:collaboration>
   <bpmn:process id="AngebotUndPrototypVersenden_ID" name="AngebotUndPrototypVersenden" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1amm15l</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_11r4sis" name="Paket versandfertig machen" calledElement="paketVersandfertigMachen_ID">
+      <bpmn:incoming>Flow_1amm15l</bpmn:incoming>
+      <bpmn:outgoing>Flow_11otjzj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1rq52f1" name="Paket versandt">
+      <bpmn:incoming>Flow_090revf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_11otjzj" sourceRef="Activity_11r4sis" targetRef="Activity_03lbmci" />
+    <bpmn:sequenceFlow id="Flow_090revf" sourceRef="Activity_03lbmci" targetRef="Event_1rq52f1" />
+    <bpmn:sequenceFlow id="Flow_1amm15l" sourceRef="StartEvent_1" targetRef="Activity_11r4sis" />
+    <bpmn:sendTask id="Activity_03lbmci" name="Paket versenden">
+      <bpmn:incoming>Flow_11otjzj</bpmn:incoming>
+      <bpmn:outgoing>Flow_090revf</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="AngebotUndPrototypVersenden_ID">
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="79" width="36" height="36" />
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1putgef">
+      <bpmndi:BPMNShape id="Participant_0anyurr_di" bpmnElement="Participant_0anyurr" isHorizontal="true">
+        <dc:Bounds x="140" y="340" width="1138" height="970" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1amm15l_di" bpmnElement="Flow_1amm15l">
+        <di:waypoint x="238" y="580" />
+        <di:waypoint x="800" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_090revf_di" bpmnElement="Flow_090revf">
+        <di:waypoint x="1070" y="580" />
+        <di:waypoint x="1142" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11otjzj_di" bpmnElement="Flow_11otjzj">
+        <di:waypoint x="900" y="580" />
+        <di:waypoint x="970" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="202" y="562" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lblc1a_di" bpmnElement="Activity_11r4sis">
+        <dc:Bounds x="800" y="540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rq52f1_di" bpmnElement="Event_1rq52f1">
+        <dc:Bounds x="1142" y="562" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1123" y="605" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0248yvs_di" bpmnElement="Activity_03lbmci">
+        <dc:Bounds x="970" y="540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1bs24qm_di" bpmnElement="Participant_1i9plnd" isHorizontal="true">
+        <dc:Bounds x="490" y="80" width="600" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xb386g_di" bpmnElement="Flow_1xb386g">
+        <di:waypoint x="1020" y="540" />
+        <di:waypoint x="1020" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1029" y="260" width="82" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
