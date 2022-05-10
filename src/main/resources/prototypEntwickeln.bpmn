@@ -34,10 +34,14 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="material" label="Material:" type="string">
+          <camunda:formField id="material" label="Material:" type="enum">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
+            <camunda:value id="TPU" name="TPU" />
+            <camunda:value id="PLA" name="PLA" />
+            <camunda:value id="ABS" name="ABS" />
+            <camunda:value id="PET" name="PET" />
           </camunda:formField>
           <camunda:formField id="hoehe" label="Höhe:" type="long">
             <camunda:validation>
