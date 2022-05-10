@@ -1,11 +1,12 @@
-package edu.thi.druckfabrik;
+package edu.thi.druckfabrik.beans;
 
 import java.io.Serializable;
 
-public class Prototypbean implements Serializable{
+public class PrototypBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	private String material;
 	private Long hoehe;
 	private Long breite;
 	private Long laenge;
@@ -32,5 +33,13 @@ public class Prototypbean implements Serializable{
 
 	public void setLaenge(Long laenge) {
 		this.laenge = laenge;
+	}
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 }

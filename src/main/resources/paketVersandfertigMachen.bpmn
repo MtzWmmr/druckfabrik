@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_144lnpw">
     <bpmn:participant id="Participant_1dz83ib" name="paketVersandfertigMachen" processRef="paketVersandfertigMachen_ID" />
   </bpmn:collaboration>
-  <bpmn:process id="paketVersandfertigMachen_ID" name="paketVersandfertigMachen" isExecutable="false">
+  <bpmn:process id="paketVersandfertigMachen_ID" name="paketVersandfertigMachen" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0xsfdoa</bpmn:outgoing>
     </bpmn:startEvent>
@@ -40,6 +40,14 @@
       <bpmndi:BPMNShape id="Participant_1dz83ib_di" bpmnElement="Participant_1dz83ib" isHorizontal="true">
         <dc:Bounds x="120" y="80" width="968" height="340" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_13e4xks_di" bpmnElement="Flow_13e4xks">
+        <di:waypoint x="880" y="205" />
+        <di:waypoint x="952" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dlhlxv_di" bpmnElement="Flow_0dlhlxv">
+        <di:waypoint x="710" y="205" />
+        <di:waypoint x="780" y="205" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xsfdoa_di" bpmnElement="Flow_0xsfdoa">
         <di:waypoint x="235" y="205" />
         <di:waypoint x="290" y="205" />
@@ -51,14 +59,6 @@
       <bpmndi:BPMNEdge id="Flow_1d4m41m_di" bpmnElement="Flow_1d4m41m">
         <di:waypoint x="550" y="205" />
         <di:waypoint x="610" y="205" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0dlhlxv_di" bpmnElement="Flow_0dlhlxv">
-        <di:waypoint x="710" y="205" />
-        <di:waypoint x="780" y="205" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_13e4xks_di" bpmnElement="Flow_13e4xks">
-        <di:waypoint x="880" y="205" />
-        <di:waypoint x="952" y="205" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="199" y="187" width="36" height="36" />

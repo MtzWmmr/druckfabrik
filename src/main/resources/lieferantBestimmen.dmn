@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_0ra2mk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <decision id="lieferantBestimmen" name="Lieferant Bestimmen">
+    <decisionTable id="DecisionTable_18h7d4n">
+      <input id="InputClause_00ccupw" label="Materialart">
+        <inputExpression id="LiteralExpression_1vhepeu" typeRef="string">
+          <text>material</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0qi95vp">
+          <text>"PET","PLA","ABS","TPU"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0vye5ai" label="Materialmenge in g">
+        <inputExpression id="LiteralExpression_1xufzf9" typeRef="integer">
+          <text>benoetigteMenge</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Lieferant" name="lieferant" typeRef="string" />
+      <rule id="DecisionRule_15o3r8y">
+        <inputEntry id="UnaryTests_1wyygo3">
+          <text>"PLA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lt94lg">
+          <text>&lt;1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cj1sc4">
+          <text>"Johnnys 3D Laden"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01qznmg">
+        <inputEntry id="UnaryTests_15ys6sd">
+          <text>"PLA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bjybpo">
+          <text>&gt;1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1o4g4eh">
+          <text>"Ingeborg und Söhne"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1exqzdu">
+        <inputEntry id="UnaryTests_01y9pmk">
+          <text>"ABS"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hm7tnh">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1onqscx">
+          <text>"Jens Druckershop"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1p3lkhk">
+        <inputEntry id="UnaryTests_105ro2q">
+          <text>"TPU"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y2i3yl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gdrnzm">
+          <text>"Johnnys 3d Laden"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13l5czt">
+        <inputEntry id="UnaryTests_04tjujo">
+          <text>"PET"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l9gzqb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k0h9go">
+          <text>"Hörbert"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="lieferantBestimmen">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
