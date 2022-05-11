@@ -10,9 +10,6 @@
     <bpmn:manualTask id="Activity_14210nf" name="Prototyp in Karton packen">
       <bpmn:incoming>Flow_0xsfdoa</bpmn:incoming>
       <bpmn:outgoing>Flow_0ihw2mg</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics>
-        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">5</bpmn:loopCardinality>
-      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:manualTask>
     <bpmn:manualTask id="Activity_1do8uva" name="Angebot in Karton packen">
       <bpmn:incoming>Flow_0ihw2mg</bpmn:incoming>
