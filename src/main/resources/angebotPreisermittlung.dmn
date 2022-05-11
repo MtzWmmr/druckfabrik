@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="angebotPreisermittlung" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <decision id="preisProStueckErmitteln" name="Preis pro Stück ermitteln">
+    <informationRequirement id="InformationRequirement_1oyvbuu">
+      <requiredInput href="#InputData_1t0evfk" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_19yx02q">
+      <requiredInput href="#InputData_14vmh9y" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0u2kmh2">
+      <input id="Input_1" label="Material">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>Prototyp.material</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0qkp8ti">
+          <text>"PLA","PET","TPU","ABS"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0lrg5l8" label="Objekt Volumen">
+        <inputExpression id="LiteralExpression_1syinmf" typeRef="long">
+          <text>Prototyp.hoehe*Prototyp.laenge*Prototyp.breite</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Preis pro Stück ab 1 Stück" name="preis1" typeRef="double" />
+      <output id="OutputClause_0m4i51c" label="Preis pro Stück ab 100 Stück" name="preis100" typeRef="double" />
+      <output id="OutputClause_1x4o5jq" label="Preis pro Stück ab 1000 Stück" name="preis1000" typeRef="double" />
+      <rule id="DecisionRule_14td7bj">
+        <inputEntry id="UnaryTests_029gh4w">
+          <text>"PLA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_194wvdr">
+          <text>&lt; 125000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0iyw1dw">
+          <text>10.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0c04elf">
+          <text>5.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0swe40x">
+          <text>2.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1iswe1n">
+        <inputEntry id="UnaryTests_01y3tg6">
+          <text>"PET"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1etysr3">
+          <text>&lt; 125000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qf520f">
+          <text>9.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_02mmaqc">
+          <text>8.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0k2shvz">
+          <text>7.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06fodou">
+        <inputEntry id="UnaryTests_09z3bs6">
+          <text>"ABS"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r0esnb">
+          <text>&lt; 125000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lyc2pc">
+          <text>8.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1gwdbd5">
+          <text>4.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_11tagvb">
+          <text>2.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qa2qix">
+        <inputEntry id="UnaryTests_0e2gqn7">
+          <text>"TPU"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qpt0ss">
+          <text>&lt; 125000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15k4s10">
+          <text>20.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0nsa584">
+          <text>15.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0oa9i9l">
+          <text>12.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05auhrv">
+        <inputEntry id="UnaryTests_0y7i5tp">
+          <text>"PLA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sqnlau">
+          <text>[125000..15625000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vfca1f">
+          <text>15.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1skj9pd">
+          <text>10.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_09edp3n">
+          <text>7.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rbvk7l">
+        <inputEntry id="UnaryTests_12zp5ag">
+          <text>"PET"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i8v5nl">
+          <text>[125000..15625000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bmnmgq">
+          <text>14.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1cbhq8b">
+          <text>13.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_14fum66">
+          <text>12.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o47wll">
+        <inputEntry id="UnaryTests_1tfguah">
+          <text>"ABS"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1emchjx">
+          <text>[125000..15625000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0a4m9po">
+          <text>13.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_01q8j9g">
+          <text>9.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_182adum">
+          <text>7.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cb9hzs">
+        <inputEntry id="UnaryTests_09k1yu3">
+          <text>"TPU"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ndd676">
+          <text>[125000..15625000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l77dn5">
+          <text>25.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_12q6jb2">
+          <text>20.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_024ulzw">
+          <text>17.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qawodh">
+        <inputEntry id="UnaryTests_1uhrevl">
+          <text>"PLA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_002p2fe">
+          <text>&gt; 15625000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qot0nc">
+          <text>20.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0uf65r2">
+          <text>15.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xyflwo">
+          <text>12.50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ph7c4b">
+        <inputEntry id="UnaryTests_05ssied">
+          <text>"PET"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mrherx">
+          <text>&gt; 15625000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nrjjuq">
+          <text>19.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1rrzgyx">
+          <text>18.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0whhf3s">
+          <text>17.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ph15bn">
+        <inputEntry id="UnaryTests_1u8d3by">
+          <text>"ABS"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17pp487">
+          <text>&gt; 15625000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t4emkf">
+          <text>18.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0sz281q">
+          <text>14.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0qto7na">
+          <text>12.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10xv5lz">
+        <inputEntry id="UnaryTests_0smccu9">
+          <text>"TPU"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wp1qpa">
+          <text>&gt; 15625000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14032lk">
+          <text>30.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1pb9vdk">
+          <text>25.00</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0nj5uml">
+          <text>22.00</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1t0evfk" name="Objekt Volumen" />
+  <inputData id="InputData_14vmh9y" name="Materialart" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="preisProStueckErmitteln">
+        <dc:Bounds height="80" width="180" x="220" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1hse3ls" dmnElementRef="InputData_1t0evfk">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_06gu4i2" dmnElementRef="InformationRequirement_1oyvbuu">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15gfbl0" dmnElementRef="InputData_14vmh9y">
+        <dc:Bounds height="45" width="125" x="327" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0ivjltk" dmnElementRef="InformationRequirement_19yx02q">
+        <di:waypoint x="390" y="337" />
+        <di:waypoint x="340" y="200" />
+        <di:waypoint x="340" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
