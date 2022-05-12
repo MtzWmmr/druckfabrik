@@ -3,21 +3,21 @@ package edu.thi.druckfabrik.beans;
 
 
 public class BestellungBean {
-	private String bestellungID;
-	private String angebotID;
+	private int bestellungID;
+	private int angebotID;
 	private PrototypBean prototyp;
 	private int druckanzahl;
 	
-	public String getBestellungID() {
+	public int getBestellungID() {
 		return bestellungID;
 	}
-	public void setBestellungID(String bestellungID) {
+	public void setBestellungID(int bestellungID) {
 		this.bestellungID = bestellungID;
 	}
-	public String getAngebotID() {
+	public int getAngebotID() {
 		return angebotID;
 	}
-	public void setAngebotID(String angebotID) {
+	public void setAngebotID(int angebotID) {
 		this.angebotID = angebotID;
 	}
 	public PrototypBean getPrototyp() {

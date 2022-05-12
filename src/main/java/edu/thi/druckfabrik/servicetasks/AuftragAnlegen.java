@@ -18,7 +18,7 @@ public class AuftragAnlegen implements JavaDelegate{
 		
 		
 		KundenauftragBean auftrag = new KundenauftragBean();
-		auftrag.setKundenauftragID(String.valueOf(new Random().nextInt(900000) + 100000));
+		auftrag.setKundenauftragID(new Random().nextInt(900000) + 100000);
 		auftrag.setBestellungID(bestellung.getBestellungID());
 		auftrag.setDruckanzahl(bestellung.getDruckanzahl());
 		auftrag.setLiefertermin(liefertermin);

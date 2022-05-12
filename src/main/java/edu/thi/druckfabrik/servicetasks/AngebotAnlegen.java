@@ -21,13 +21,15 @@ public class AngebotAnlegen implements JavaDelegate {
 		double preis1000 = (double) preise.get("preis1000");
 		
 		AngebotBean angebot = new AngebotBean();
-		angebot.setAngebotID(String.valueOf(new Random().nextInt(900000) + 100000));
+		angebot.setAngebotID(new Random().nextInt(900000) + 100000);
 		angebot.setPrototyp(prototyp);
 		angebot.setPreis1(preis1);
 		angebot.setPreis100(preis100);
 		angebot.setPreis1000(preis1000);
 		
 		execution.setVariable("angebot", angebot);
+		
+		System.out.println("[KORRELATION INFO] Beim Übersenden der Bestellung bitte folgende AngebotID verwenden: " + angebot.getAngebotID());
 	}
 
 }

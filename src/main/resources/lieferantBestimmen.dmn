@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_0ra2mk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0ra2mk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
   <decision id="lieferantBestimmen" name="Lieferant Bestimmen">
+    <informationRequirement id="InformationRequirement_13rwd1r">
+      <requiredInput href="#InputData_0cfbxr5" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0rdtv2d">
+      <requiredInput href="#InputData_1y1adv8" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_18h7d4n">
       <input id="InputClause_00ccupw" label="Materialart">
         <inputExpression id="LiteralExpression_1vhepeu" typeRef="string">
@@ -73,11 +79,29 @@
       </rule>
     </decisionTable>
   </decision>
+  <inputData id="InputData_0cfbxr5" name="Materialart" />
+  <inputData id="InputData_1y1adv8" name="Materialmenge in g" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="lieferantBestimmen">
         <dc:Bounds height="80" width="180" x="160" y="100" />
       </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_15bnsnz" dmnElementRef="InputData_0cfbxr5">
+        <dc:Bounds height="45" width="125" x="187" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1topcw1" dmnElementRef="InformationRequirement_13rwd1r">
+        <di:waypoint x="250" y="337" />
+        <di:waypoint x="220" y="200" />
+        <di:waypoint x="220" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1ob5pzq" dmnElementRef="InputData_1y1adv8">
+        <dc:Bounds height="45" width="125" x="427" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0tc9esd" dmnElementRef="InformationRequirement_0rdtv2d">
+        <di:waypoint x="490" y="337" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
+      </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>

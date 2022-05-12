@@ -1,16 +1,16 @@
 package edu.thi.druckfabrik.beans;
 
 public class AngebotBean {
-	private String angebotID;
+	private int angebotID;
 	private PrototypBean prototyp;
 	private double preis1;
 	private double preis100;
 	private double preis1000;
 	
-	public String getAngebotID() {
+	public int getAngebotID() {
 		return angebotID;
 	}
-	public void setAngebotID(String angebotID) {
+	public void setAngebotID(int angebotID) {
 		this.angebotID = angebotID;
 	}
 	public PrototypBean getPrototyp() {
