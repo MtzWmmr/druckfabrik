@@ -3,21 +3,21 @@ package edu.thi.druckfabrik.beans;
 import java.util.Date;
 
 public class KundenauftragBean {
-	private String kundenauftragID;
-	private String bestellungID;
+	private int kundenauftragID;
+	private int bestellungID;
 	private Date liefertermin;
 	private PrototypBean prototyp;
 	private int druckanzahl;
-	public String getKundenauftragID() {
+	public int getKundenauftragID() {
 		return kundenauftragID;
 	}
-	public void setKundenauftragID(String kundenauftragID) {
+	public void setKundenauftragID(int kundenauftragID) {
 		this.kundenauftragID = kundenauftragID;
 	}
-	public String getBestellungID() {
+	public int getBestellungID() {
 		return bestellungID;
 	}
-	public void setBestellungID(String bestellungID) {
+	public void setBestellungID(int bestellungID) {
 		this.bestellungID = bestellungID;
 	}
 	public Date getLiefertermin() {

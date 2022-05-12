@@ -55,7 +55,7 @@
       <bpmn:incoming>Flow_1hjpc4p</bpmn:incoming>
       <bpmn:outgoing>Flow_1ahpmk7</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:serviceTask id="Activity_1rxrivh" name="Bestellung anlegen" camunda:class="edu.thi.druckfabrik.BestellungAnlegen">
+    <bpmn:serviceTask id="Activity_1rxrivh" name="Bestellung anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.BestellungAnlegen">
       <bpmn:incoming>Flow_0jeu7k6</bpmn:incoming>
       <bpmn:outgoing>Flow_1hjpc4p</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -72,6 +72,11 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_04bq3lb" sourceRef="Event_1gkjh7g" targetRef="Activity_0a4v9u9" />
     <bpmn:intermediateCatchEvent id="Event_1gkjh7g" name="Bestellung des Kunden eingetroffen">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="corrKey">${angebot.angebotID}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wl32qf</bpmn:incoming>
       <bpmn:outgoing>Flow_04bq3lb</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1equ7sg" messageRef="Message_0uifhuh" />
@@ -112,9 +117,14 @@
       <bpmndi:BPMNShape id="Lane_0q3scv1_di" bpmnElement="Lane_0q3scv1" isHorizontal="true">
         <dc:Bounds x="159" y="379" width="1981" height="431" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0fepemf_di" bpmnElement="TextAnnotation_0fepemf">
-        <dc:Bounds x="1510" y="390" width="270" height="84" />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0k4tqjr_di" bpmnElement="Flow_0k4tqjr">
+        <di:waypoint x="1290" y="549" />
+        <di:waypoint x="1480" y="549" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04bq3lb_di" bpmnElement="Flow_04bq3lb">
+        <di:waypoint x="338" y="549" />
+        <di:waypoint x="393" y="549" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jxumvd_di" bpmnElement="Flow_1jxumvd">
         <di:waypoint x="1930" y="549" />
         <di:waypoint x="1992" y="549" />
@@ -146,14 +156,6 @@
       <bpmndi:BPMNEdge id="Flow_0wl32qf_di" bpmnElement="Flow_0wl32qf">
         <di:waypoint x="251" y="549" />
         <di:waypoint x="302" y="549" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_04bq3lb_di" bpmnElement="Flow_04bq3lb">
-        <di:waypoint x="338" y="549" />
-        <di:waypoint x="393" y="549" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0k4tqjr_di" bpmnElement="Flow_0k4tqjr">
-        <di:waypoint x="1290" y="549" />
-        <di:waypoint x="1480" y="549" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0k5sgqv_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="215" y="531" width="36" height="36" />
@@ -187,6 +189,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0drtiyd_di" bpmnElement="Activity_0vgmsk2">
         <dc:Bounds x="1480" y="509" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fepemf_di" bpmnElement="TextAnnotation_0fepemf">
+        <dc:Bounds x="1510" y="390" width="270" height="84" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0a7ubrq_di" bpmnElement="Participant_1f9y68o" isHorizontal="true">
         <dc:Bounds x="170" y="80" width="2040" height="60" />
