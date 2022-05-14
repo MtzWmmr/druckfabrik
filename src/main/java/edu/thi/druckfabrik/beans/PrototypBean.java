@@ -10,6 +10,8 @@ public class PrototypBean implements Serializable{
 	private Long hoehe;
 	private Long breite;
 	private Long laenge;
+	private Long volumen;
+
 
 	public Long getHoehe() {
 		return hoehe;
@@ -41,5 +43,13 @@ public class PrototypBean implements Serializable{
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	
+	public Long getVolumen() {
+		return volumen;
+	}
+
+	public void setVolumen(Long volumen) {
+		this.volumen = hoehe*breite*laenge;
 	}
 }

@@ -11,7 +11,7 @@ public class BestellbestaetigungSenden implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		BestellungBean bestellung = (BestellungBean) execution.getVariable("bestellung");
 		System.out.println("Betreff: Ihre Bestellung");
-		System.out.println("Sehr geehrter Kunde,\n vielen Dank für Ihre Bestellung. Anbei die Bestellbestätigung.");
+		System.out.println("Sehr geehrter Kunde,\nvielen Dank für Ihre Bestellung. Anbei die Bestellbestätigung.");
 		System.out.println("BestellungID: " + bestellung.getBestellungID());
 		System.out.println("Bestelltes Produkt: Ihr Prototyp");
 		//System.out.println("Bestelltes Produkt: " + bestellung.getPrototyp());

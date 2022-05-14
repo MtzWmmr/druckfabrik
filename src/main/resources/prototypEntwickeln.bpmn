@@ -43,17 +43,17 @@
             <camunda:value id="ABS" name="ABS" />
             <camunda:value id="PET" name="PET" />
           </camunda:formField>
-          <camunda:formField id="hoehe" label="Höhe:" type="long">
+          <camunda:formField id="hoehe" label="Höhe in mm (1-600):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="breite" label="Breite:" type="long">
+          <camunda:formField id="breite" label="Breite in mm (1-500):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="laenge" label="Länge:" type="long">
+          <camunda:formField id="laenge" label="Länge in mm (1-500):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
@@ -72,32 +72,6 @@
       <bpmn:incoming>Flow_0xsj8zl</bpmn:incoming>
       <bpmn:outgoing>Flow_1x63k2v</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_1htcjda" name="Druckauftrag für Prototypen freigeben" camunda:assignee="kermit">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="FormField_0602htl" label="Höhe:" type="long" defaultValue="${Prototyp.hoehe}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="FormField_17j7mkv" label="Breite:" type="long" defaultValue="${Prototyp.breite}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="FormField_0hm63qr" label="Länge:" type="long" defaultValue="${Prototyp.laenge}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1x63k2v</bpmn:incoming>
-      <bpmn:outgoing>Flow_1fgq6xb</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:endEvent id="Event_0axeo9b" name="Prototyp entwickelt">
-      <bpmn:incoming>Flow_1fgq6xb</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:exclusiveGateway id="Gateway_10ikyer">
       <bpmn:incoming>Flow_0ou4e7g</bpmn:incoming>
       <bpmn:incoming>Flow_1dms85t</bpmn:incoming>
@@ -117,8 +91,7 @@
     <bpmn:sequenceFlow id="Flow_0xsj8zl" name="Ja" sourceRef="Gateway_0sqhto0" targetRef="Activity_1ayow7j">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${druckbar==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1x63k2v" sourceRef="Activity_1ayow7j" targetRef="Activity_1htcjda" />
-    <bpmn:sequenceFlow id="Flow_1fgq6xb" sourceRef="Activity_1htcjda" targetRef="Event_0axeo9b" />
+    <bpmn:sequenceFlow id="Flow_1x63k2v" sourceRef="Activity_1ayow7j" targetRef="Event_0axeo9b" />
     <bpmn:sequenceFlow id="Flow_0ou4e7g" name="Nein" sourceRef="Gateway_13p6y99" targetRef="Gateway_10ikyer">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plagiat==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -130,13 +103,16 @@
       <bpmn:incoming>Flow_07yc04r</bpmn:incoming>
       <bpmn:outgoing>Flow_0xd72fi</bpmn:outgoing>
     </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_0axeo9b" name="Prototyp entwickelt">
+      <bpmn:incoming>Flow_1x63k2v</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:signal id="Signal_11wbam5" name="Plagiatversuch liegt vor" />
   <bpmn:escalation id="Escalation_17k20fj" name="Plagiatversuch liegt vor" escalationCode="Plagiatversuch liegt vor" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0jqipzc">
       <bpmndi:BPMNShape id="Participant_00o1z6u_di" bpmnElement="Participant_00o1z6u" isHorizontal="true">
-        <dc:Bounds x="160" y="60" width="1498" height="310" />
+        <dc:Bounds x="160" y="60" width="1320" height="310" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1kea7pr_di" bpmnElement="Flow_1kea7pr">
         <di:waypoint x="635" y="177" />
@@ -158,13 +134,9 @@
           <dc:Bounds x="544" y="159" width="23" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1fgq6xb_di" bpmnElement="Flow_1fgq6xb">
-        <di:waypoint x="1450" y="177" />
-        <di:waypoint x="1522" y="177" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1x63k2v_di" bpmnElement="Flow_1x63k2v">
         <di:waypoint x="1280" y="177" />
-        <di:waypoint x="1350" y="177" />
+        <di:waypoint x="1382" y="177" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xsj8zl_di" bpmnElement="Flow_0xsj8zl">
         <di:waypoint x="1115" y="177" />
@@ -221,15 +193,6 @@
       <bpmndi:BPMNShape id="Activity_082t44c_di" bpmnElement="Activity_1ayow7j">
         <dc:Bounds x="1180" y="137" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0a3xd0h_di" bpmnElement="Activity_1htcjda">
-        <dc:Bounds x="1350" y="137" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0axeo9b_di" bpmnElement="Event_0axeo9b">
-        <dc:Bounds x="1522" y="159" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1517" y="202" width="49" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_10ikyer_di" bpmnElement="Gateway_10ikyer" isMarkerVisible="true">
         <dc:Bounds x="585" y="152" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -241,6 +204,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1b6y2r7_di" bpmnElement="Activity_0bjcgff">
         <dc:Bounds x="900" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0axeo9b_di" bpmnElement="Event_0axeo9b">
+        <dc:Bounds x="1382" y="159" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1377" y="202" width="49" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

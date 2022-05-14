@@ -3,9 +3,12 @@
   <bpmn:collaboration id="Collaboration_034zgr6">
     <bpmn:participant id="Participant_13aiefd" name="Bestellung anlegen und Auftragsbestätigung" processRef="bestellungBestaetigung_ID" />
     <bpmn:participant id="Participant_1f9y68o" name="Kunde" />
+    <bpmn:participant id="Participant_1aam3h7" name="Lieferant" />
     <bpmn:messageFlow id="Flow_01wwlvy" name="Kunden Bestellbestätigung" sourceRef="Activity_1iazsl0" targetRef="Participant_1f9y68o" />
     <bpmn:messageFlow id="Flow_07644r9" name="Auftragsbestätigung mit Liefertermin" sourceRef="Activity_0xwy21a" targetRef="Participant_1f9y68o" />
     <bpmn:messageFlow id="Flow_0mtaprb" name="Bestellung des Kunden" sourceRef="Participant_1f9y68o" targetRef="Event_1gkjh7g" />
+    <bpmn:messageFlow id="Flow_0ucu51g" name="Bestellung an Lieferanten" sourceRef="Activity_156yswa" targetRef="Participant_1aam3h7" />
+    <bpmn:messageFlow id="Flow_1m8hr0v" name="Antwort des Lieferanten auf Bestellung" sourceRef="Participant_1aam3h7" targetRef="Activity_156yswa" />
   </bpmn:collaboration>
   <bpmn:process id="bestellungBestaetigung_ID" isExecutable="true">
     <bpmn:laneSet id="LaneSet_00hahfk">
@@ -196,6 +199,9 @@
       <bpmndi:BPMNShape id="Participant_0a7ubrq_di" bpmnElement="Participant_1f9y68o" isHorizontal="true">
         <dc:Bounds x="170" y="80" width="2040" height="60" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1aam3h7_di" bpmnElement="Participant_1aam3h7" isHorizontal="true">
+        <dc:Bounds x="660" y="1210" width="600" height="60" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_01wwlvy_di" bpmnElement="Flow_01wwlvy">
         <di:waypoint x="770" y="509" />
         <di:waypoint x="770" y="140" />
@@ -215,6 +221,20 @@
         <di:waypoint x="320" y="531" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="323" y="252" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ucu51g_di" bpmnElement="Flow_0ucu51g">
+        <di:waypoint x="920" y="920" />
+        <di:waypoint x="920" y="1210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="836" y="1062" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m8hr0v_di" bpmnElement="Flow_1m8hr0v">
+        <di:waypoint x="980" y="1210" />
+        <di:waypoint x="980" y="920" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="993" y="1120" width="74" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

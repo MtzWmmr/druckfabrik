@@ -14,7 +14,7 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="materialVorhanden" label="Ist genug Material vorhanden?" type="boolean" />
-          <camunda:formField id="benoetigteMenge" label="Für Bestellung benötigte Menge (in Gram):" type="long" defaultValue="${benoetigteMenge}" />
+          <camunda:formField id="benoetigteMenge" label="Für Bestellung benötigte Menge (in Gramm):" type="long" defaultValue="${benoetigteMenge}" />
           <camunda:formField id="material" label="Material: " type="string" defaultValue="${bestellung.prototyp.material}" />
           <camunda:formField id="ressourcenVorhandenTermin" label="Datum der Prüfung" type="string" defaultValue="${now()}">
             <camunda:validation>
