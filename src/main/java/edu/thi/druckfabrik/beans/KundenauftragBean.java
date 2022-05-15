@@ -7,7 +7,7 @@ public class KundenauftragBean {
 	private int bestellungID;
 	private Date liefertermin;
 	private PrototypBean prototyp;
-	private int druckanzahl;
+	private long druckanzahl;
 	public int getKundenauftragID() {
 		return kundenauftragID;
 	}
@@ -32,10 +32,10 @@ public class KundenauftragBean {
 	public void setPrototyp(PrototypBean prototyp) {
 		this.prototyp = prototyp;
 	}
-	public int getDruckanzahl() {
+	public long getDruckanzahl() {
 		return druckanzahl;
 	}
-	public void setDruckanzahl(int druckanzahl) {
+	public void setDruckanzahl(long druckanzahl) {
 		this.druckanzahl = druckanzahl;
 	}
 	

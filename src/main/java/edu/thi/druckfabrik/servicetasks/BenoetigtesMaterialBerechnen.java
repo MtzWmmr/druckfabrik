@@ -19,12 +19,12 @@ public class BenoetigtesMaterialBerechnen implements JavaDelegate{
 		int hoehe = new BigDecimal(prototyp.getHoehe()).intValueExact();
 		int breite = new BigDecimal(prototyp.getBreite()).intValueExact();
 		int laenge = new BigDecimal(prototyp.getLaenge()).intValueExact();
-		int druckanzahl = bestellung.getDruckanzahl();
+		long druckanzahl = bestellung.getDruckanzahl();
 		
 		int volumenObjekt = hoehe * breite * laenge;
 		//60g filament pro 100.000mm^2 -> 0,0006g pro 1mm^2 
 		int mengeFilamentProObjekt = (int) Math.round(volumenObjekt * 0.0006);
-		int benoetigteMenge = mengeFilamentProObjekt * druckanzahl;
+		long benoetigteMenge = mengeFilamentProObjekt * druckanzahl;
 		
 		execution.setVariable("benoetigteMenge", benoetigteMenge);
 	}
