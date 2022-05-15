@@ -135,6 +135,10 @@
     <bpmn:sequenceFlow id="Flow_1w71l24" sourceRef="Event_14msvf3" targetRef="Activity_1kw6sc9" />
     <bpmn:sequenceFlow id="Flow_0o586jv" sourceRef="Activity_1kw6sc9" targetRef="Event_1nf8y4j" />
     <bpmn:callActivity id="Activity_1ylv7g6" name="Rechnungs-erstellungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0sia8ks</bpmn:incoming>
       <bpmn:outgoing>Flow_0b7rrcy</bpmn:outgoing>
     </bpmn:callActivity>

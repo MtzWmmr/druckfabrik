@@ -1,5 +1,6 @@
 package edu.thi.druckfabrik.beans;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class KundenauftragBean {
@@ -8,6 +9,15 @@ public class KundenauftragBean {
 	private Date liefertermin;
 	private PrototypBean prototyp;
 	private long druckanzahl;
+	private BigDecimal gesamtPreis;
+	
+	
+	public BigDecimal getGesamtPreis() {
+		return gesamtPreis;
+	}
+	public void setGesamtPreis(BigDecimal gesamtPreis) {
+		this.gesamtPreis = gesamtPreis;
+	}
 	public int getKundenauftragID() {
 		return kundenauftragID;
 	}

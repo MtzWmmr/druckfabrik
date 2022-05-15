@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1cb3sij" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1cb3sij" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_10zk5av">
     <bpmn:participant id="Participant_1pgm7yy" name="Rechnungserstellungsprozess" processRef="rechnungsErstellungsProzess_ID" />
   </bpmn:collaboration>
   <bpmn:process id="rechnungsErstellungsProzess_ID" name="Rechnungserstellungsprozess" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_14wv9ru</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_14wv9ru" sourceRef="StartEvent_1" targetRef="Activity_1m034b5" />
+    <bpmn:serviceTask id="Activity_1m034b5" name="Gesamtpreis berechnen" camunda:class="edu.thi.druckfabrik.servicetasks.GesamtpreisBerechnen">
+      <bpmn:incoming>Flow_14wv9ru</bpmn:incoming>
+      <bpmn:outgoing>Flow_0atq2ue</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0atq2ue" sourceRef="Activity_1m034b5" targetRef="Activity_0an8kw3" />
+    <bpmn:sendTask id="Activity_0an8kw3" name="Rechnung erstellen und versenden" camunda:class="edu.thi.druckfabrik.RechnungSenden">
+      <bpmn:incoming>Flow_0atq2ue</bpmn:incoming>
+      <bpmn:outgoing>Flow_0h9yafy</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_0gkge0h" name="Rechnung versandt">
+      <bpmn:incoming>Flow_0h9yafy</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0h9yafy" sourceRef="Activity_0an8kw3" targetRef="Event_0gkge0h" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_10zk5av">
       <bpmndi:BPMNShape id="Participant_1pgm7yy_di" bpmnElement="Participant_1pgm7yy" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="600" height="250" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_14wv9ru_di" bpmnElement="Flow_14wv9ru">
+        <di:waypoint x="295" y="200" />
+        <di:waypoint x="350" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0atq2ue_di" bpmnElement="Flow_0atq2ue">
+        <di:waypoint x="450" y="200" />
+        <di:waypoint x="510" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h9yafy_di" bpmnElement="Flow_0h9yafy">
+        <di:waypoint x="610" y="200" />
+        <di:waypoint x="672" y="200" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="259" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pnjkqi_di" bpmnElement="Activity_1m034b5">
+        <dc:Bounds x="350" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i8vsq5_di" bpmnElement="Activity_0an8kw3">
+        <dc:Bounds x="510" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gkge0h_di" bpmnElement="Event_0gkge0h">
+        <dc:Bounds x="672" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="665" y="225" width="51" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
