@@ -8,14 +8,15 @@ import java.util.Properties;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
+import edu.thi.druckfabrik.beans.AnfrageBean;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.InternetAddress;
 
 
 
@@ -24,12 +25,15 @@ public class RueckfrageMail implements JavaDelegate{
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		//am 30.05.2022 wurde diese Möglichkeit E-Mails über Google Mail zu schreiben aus Sicherheitsgründen entfernt, deshalb lediglich ausgabe in der Console
+		AnfrageBean anfrage = (AnfrageBean) execution.getVariable("anfrage");
+		
 		String reason = (String) execution.getVariable("rueckfragegrund");
 		String text = (String) execution.getVariable("rueckfragetext");
-		String anrede = (String) execution.getVariable("anrede");
-		String name = (String) execution.getVariable("nachname");
-		String email = (String) execution.getVariable("email");
+		String anrede = anfrage.getAnrede();
+		String nachname = anfrage.getNachname();
+		String email = anfrage.getEmail();
 		Date startdate = (Date) execution.getVariable("startdate");
+		int anfrageID = anfrage.getAnfrageID();
 		String hours = String.valueOf(startdate.getHours());
 		String minutes = String.valueOf(startdate.getMinutes());
 		
@@ -41,8 +45,9 @@ public class RueckfrageMail implements JavaDelegate{
 		String betreff = "Rückfrage aus Grund: " + reason;
 		
 		StringBuilder nachricht = new StringBuilder();
-		nachricht.append("Hallo " + anrede +" " + name + ",\n");
+		nachricht.append("Hallo " + anrede +" " + nachname + ",\n");
 		nachricht.append("Vielen Dank für Ihre Anfrage vom " + day + "." + month + "." + year + " " + minutes + ":" + hours + ".\n");
+		nachricht.append("AnfrageID: " + anfrageID + "\nBitte geben Sie diese ID bei Ihrer Antwort an \n");
 		nachricht.append(text);
 		nachricht.append("\n\nViele Grüße \nIhr Druckfabrik-Team");
 		

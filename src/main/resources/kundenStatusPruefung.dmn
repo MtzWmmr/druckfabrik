@@ -4,16 +4,70 @@
     <informationRequirement id="InformationRequirement_0ls2kai">
       <requiredInput href="#InputData_1kkp4i9" />
     </informationRequirement>
+    <informationRequirement id="InformationRequirement_142wuwu">
+      <requiredInput href="#InputData_0xs60mn" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_108yul4">
-      <input id="Input_1">
-        <inputExpression id="InputExpression_1" typeRef="string">
-          <text></text>
+      <input id="Input_1" label="Druckanzahl">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>kundenauftrag.druckanzahl</text>
         </inputExpression>
       </input>
-      <output id="Output_1" typeRef="string" />
+      <input id="InputClause_088cbew" label="Stammkunde">
+        <inputExpression id="LiteralExpression_0a9ixeh" typeRef="boolean">
+          <text>stammkunde</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Gratis Expressversand" name="gratisExpressversand" typeRef="boolean" />
+      <rule id="DecisionRule_01k0avm">
+        <inputEntry id="UnaryTests_09e2212">
+          <text>[1..999]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ahml8n">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rsrogh">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0e0m6am">
+        <description></description>
+        <inputEntry id="UnaryTests_1mp30oe">
+          <text>&gt;= 1000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a5buhh">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0brjqjk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0panb17">
+        <inputEntry id="UnaryTests_006b5qh">
+          <text>[1..99]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nbr6i0">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w4hmr0">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09n0cr0">
+        <inputEntry id="UnaryTests_1i2lxgo">
+          <text>&gt;= 100</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g29rhq">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1d16uwt">
+          <text>true</text>
+        </outputEntry>
+      </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_1kkp4i9" name="Bisherige Anzahl Bestellungen" />
+  <inputData id="InputData_1kkp4i9" name="Druckanzahl" />
+  <inputData id="InputData_0xs60mn" name="Stammkunde" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="Kundenstatus_ID">
@@ -24,8 +78,16 @@
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0xow8aq" dmnElementRef="InformationRequirement_0ls2kai">
         <di:waypoint x="201" y="268" />
-        <di:waypoint x="250" y="200" />
-        <di:waypoint x="250" y="180" />
+        <di:waypoint x="220" y="200" />
+        <di:waypoint x="220" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1jtbp3i" dmnElementRef="InputData_0xs60mn">
+        <dc:Bounds height="45" width="125" x="327" y="268" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0ygm8kg" dmnElementRef="InformationRequirement_142wuwu">
+        <di:waypoint x="390" y="268" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

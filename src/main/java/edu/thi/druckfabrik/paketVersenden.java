@@ -11,6 +11,7 @@ public class paketVersenden implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		System.out.println("Betreff: Ihr Paket");
 		System.out.println("Sehr geehrter Kunde,\nihr Paket wurde versendet");
+		System.out.println("\n\nViele Grüße \nIhr Druckfabrik-Team");
 		
 		
 	}

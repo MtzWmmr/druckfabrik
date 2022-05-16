@@ -19,6 +19,8 @@ public class GesamtpreisBerechnen implements JavaDelegate{
 	public void execute(DelegateExecution execution) throws Exception {
 		KundenauftragBean auftrag = (KundenauftragBean) execution.getVariable("kundenauftrag");
 		AngebotBean angebot = (AngebotBean) execution.getVariable("angebot");
+		Boolean gratisExpressversand = (Boolean) execution.getVariable("gratisExpressversand");
+		BigDecimal versandKosten = new BigDecimal(15);
 		long druckanzahl = (long) auftrag.getDruckanzahl();
 		
 		if (druckanzahl >=1 && druckanzahl <=99)
@@ -32,7 +34,10 @@ public class GesamtpreisBerechnen implements JavaDelegate{
 			gesamtPreis = new BigDecimal(druckanzahl * angebot.getPreis1000());
 		}
 		
-		
+		if (!gratisExpressversand) {
+			gesamtPreis = gesamtPreis.add(versandKosten);
+			
+		}
 		auftrag.setGesamtPreis(gesamtPreis);
 	}
 }

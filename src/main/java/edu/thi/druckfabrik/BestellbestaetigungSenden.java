@@ -16,6 +16,7 @@ public class BestellbestaetigungSenden implements JavaDelegate {
 		System.out.println("Bestelltes Produkt: Ihr Prototyp");
 		//System.out.println("Bestelltes Produkt: " + bestellung.getPrototyp());
 		System.out.println("Bestellte Anzahl: " + bestellung.getDruckanzahl());
+		System.out.println("\n\nViele Grüße \nIhr Druckfabrik-Team");
 		
 	}
 	

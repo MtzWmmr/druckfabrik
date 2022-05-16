@@ -19,6 +19,7 @@ public class RechnungSenden implements JavaDelegate {
 		System.out.println("Bestellte Anzahl: " + auftrag.getDruckanzahl());
 		System.out.println("Gesamtpreis: " + auftrag.getGesamtPreis() + "€");
 		System.out.println("Bitte begleichen Sie den Betrag innerhalb von 14 Tagen");
+		System.out.println("\n\nViele Grüße \nIhr Druckfabrik-Team");
 		
 	}
 	

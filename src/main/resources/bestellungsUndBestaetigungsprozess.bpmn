@@ -24,7 +24,7 @@
         <bpmn:flowNodeRef>Activity_0vgmsk2</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_10dkakt" />
       </bpmn:lane>
-      <bpmn:lane id="Lane_1q06hst" name="Einkauf">
+      <bpmn:lane id="Lane_1q06hst" name="Druckabteilung">
         <bpmn:flowNodeRef>Activity_156yswa</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
@@ -68,6 +68,7 @@
           <camunda:formField id="angebotID" label="Bezogen auf AnfrageID:" type="string" defaultValue="${angebotID}" />
           <camunda:formField id="prototypID" label="Bezogen auf PrototypID: " type="string" defaultValue="${prototypID}" />
           <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long" />
+          <camunda:formField id="expressversandGewuenscht" label="Expressversand gewünscht?" type="boolean" defaultValue="${expressversandGewuenscht}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_04bq3lb</bpmn:incoming>

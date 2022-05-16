@@ -16,12 +16,14 @@ public class BestellungAnlegen implements JavaDelegate{
 		AngebotBean angebot = (AngebotBean) execution.getVariable("angebot");
 		PrototypBean prototyp = angebot.getPrototyp();
 		int druckanzahl = (Integer) execution.getVariable("druckanzahl");
+		Boolean expressVersand = (Boolean) execution.getVariable("expressversandGewuenscht");
 		
 		BestellungBean bestellung = new BestellungBean();
 		bestellung.setBestellungID(new Random().nextInt(900000) + 100000);
 		bestellung.setAngebotID(angebot.getAngebotID());
 		bestellung.setPrototyp(prototyp);
 		bestellung.setDruckanzahl(druckanzahl);
+		bestellung.setExpressversandGewuenscht(expressVersand);
 		
 		execution.setVariable("bestellung", bestellung);
 	}

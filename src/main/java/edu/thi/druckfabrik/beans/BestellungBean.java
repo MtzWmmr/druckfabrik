@@ -7,7 +7,14 @@ public class BestellungBean {
 	private int angebotID;
 	private PrototypBean prototyp;
 	private long druckanzahl;
+	private Boolean expressversandGewuenscht;
 	
+	public Boolean getExpressversandGewuenscht() {
+		return expressversandGewuenscht;
+	}
+	public void setExpressversandGewuenscht(Boolean expressversandGewuenscht) {
+		this.expressversandGewuenscht = expressversandGewuenscht;
+	}
 	public int getBestellungID() {
 		return bestellungID;
 	}

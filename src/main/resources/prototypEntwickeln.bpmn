@@ -43,17 +43,17 @@
             <camunda:value id="ABS" name="ABS" />
             <camunda:value id="PET" name="PET" />
           </camunda:formField>
-          <camunda:formField id="hoehe" label="Höhe in mm (3-600):" type="long">
+          <camunda:formField id="hoehe" label="Höhe in mm (1-600):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="breite" label="Breite in mm (3-500):" type="long">
+          <camunda:formField id="breite" label="Breite in mm (1-500):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="laenge" label="Länge in mm (3-500):" type="long">
+          <camunda:formField id="laenge" label="Länge in mm (1-500):" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>

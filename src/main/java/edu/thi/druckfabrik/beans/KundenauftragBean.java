@@ -9,6 +9,15 @@ public class KundenauftragBean {
 	private Date liefertermin;
 	private PrototypBean prototyp;
 	private long druckanzahl;
+	private Boolean expressversandGewuenscht;
+	
+	
+	public Boolean getExpressversandGewuenscht() {
+		return expressversandGewuenscht;
+	}
+	public void setExpressversandGewuenscht(Boolean expressversandGewuenscht) {
+		this.expressversandGewuenscht = expressversandGewuenscht;
+	}
 	private BigDecimal gesamtPreis;
 	
 	

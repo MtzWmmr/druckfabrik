@@ -23,6 +23,7 @@ public class AuftragAnlegen implements JavaDelegate{
 		auftrag.setDruckanzahl(bestellung.getDruckanzahl());
 		auftrag.setLiefertermin(liefertermin);
 		auftrag.setPrototyp(bestellung.getPrototyp());
+		auftrag.setExpressversandGewuenscht(bestellung.getExpressversandGewuenscht());
 		
 		execution.setVariable("kundenauftrag", auftrag);
 		
