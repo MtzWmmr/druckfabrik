@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1l5tgt5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_09x5gin">
+    <bpmn:participant id="Participant_1j5j0qx" name="Druckprozess" processRef="druckProzess_ID" />
+  </bpmn:collaboration>
+  <bpmn:process id="druckProzess_ID" name="Druckprozess" isExecutable="true">
+    <bpmn:startEvent id="Event_1qovbgm">
+      <bpmn:outgoing>Flow_1xgi6xz</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1cxciix" name="3D-Objekt erfolgreich gedruckt">
+      <bpmn:incoming>Flow_01bb0xq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_02aq731" name="Druckauftrag anzeigen und freigeben" camunda:assignee="kermit">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="material" label="Für den Druck genutztes Material:" type="string" defaultValue="${Prototyp.material}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="hoehe" label="Höhe des Objekts:" type="long" defaultValue="${Prototyp.hoehe}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="breite" label="Breite des Objekts:" type="long" defaultValue="${Prototyp.breite}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="laenge" label="Länge des Objekts:" type="long" defaultValue="${Prototyp.laenge}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="objekt" label="Zu druckendes Objekt:" type="string" defaultValue="${anfrage.link}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="valide" label="Druckauftrag freigeben?" type="boolean" defaultValue="false" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xgi6xz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vyhoo5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_1mvyv7m" name="3D-Objekt drucken" camunda:class="edu.thi.druckfabrik.servicetasks.ObjektDrucken">
+      <bpmn:incoming>Flow_0vyhoo5</bpmn:incoming>
+      <bpmn:outgoing>Flow_01bb0xq</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">${anzahl}</bpmn:loopCardinality>
+      </bpmn:multiInstanceLoopCharacteristics>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0vyhoo5" sourceRef="Activity_02aq731" targetRef="Activity_1mvyv7m" />
+    <bpmn:sequenceFlow id="Flow_01bb0xq" sourceRef="Activity_1mvyv7m" targetRef="Event_1cxciix" />
+    <bpmn:sequenceFlow id="Flow_1xgi6xz" sourceRef="Event_1qovbgm" targetRef="Activity_02aq731" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_09x5gin">
+      <bpmndi:BPMNShape id="Participant_1j5j0qx_di" bpmnElement="Participant_1j5j0qx" isHorizontal="true">
+        <dc:Bounds x="130" y="80" width="780" height="315" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xgi6xz_di" bpmnElement="Flow_1xgi6xz">
+        <di:waypoint x="228" y="200" />
+        <di:waypoint x="330" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01bb0xq_di" bpmnElement="Flow_01bb0xq">
+        <di:waypoint x="670" y="200" />
+        <di:waypoint x="782" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vyhoo5_di" bpmnElement="Flow_0vyhoo5">
+        <di:waypoint x="430" y="200" />
+        <di:waypoint x="570" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1qovbgm_di" bpmnElement="Event_1qovbgm">
+        <dc:Bounds x="192" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cxciix_di" bpmnElement="Event_1cxciix">
+        <dc:Bounds x="782" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="774" y="225" width="52" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1a8fqzd_di" bpmnElement="Activity_02aq731">
+        <dc:Bounds x="330" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b20y4l_di" bpmnElement="Activity_1mvyv7m">
+        <dc:Bounds x="570" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

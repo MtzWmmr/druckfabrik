@@ -92,6 +92,9 @@
     <bpmn:manualTask id="Activity_1wztffu" name="3D-Druck in Verpackungmaterial einwickeln">
       <bpmn:incoming>Flow_0mhw2wf</bpmn:incoming>
       <bpmn:outgoing>Flow_00wx6ym</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">${kundenauftrag.druckanzahl}</bpmn:loopCardinality>
+      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:manualTask>
     <bpmn:manualTask id="Activity_12sfqkv" name="Passenden Karton finden">
       <bpmn:incoming>Flow_0w3s1ay</bpmn:incoming>
@@ -99,7 +102,8 @@
     </bpmn:manualTask>
     <bpmn:callActivity id="Activity_11r4sis" name="Paket versandfertig machen" calledElement="paketVersandfertigMachen_ID">
       <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftragVorhanden}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kundenauftragVorhanden}" target="kundenauftragVorhanden" />
+        <camunda:in sourceExpression="${anzahl}" target="anzahl" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1tb735s</bpmn:incoming>
       <bpmn:outgoing>Flow_11otjzj</bpmn:outgoing>

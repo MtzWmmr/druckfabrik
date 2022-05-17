@@ -5,7 +5,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import edu.thi.druckfabrik.beans.PrototypBean;
 
-public class prototypDrucken implements JavaDelegate{
+public class PrototypBeanBefuellen implements JavaDelegate{
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
@@ -15,11 +15,13 @@ public class prototypDrucken implements JavaDelegate{
 		long breite = (long) execution.getVariable("breite");
 		long laenge = (long) execution.getVariable("laenge");
 		
+		
 		PrototypBean prototyp = new PrototypBean();
 		prototyp.setMaterial(material);
 		prototyp.setHoehe(hoehe);
 		prototyp.setBreite(breite);
 		prototyp.setLaenge(laenge);
+		prototyp.setAnzahl(Long.valueOf(1));
 		
 		execution.setVariable("Prototyp", prototyp);
 		

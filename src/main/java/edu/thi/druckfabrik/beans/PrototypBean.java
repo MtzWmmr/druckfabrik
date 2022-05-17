@@ -11,7 +11,16 @@ public class PrototypBean implements Serializable{
 	private Long breite;
 	private Long laenge;
 	private Long volumen;
+	private Long anzahl;
 
+
+	public Long getAnzahl() {
+		return anzahl;
+	}
+
+	public void setAnzahl(Long anzahl) {
+		this.anzahl = anzahl;
+	}
 
 	public Long getHoehe() {
 		return hoehe;
