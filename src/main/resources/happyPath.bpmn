@@ -120,6 +120,7 @@
     <bpmn:callActivity id="Activity_1y12qqx" name="Angebot und Prototyp versenden" calledElement="paketVersenden_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
       <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>

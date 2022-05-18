@@ -52,12 +52,47 @@
       <bpmn:outgoing>Flow_0sosoh8</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_0pwdoy8" name="Versandetikett erstellen" camunda:assignee="kermit">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="anrede" label="Anrede" type="string" defaultValue="${anfrage.anrede}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nachname" label="Nachname:" type="string" defaultValue="${anfrage.nachname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="vorname" label="Vorname:" type="string" defaultValue="${anfrage.vorname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="strasse" label="Straße:" type="string" defaultValue="${anfrage.strasse}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="hausnummer" label="Hausnummer:" type="string" defaultValue="${anfrage.hausnummer}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="postleitzahl" label="Postleitzahl:" type="string" defaultValue="${anfrage.postleitzahl}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="stadt" label="Stadt:" type="string" defaultValue="${anfrage.stadt}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0sosoh8</bpmn:incoming>
       <bpmn:outgoing>Flow_06zksm4</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_0m3npq8" name="Versandetikett drucken" camunda:assignee="kermit">
-      <bpmn:incoming>Flow_06zksm4</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ucqbk2</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:parallelGateway id="Gateway_0z5zhe5">
       <bpmn:incoming>Flow_1ucqbk2</bpmn:incoming>
@@ -76,12 +111,47 @@
       <bpmn:outgoing>Flow_07gytig</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_0ucbcwa" name="Versandetikett erstellen" camunda:assignee="kermit">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="anrede" label="Anrede" type="string" defaultValue="${anfrage.anrede}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nachname" label="Nachname:" type="string" defaultValue="${anfrage.nachname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="vorname" label="Vorname:" type="string" defaultValue="${anfrage.vorname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="strasse" label="Straße:" type="string" defaultValue="${anfrage.strasse}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="hausnummer" label="Hausnummer:" type="string" defaultValue="${anfrage.hausnummer}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="postleitzahl" label="Postleitzahl:" type="string" defaultValue="${anfrage.postleitzahl}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="stadt" label="Stadt:" type="string" defaultValue="${anfrage.stadt}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_07gytig</bpmn:incoming>
       <bpmn:outgoing>Flow_1v9vlsr</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Activity_1nt9x9q" name="Versandetikett drucken" camunda:assignee="kermit">
-      <bpmn:incoming>Flow_1v9vlsr</bpmn:incoming>
-      <bpmn:outgoing>Flow_0yvy4sb</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:parallelGateway id="Gateway_0c4fcy6">
       <bpmn:incoming>Flow_1w530b0</bpmn:incoming>
@@ -127,14 +197,22 @@
       <bpmn:incoming>Flow_1xbsz6b</bpmn:incoming>
       <bpmn:outgoing>Flow_0vq73yu</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:userTask id="Activity_088l9si" name="Angebot ausdrucken" camunda:assignee="kermit">
-      <bpmn:incoming>Flow_0jtl3iz</bpmn:incoming>
-      <bpmn:outgoing>Flow_1x07ru3</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:manualTask id="Activity_0m07ab8" name="Passenden Karton finden">
       <bpmn:incoming>Flow_014i1zn</bpmn:incoming>
       <bpmn:outgoing>Flow_0ab3i3i</bpmn:outgoing>
     </bpmn:manualTask>
+    <bpmn:serviceTask id="Activity_0m3npq8" name="Versandetikett drucken" camunda:class="edu.thi.druckfabrik.servicetasks.VersandetikettDrucken">
+      <bpmn:incoming>Flow_06zksm4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ucqbk2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1nt9x9q" name="Versandetikett drucken" camunda:class="edu.thi.druckfabrik.servicetasks.VersandetikettDrucken">
+      <bpmn:incoming>Flow_1v9vlsr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yvy4sb</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_088l9si" name="Angebot ausdrucken" camunda:class="edu.thi.druckfabrik.servicetasks.AngebotDrucken">
+      <bpmn:incoming>Flow_0jtl3iz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1x07ru3</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:category id="Category_0grzkwt">
     <bpmn:categoryValue id="CategoryValue_19o2n3s" value="Simulation Ad-Hoc Teilprozess Prototyp" />
@@ -278,9 +356,6 @@
       <bpmndi:BPMNShape id="Activity_1bknkzl_di" bpmnElement="Activity_0pwdoy8">
         <dc:Bounds x="540" y="950" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0tdo1cn_di" bpmnElement="Activity_0m3npq8">
-        <dc:Bounds x="710" y="950" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_15lo0ph_di" bpmnElement="Gateway_0z5zhe5">
         <dc:Bounds x="835" y="805" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -289,9 +364,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ucbcwa_di" bpmnElement="Activity_0ucbcwa">
         <dc:Bounds x="540" y="1540" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1nt9x9q_di" bpmnElement="Activity_1nt9x9q">
-        <dc:Bounds x="710" y="1540" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0c4fcy6_di" bpmnElement="Gateway_0c4fcy6">
         <dc:Bounds x="835" y="1395" width="50" height="50" />
@@ -320,11 +392,17 @@
       <bpmndi:BPMNShape id="Activity_1r9qmui_di" bpmnElement="Activity_17qrmzn">
         <dc:Bounds x="620" y="840" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1em4npi_di" bpmnElement="Activity_088l9si">
-        <dc:Bounds x="620" y="730" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1rugbi3_di" bpmnElement="Activity_0m07ab8">
         <dc:Bounds x="620" y="620" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hnz66j_di" bpmnElement="Activity_0m3npq8">
+        <dc:Bounds x="710" y="950" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ed9kas_di" bpmnElement="Activity_1nt9x9q">
+        <dc:Bounds x="710" y="1540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dua8xi_di" bpmnElement="Activity_088l9si">
+        <dc:Bounds x="620" y="730" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1bs24qm_di" bpmnElement="Participant_1i9plnd" isHorizontal="true">
         <dc:Bounds x="620" y="80" width="710" height="60" />
