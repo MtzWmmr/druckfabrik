@@ -18,6 +18,7 @@
     <bpmn:messageFlow id="Flow_05d0o3r" name="Kunden Bestellbestätigung" sourceRef="Activity_16nmavi" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_0okcbwy" name="Stornierung der Bestellung" sourceRef="Activity_0cl0y0p" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_08lwu1c" name="Auftragsbestätigung mit Liefertermin" sourceRef="Activity_16nmavi" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_19d4pow" name="Zahlungserinnerung" sourceRef="Activity_19ffhe2" targetRef="Participant_1bjq88u" />
   </bpmn:collaboration>
   <bpmn:process id="DruckfabrikHauptprozess" name="Druckfabrik Hauptprozess" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0bujr0d">
@@ -42,8 +43,8 @@
         <bpmn:flowNodeRef>Event_1a8nbrh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0cl0y0p</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0094xme</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_19ffhe2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0hi6twg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19ffhe2</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1vm9kei" name="Versandabteilung">
         <bpmn:flowNodeRef>Gateway_08pdrch</bpmn:flowNodeRef>
@@ -239,13 +240,13 @@
       <bpmn:incoming>Flow_15528gb</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_15528gb" sourceRef="Activity_0cl0y0p" targetRef="Event_0094xme" />
+    <bpmn:endEvent id="Event_0hi6twg" name="Zahlungserinnerung gesendet">
+      <bpmn:incoming>Flow_04gr3mg</bpmn:incoming>
+    </bpmn:endEvent>
     <bpmn:sendTask id="Activity_19ffhe2" name="Zahlungserinnerung an Kunden senden" camunda:class="edu.thi.druckfabrik.ZahlungserinnerungSenden">
       <bpmn:incoming>Flow_0u8esgs</bpmn:incoming>
       <bpmn:outgoing>Flow_04gr3mg</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:endEvent id="Event_0hi6twg" name="Zahlungserinnerung gesendet">
-      <bpmn:incoming>Flow_04gr3mg</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:textAnnotation id="TextAnnotation_08ki1wi">
       <bpmn:text>Hier muss geklärt werden ob wir nur auf Rechnung kassieren. Oder bei manchen Kunden auch Vorkasse wollen</bpmn:text>
     </bpmn:textAnnotation>
@@ -311,13 +312,13 @@
         <di:waypoint x="1735" y="870" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04gr3mg_di" bpmnElement="Flow_04gr3mg">
-        <di:waypoint x="4660" y="2310" />
+        <di:waypoint x="4540" y="2310" />
         <di:waypoint x="4832" y="2310" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0u8esgs_di" bpmnElement="Flow_0u8esgs">
         <di:waypoint x="4250" y="2038" />
         <di:waypoint x="4250" y="2310" />
-        <di:waypoint x="4560" y="2310" />
+        <di:waypoint x="4440" y="2310" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sbwgy7_di" bpmnElement="Flow_0sbwgy7">
         <di:waypoint x="4350" y="1980" />
@@ -468,9 +469,6 @@
           <dc:Bounds x="4805" y="2200" width="89" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06g4jd0_di" bpmnElement="Activity_19ffhe2">
-        <dc:Bounds x="4560" y="2270" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0hi6twg_di" bpmnElement="Event_0hi6twg">
         <dc:Bounds x="4832" y="2292" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -485,6 +483,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_06bq0r1_di" bpmnElement="TextAnnotation_06bq0r1">
         <dc:Bounds x="2520" y="1060" width="100" height="81" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06g4jd0_di" bpmnElement="Activity_19ffhe2">
+        <dc:Bounds x="4440" y="2270" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0zhw1iz_di" bpmnElement="Event_1da0z73">
         <dc:Bounds x="1377" y="892" width="36" height="36" />
@@ -627,6 +628,13 @@
         <di:waypoint x="3040" y="140" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="2957" y="500" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19d4pow_di" bpmnElement="Flow_19d4pow">
+        <di:waypoint x="4490" y="2270" />
+        <di:waypoint x="4490" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4387" y="596" width="86" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
