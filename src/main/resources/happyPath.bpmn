@@ -73,8 +73,8 @@
     <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
       <bpmn:extensionElements>
         <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
-        <camunda:executionListener class="edu.thi.druckfabrik.StammkundeErmittlung" event="start" />
         <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
+        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
@@ -99,9 +99,8 @@
     <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
       <bpmn:extensionElements>
         <camunda:in source="startdate" target="startdate" />
-        <camunda:in source="stammkunde" target="stammkunde" />
-        <camunda:out sourceExpression="${stammkunde}" target="stammkunde" />
         <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
       <bpmn:outgoing>Flow_1fry3vl</bpmn:outgoing>
@@ -121,7 +120,7 @@
     <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
       <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
@@ -154,6 +153,7 @@
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
         <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
       <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
@@ -164,8 +164,8 @@
     <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
         <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0sbwgy7</bpmn:incoming>
       <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>

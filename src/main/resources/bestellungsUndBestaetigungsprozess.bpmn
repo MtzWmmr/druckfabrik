@@ -66,7 +66,6 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="angebotID" label="Bezogen auf AnfrageID:" type="string" defaultValue="${angebotID}" />
-          <camunda:formField id="prototypID" label="Bezogen auf PrototypID: " type="string" defaultValue="${prototypID}" />
           <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long" />
           <camunda:formField id="expressversandGewuenscht" label="Expressversand gewünscht?" type="boolean" defaultValue="${expressversandGewuenscht}" />
         </camunda:formData>

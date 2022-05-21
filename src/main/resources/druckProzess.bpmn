@@ -38,7 +38,6 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="valide" label="Druckauftrag freigeben?" type="boolean" defaultValue="false" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xgi6xz</bpmn:incoming>

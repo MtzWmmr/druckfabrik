@@ -13,7 +13,14 @@ public class KundenBean implements Serializable {
 	private String stadt;
 	private String telefonnummer;
 	private Boolean stammkunde;
+	private Integer kundenID;
 	
+	public Integer getKundenID() {
+		return kundenID;
+	}
+	public void setKundenID(Integer kundenID) {
+		this.kundenID = kundenID;
+	}
 	public String getAnrede() {
 		return anrede;
 	}
@@ -71,8 +78,8 @@ public class KundenBean implements Serializable {
 	public Boolean getStammkunde() {
 		return stammkunde;
 	}
-	public void setStammkunde(Boolean bestandskunde) {
-		this.stammkunde = bestandskunde;
+	public void setStammkunde(Boolean stammkunde) {
+		this.stammkunde = stammkunde;
 	}
 	
 }

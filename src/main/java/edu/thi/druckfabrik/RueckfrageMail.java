@@ -9,6 +9,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import edu.thi.druckfabrik.beans.AnfrageBean;
+import edu.thi.druckfabrik.beans.KundenBean;
 
 
 //import javax.mail.Message;
@@ -25,15 +26,16 @@ public class RueckfrageMail implements JavaDelegate{
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		//am 30.05.2022 wurde diese Möglichkeit E-Mails über Google Mail zu schreiben aus Sicherheitsgründen entfernt, deshalb lediglich ausgabe in der Console
+		KundenBean kunde = (KundenBean) execution.getVariable("kunde");
 		AnfrageBean anfrage = (AnfrageBean) execution.getVariable("anfrage");
 		
 		String reason = (String) execution.getVariable("rueckfragegrund");
 		String text = (String) execution.getVariable("rueckfragetext");
-		String anrede = anfrage.getAnrede();
-		String nachname = anfrage.getNachname();
-		String email = anfrage.getEmail();
+		String anrede = kunde.getAnrede();
+		String nachname = kunde.getNachname();
+		String email = kunde.getEmail();
 		Date startdate = (Date) execution.getVariable("startdate");
-		int anfrageID = anfrage.getAnfrageID();
+		Integer anfrageID = anfrage.getAnfrageID();
 		String hours = String.valueOf(startdate.getHours());
 		String minutes = String.valueOf(startdate.getMinutes());
 		

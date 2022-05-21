@@ -1,17 +1,18 @@
-package edu.thi.druckfabrik.servicetasks;
+package edu.thi.druckfabrik;
+
+import java.util.Date;
+import java.util.Random;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import edu.thi.druckfabrik.beans.AnfrageBean;
 import edu.thi.druckfabrik.beans.KundenBean;
 
-public class AngabenAktualisieren implements JavaDelegate{
-
+public class KundenBeanBefuellen implements JavaDelegate{
+	
 	public void execute(DelegateExecution execution) throws Exception {
 		//am 30.05.2022 wurde diese Möglichkeit E-Mails über Google Mail zu schreiben aus Sicherheitsgründen entfernt, deshalb lediglich ausgabe in der Console
-		KundenBean kunde = (KundenBean) execution.getVariable("kunde");
-		AnfrageBean anfrage = (AnfrageBean) execution.getVariable("anfrage");
+		KundenBean kunde = new KundenBean();
 		
 		String anrede = (String) execution.getVariable("anrede");
 		String nachname = (String) execution.getVariable("nachname");
@@ -21,8 +22,8 @@ public class AngabenAktualisieren implements JavaDelegate{
 		String hausnummer = (String) execution.getVariable("hausnummer");
 		String postleitzahl = (String) execution.getVariable("postleitzahl");
 		String stadt = (String) execution.getVariable("stadt");
-		String link = (String) execution.getVariable("link");
 		String telefonnummer = (String) execution.getVariable("telefonnummer");
+		Boolean stammkunde = (Boolean) execution.getVariable("stammkunde");
 		
 		kunde.setAnrede(anrede);
 		kunde.setEmail(email);
@@ -32,11 +33,25 @@ public class AngabenAktualisieren implements JavaDelegate{
 		kunde.setHausnummer(hausnummer);
 		kunde.setPostleitzahl(postleitzahl);
 		kunde.setStadt(stadt);
-		anfrage.setLink(link);
 		kunde.setTelefonnummer(telefonnummer);
+		kunde.setStammkunde(stammkunde);
+		kunde.setKundenID(new Random().nextInt(900000) + 100000);
 		
-		execution.setVariable("anfrage", anfrage);
+		execution.removeVariable("anrede");
+		execution.removeVariable("nachname");
+		execution.removeVariable("vorname");
+		execution.removeVariable("email");
+		execution.removeVariable("strasse");
+		execution.removeVariable("hausnummer");
+		execution.removeVariable("postleitzahl");
+		execution.removeVariable("stadt");
+		execution.removeVariable("telefonnummer");
+		execution.removeVariable("stammkunde");
+		
+		
 		execution.setVariable("kunde", kunde);
-}
-	
+		
+		
+	}
+
 }

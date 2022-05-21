@@ -1,8 +1,8 @@
 package edu.thi.druckfabrik.beans;
 
+import java.io.Serializable;
 
-
-public class BestellungBean {
+public class BestellungBean implements Serializable{
 	private int bestellungID;
 	private int angebotID;
 	private PrototypBean prototyp;

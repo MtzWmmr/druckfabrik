@@ -1,6 +1,8 @@
 package edu.thi.druckfabrik.beans;
 
-public class AngebotBean {
+import java.io.Serializable;
+
+public class AngebotBean implements Serializable{
 	private int angebotID;
 	private PrototypBean prototyp;
 	private double preis1;

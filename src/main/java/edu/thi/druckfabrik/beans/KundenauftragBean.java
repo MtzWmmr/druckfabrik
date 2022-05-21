@@ -1,9 +1,10 @@
 package edu.thi.druckfabrik.beans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class KundenauftragBean {
+public class KundenauftragBean implements Serializable{
 	private int kundenauftragID;
 	private int bestellungID;
 	private Date liefertermin;

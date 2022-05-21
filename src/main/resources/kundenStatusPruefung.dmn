@@ -15,7 +15,7 @@
       </input>
       <input id="InputClause_088cbew" label="Stammkunde">
         <inputExpression id="LiteralExpression_0a9ixeh" typeRef="boolean">
-          <text>stammkunde</text>
+          <text>kunde.stammkunde</text>
         </inputExpression>
       </input>
       <output id="Output_1" label="Gratis Expressversand" name="gratisExpressversand" typeRef="boolean" />
