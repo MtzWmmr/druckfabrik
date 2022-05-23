@@ -68,9 +68,9 @@
       <bpmn:outgoing>Flow_0xsj8zl</bpmn:outgoing>
       <bpmn:outgoing>Flow_1dms85t</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1ayow7j" name="Druckauftrag mit Prototyp erstellen" camunda:class="edu.thi.druckfabrik.PrototypBeanBefuellen">
+    <bpmn:serviceTask id="Activity_1ayow7j" name="Druckauftrag mit Prototyp erstellen" camunda:class="edu.thi.druckfabrik.servicetasks.PrototypBeanBefuellen">
       <bpmn:incoming>Flow_0xsj8zl</bpmn:incoming>
-      <bpmn:outgoing>Flow_1x63k2v</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ey3tox</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:exclusiveGateway id="Gateway_10ikyer">
       <bpmn:incoming>Flow_0ou4e7g</bpmn:incoming>
@@ -91,7 +91,6 @@
     <bpmn:sequenceFlow id="Flow_0xsj8zl" name="Ja" sourceRef="Gateway_0sqhto0" targetRef="Activity_1ayow7j">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${druckbar==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1x63k2v" sourceRef="Activity_1ayow7j" targetRef="Event_0axeo9b" />
     <bpmn:sequenceFlow id="Flow_0ou4e7g" name="Nein" sourceRef="Gateway_13p6y99" targetRef="Gateway_10ikyer">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plagiat==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -104,8 +103,9 @@
       <bpmn:outgoing>Flow_0xd72fi</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:endEvent id="Event_0axeo9b" name="Prototyp entwickelt">
-      <bpmn:incoming>Flow_1x63k2v</bpmn:incoming>
+      <bpmn:incoming>Flow_1ey3tox</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ey3tox" sourceRef="Activity_1ayow7j" targetRef="Event_0axeo9b" />
   </bpmn:process>
   <bpmn:signal id="Signal_11wbam5" name="Plagiatversuch liegt vor" />
   <bpmn:escalation id="Escalation_17k20fj" name="Plagiatversuch liegt vor" escalationCode="Plagiatversuch liegt vor" />
@@ -133,10 +133,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="544" y="159" width="23" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1x63k2v_di" bpmnElement="Flow_1x63k2v">
-        <di:waypoint x="1280" y="177" />
-        <di:waypoint x="1382" y="177" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xsj8zl_di" bpmnElement="Flow_0xsj8zl">
         <di:waypoint x="1115" y="177" />
@@ -168,6 +164,10 @@
       <bpmndi:BPMNEdge id="Flow_0q6a1q5_di" bpmnElement="Flow_0q6a1q5">
         <di:waypoint x="265" y="177" />
         <di:waypoint x="320" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ey3tox_di" bpmnElement="Flow_1ey3tox">
+        <di:waypoint x="1280" y="177" />
+        <di:waypoint x="1382" y="177" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="229" y="159" width="36" height="36" />
@@ -208,7 +208,7 @@
       <bpmndi:BPMNShape id="Event_0axeo9b_di" bpmnElement="Event_0axeo9b">
         <dc:Bounds x="1382" y="159" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1377" y="202" width="49" height="27" />
+          <dc:Bounds x="1375" y="121.5" width="49" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

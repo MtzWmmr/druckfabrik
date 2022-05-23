@@ -1,4 +1,4 @@
-package edu.thi.druckfabrik;
+package edu.thi.druckfabrik.servicetasks;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -16,7 +16,7 @@ public class PrototypBeanBefuellen implements JavaDelegate{
 		long laenge = (long) execution.getVariable("laenge");
 		
 		
-		PrototypBean prototyp = new PrototypBean();
+		PrototypBean prototyp = (PrototypBean) execution.getVariable("Prototyp");
 		prototyp.setMaterial(material);
 		prototyp.setHoehe(hoehe);
 		prototyp.setBreite(breite);

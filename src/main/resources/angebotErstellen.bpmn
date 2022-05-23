@@ -5,11 +5,10 @@
   </bpmn:collaboration>
   <bpmn:process id="angebotErstellen_ID" name="Angebot erstellen Unterprozess" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
-      <bpmn:outgoing>Flow_1fq327y</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0k9mynl</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_1fq327y" sourceRef="StartEvent_1" targetRef="Activity_1sv8c4k" />
     <bpmn:businessRuleTask id="Activity_1sv8c4k" name="Preis pro Stück ermitteln" camunda:resultVariable="preise" camunda:decisionRef="preisProStueckErmitteln" camunda:mapDecisionResult="singleResult">
-      <bpmn:incoming>Flow_1fq327y</bpmn:incoming>
+      <bpmn:incoming>Flow_0k9mynl</bpmn:incoming>
       <bpmn:outgoing>Flow_15q30h2</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_15q30h2" sourceRef="Activity_1sv8c4k" targetRef="Activity_1eriljb" />
@@ -21,23 +20,24 @@
       <bpmn:incoming>Flow_0zhqv3o</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0zhqv3o" sourceRef="Activity_1eriljb" targetRef="Event_0l2r5zc" />
+    <bpmn:sequenceFlow id="Flow_0k9mynl" sourceRef="StartEvent_1" targetRef="Activity_1sv8c4k" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1nb0nlu">
       <bpmndi:BPMNShape id="Participant_073exrl_di" bpmnElement="Participant_073exrl" isHorizontal="true">
-        <dc:Bounds x="129" y="100" width="600" height="250" />
+        <dc:Bounds x="129" y="100" width="600" height="320" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1fq327y_di" bpmnElement="Flow_1fq327y">
-        <di:waypoint x="238" y="210" />
-        <di:waypoint x="290" y="210" />
+      <bpmndi:BPMNEdge id="Flow_0zhqv3o_di" bpmnElement="Flow_0zhqv3o">
+        <di:waypoint x="550" y="210" />
+        <di:waypoint x="612" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_15q30h2_di" bpmnElement="Flow_15q30h2">
         <di:waypoint x="390" y="210" />
         <di:waypoint x="450" y="210" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0zhqv3o_di" bpmnElement="Flow_0zhqv3o">
-        <di:waypoint x="550" y="210" />
-        <di:waypoint x="612" y="210" />
+      <bpmndi:BPMNEdge id="Flow_0k9mynl_di" bpmnElement="Flow_0k9mynl">
+        <di:waypoint x="238" y="210" />
+        <di:waypoint x="290" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="202" y="192" width="36" height="36" />

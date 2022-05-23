@@ -17,7 +17,7 @@ public class AuftragAnlegen implements JavaDelegate{
 		Date liefertermin = (Date) execution.getVariable("liefertermin");
 		
 		
-		KundenauftragBean auftrag = new KundenauftragBean();
+		KundenauftragBean auftrag = (KundenauftragBean) execution.getVariable("kundenauftrag");
 		auftrag.setKundenauftragID(new Random().nextInt(900000) + 100000);
 		auftrag.setBestellungID(bestellung.getBestellungID());
 		auftrag.setDruckanzahl(bestellung.getDruckanzahl());
