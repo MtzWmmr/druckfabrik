@@ -37,8 +37,8 @@
         <bpmn:flowNodeRef>Event_13bja46</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Anfrageevaluieren_ID</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_07tq7yu</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0mn753d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_094clsu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0mn753d</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ejx4k3" name="Finanzabteilung">
         <bpmn:flowNodeRef>Activity_1ylv7g6</bpmn:flowNodeRef>
@@ -48,9 +48,9 @@
         <bpmn:flowNodeRef>Event_0094xme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0hi6twg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_19ffhe2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1a8nbrh</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1e45mj8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0kpytah</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1e45mj8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1a8nbrh</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1vm9kei" name="Versandabteilung">
         <bpmn:flowNodeRef>Gateway_08pdrch</bpmn:flowNodeRef>
@@ -76,33 +76,8 @@
     <bpmn:sequenceFlow id="Flow_0mlf1n3" sourceRef="Event_0mn753d" targetRef="Event_13bja46" />
     <bpmn:sequenceFlow id="Flow_1j9u447" sourceRef="Event_1da0z73" targetRef="Event_0ud0gl0" />
     <bpmn:sequenceFlow id="Flow_1x7u12e" sourceRef="StartEvent_1" targetRef="Anfrageevaluieren_ID" />
-    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
-      <bpmn:extensionElements>
-        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
-        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
-        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
-      </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
-    </bpmn:startEvent>
-    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
-      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1w71l24" sourceRef="Event_14msvf3" targetRef="Activity_1kw6sc9" />
     <bpmn:sequenceFlow id="Flow_0o586jv" sourceRef="Activity_1kw6sc9" targetRef="Event_1nf8y4j" />
-    <bpmn:boundaryEvent id="Event_0mn753d" name="Keine Kundenantwort in vereinbarter Zeit" attachedToRef="Anfrageevaluieren_ID">
-      <bpmn:outgoing>Flow_0mlf1n3</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1d3irdl" />
-    </bpmn:boundaryEvent>
-    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
-      <bpmn:extensionElements>
-        <camunda:in source="startdate" target="startdate" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
-      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:sequenceFlow id="Flow_0qua1cl" sourceRef="Activity_0a8mdu5" targetRef="Event_07ss5ey" />
     <bpmn:sequenceFlow id="Flow_12lki2i" sourceRef="Activity_1od81p3" targetRef="Activity_1ylv7g6" />
     <bpmn:sequenceFlow id="Flow_0t8gbok" sourceRef="Activity_1ylv7g6" targetRef="Activity_1yaiym0" />
@@ -114,156 +89,12 @@
     <bpmn:sequenceFlow id="Flow_1pm4zee" sourceRef="Activity_16nmavi" targetRef="Activity_1od81p3" />
     <bpmn:sequenceFlow id="Flow_10f55jn" sourceRef="Event_1e45mj8" targetRef="Activity_0cl0y0p" />
     <bpmn:sequenceFlow id="Flow_15528gb" sourceRef="Activity_0cl0y0p" targetRef="Event_0094xme" />
-    <bpmn:subProcess id="Activity_0kpytah" triggeredByEvent="true">
-      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen">
-        <bpmn:outgoing>Flow_0xw78bg</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1i6b49o" messageRef="Message_15repjx" />
-      </bpmn:startEvent>
-      <bpmn:intermediateThrowEvent id="Event_1hex3b7" name="Datenbank Transaktionsprozess">
-        <bpmn:incoming>Flow_0xw78bg</bpmn:incoming>
-        <bpmn:outgoing>Flow_0ulqt17</bpmn:outgoing>
-        <bpmn:compensateEventDefinition id="CompensateEventDefinition_1m2ioxy" activityRef="Activity_094clsu" />
-      </bpmn:intermediateThrowEvent>
-      <bpmn:sequenceFlow id="Flow_0ulqt17" sourceRef="Event_1hex3b7" targetRef="Activity_1ybkljz" />
-      <bpmn:sendTask id="Activity_1ybkljz" name="Aufforderung für Aufwandsentschädigung senden" camunda:class="edu.thi.druckfabrik.AufwandsentschaedigungForderungSenden">
-        <bpmn:incoming>Flow_0ulqt17</bpmn:incoming>
-        <bpmn:outgoing>Flow_0f8idxl</bpmn:outgoing>
-      </bpmn:sendTask>
-      <bpmn:sequenceFlow id="Flow_0f8idxl" sourceRef="Activity_1ybkljz" targetRef="Event_0kkrjid" />
-      <bpmn:intermediateCatchEvent id="Event_0kkrjid" name="Aufwandsentschädigung empfangen">
-        <bpmn:incoming>Flow_0f8idxl</bpmn:incoming>
-        <bpmn:outgoing>Flow_14ar6r2</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1o1ml7h" messageRef="Message_15wf81a" />
-      </bpmn:intermediateCatchEvent>
-      <bpmn:endEvent id="Event_0ppgd4g" name="Stornierung abgewickelt">
-        <bpmn:incoming>Flow_14ar6r2</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_14ar6r2" sourceRef="Event_0kkrjid" targetRef="Event_0ppgd4g" />
-      <bpmn:sequenceFlow id="Flow_0xw78bg" sourceRef="Event_1dgzg11" targetRef="Event_1hex3b7" />
-    </bpmn:subProcess>
     <bpmn:sequenceFlow id="Flow_0krj2lh" sourceRef="Anfrageevaluieren_ID" targetRef="Activity_094clsu" />
     <bpmn:sequenceFlow id="Flow_1k57ekp" sourceRef="Activity_094clsu" targetRef="Prototypentwickeln_ID" />
-    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot Erstellung" calledElement="angebotErstellen_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:out sourceExpression="${angebot}" target="angebot" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
-      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:parallelGateway id="Gateway_08pdrch">
-      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
-      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
-      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
-      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:sendTask id="Activity_1kw6sc9" name="Auftragsabsage senden" camunda:class="edu.thi.druckfabrik.AuftragsabsageSenden">
-      <bpmn:incoming>Flow_1w71l24</bpmn:incoming>
-      <bpmn:outgoing>Flow_0o586jv</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:endEvent id="Event_1nf8y4j" name="Prozess beendet aufgrund nicht möglicher Produktion">
-      <bpmn:incoming>Flow_0o586jv</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_0a8mdu5" name="Verpackung und Versendung der gedruckten Güter" calledElement="paketVersenden_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
-      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
-      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0sbwgy7</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_1ylv7g6" name="Rechnungs-erstellungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_12lki2i</bpmn:incoming>
-      <bpmn:outgoing>Flow_0t8gbok</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:receiveTask id="Activity_1yaiym0" name="Zahlung empfangen" messageRef="Message_11mxll6">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="corrKey">${kundenauftrag.bestellungID}</camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0t8gbok</bpmn:incoming>
-      <bpmn:outgoing>Flow_0sbwgy7</bpmn:outgoing>
-    </bpmn:receiveTask>
-    <bpmn:businessRuleTask id="Activity_1od81p3" name="Kundenstatus prüfen" camunda:resultVariable="gratisExpressversand" camunda:decisionRef="Kundenstatus_ID" camunda:mapDecisionResult="singleEntry">
-      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
-      <bpmn:outgoing>Flow_12lki2i</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
-      <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp Entwicklung" calledElement="prototypEntwickeln_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${anfrage.link}" target="link" />
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:out sourceExpression="${Prototyp}" target="Prototyp" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
-      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:parallelGateway id="Gateway_134xxza">
-      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:sendTask id="Activity_0cl0y0p" name="Stornierung senden" camunda:class="edu.thi.druckfabrik.StornierungSenden">
-      <bpmn:incoming>Flow_10f55jn</bpmn:incoming>
-      <bpmn:outgoing>Flow_15528gb</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:endEvent id="Event_0094xme" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich">
-      <bpmn:incoming>Flow_15528gb</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:endEvent id="Event_0hi6twg" name="Zahlungserinnerung gesendet">
-      <bpmn:incoming>Flow_04gr3mg</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sendTask id="Activity_19ffhe2" name="Zahlungserinnerung senden" camunda:class="edu.thi.druckfabrik.ZahlungserinnerungSenden">
-      <bpmn:incoming>Flow_0u8esgs</bpmn:incoming>
-      <bpmn:outgoing>Flow_04gr3mg</bpmn:outgoing>
-    </bpmn:sendTask>
+    <bpmn:boundaryEvent id="Event_0mn753d" name="Keine Kundenantwort in vereinbarter Zeit" attachedToRef="Anfrageevaluieren_ID">
+      <bpmn:outgoing>Flow_0mlf1n3</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1d3irdl" />
+    </bpmn:boundaryEvent>
     <bpmn:boundaryEvent id="Event_1da0z73" name="Plagiatversuch liegt vor" attachedToRef="Prototypentwickeln_ID">
       <bpmn:outgoing>Flow_1j9u447</bpmn:outgoing>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1jlvb6d" />
@@ -315,18 +146,187 @@
       <bpmn:association id="Association_1rqqs4b" associationDirection="One" sourceRef="Event_1pi5iv9" targetRef="Activity_0zevg7n" />
       <bpmn:association id="Association_1agm2p0" associationDirection="One" sourceRef="Event_082fugp" targetRef="Activity_127lm8j" />
     </bpmn:transaction>
-    <bpmn:textAnnotation id="TextAnnotation_08ki1wi">
-      <bpmn:text>Hier muss geklärt werden ob wir nur auf Rechnung kassieren. Oder bei manchen Kunden auch Vorkasse wollen</bpmn:text>
+    <bpmn:sendTask id="Activity_19ffhe2" name="Zahlungserinnerung senden" camunda:class="edu.thi.druckfabrik.ZahlungserinnerungSenden">
+      <bpmn:incoming>Flow_0u8esgs</bpmn:incoming>
+      <bpmn:outgoing>Flow_04gr3mg</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_0hi6twg" name="Zahlungserinnerung gesendet">
+      <bpmn:incoming>Flow_04gr3mg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0094xme" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich">
+      <bpmn:incoming>Flow_15528gb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sendTask id="Activity_0cl0y0p" name="Stornierung senden" camunda:class="edu.thi.druckfabrik.StornierungSenden">
+      <bpmn:incoming>Flow_10f55jn</bpmn:incoming>
+      <bpmn:outgoing>Flow_15528gb</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:parallelGateway id="Gateway_134xxza">
+      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp Entwicklung" calledElement="prototypEntwickeln_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${anfrage.link}" target="link" />
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:out sourceExpression="${Prototyp}" target="Prototyp" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
+      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
+      <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:businessRuleTask id="Activity_1od81p3" name="Kundenstatus prüfen" camunda:resultVariable="gratisExpressversand" camunda:decisionRef="Kundenstatus_ID" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
+      <bpmn:outgoing>Flow_12lki2i</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:receiveTask id="Activity_1yaiym0" name="Zahlung empfangen" messageRef="Message_11mxll6">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="corrKey">${kundenauftrag.bestellungID}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0t8gbok</bpmn:incoming>
+      <bpmn:outgoing>Flow_0sbwgy7</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:callActivity id="Activity_1ylv7g6" name="Rechnungs-erstellungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_12lki2i</bpmn:incoming>
+      <bpmn:outgoing>Flow_0t8gbok</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0sbwgy7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
+      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Activity_0a8mdu5" name="Verpackung und Versendung der gedruckten Güter" calledElement="paketVersenden_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1nf8y4j" name="Prozess beendet aufgrund nicht möglicher Produktion">
+      <bpmn:incoming>Flow_0o586jv</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sendTask id="Activity_1kw6sc9" name="Auftragsabsage senden" camunda:class="edu.thi.druckfabrik.AuftragsabsageSenden">
+      <bpmn:incoming>Flow_1w71l24</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o586jv</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:parallelGateway id="Gateway_08pdrch">
+      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
+      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot Erstellung" calledElement="angebotErstellen_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:out sourceExpression="${angebot}" target="angebot" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
+      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:subProcess id="Activity_0kpytah" name="Stornierungsprozess" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen">
+        <bpmn:outgoing>Flow_0xw78bg</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1i6b49o" messageRef="Message_15repjx" />
+      </bpmn:startEvent>
+      <bpmn:intermediateThrowEvent id="Event_1hex3b7" name="Datenbank Transaktionsprozess">
+        <bpmn:incoming>Flow_0xw78bg</bpmn:incoming>
+        <bpmn:outgoing>Flow_0ulqt17</bpmn:outgoing>
+        <bpmn:compensateEventDefinition id="CompensateEventDefinition_1m2ioxy" activityRef="Activity_094clsu" />
+      </bpmn:intermediateThrowEvent>
+      <bpmn:sequenceFlow id="Flow_0ulqt17" sourceRef="Event_1hex3b7" targetRef="Activity_1ybkljz" />
+      <bpmn:sendTask id="Activity_1ybkljz" name="Aufforderung für Aufwandsentschädigung senden" camunda:class="edu.thi.druckfabrik.AufwandsentschaedigungForderungSenden">
+        <bpmn:incoming>Flow_0ulqt17</bpmn:incoming>
+        <bpmn:outgoing>Flow_0f8idxl</bpmn:outgoing>
+      </bpmn:sendTask>
+      <bpmn:sequenceFlow id="Flow_0f8idxl" sourceRef="Activity_1ybkljz" targetRef="Event_0kkrjid" />
+      <bpmn:intermediateCatchEvent id="Event_0kkrjid" name="Aufwandsentschädigung empfangen">
+        <bpmn:incoming>Flow_0f8idxl</bpmn:incoming>
+        <bpmn:outgoing>Flow_14ar6r2</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1o1ml7h" messageRef="Message_15wf81a" />
+      </bpmn:intermediateCatchEvent>
+      <bpmn:endEvent id="Event_0ppgd4g" name="Stornierung abgewickelt">
+        <bpmn:incoming>Flow_14ar6r2</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_14ar6r2" sourceRef="Event_0kkrjid" targetRef="Event_0ppgd4g" />
+      <bpmn:sequenceFlow id="Flow_0xw78bg" sourceRef="Event_1dgzg11" targetRef="Event_1hex3b7" />
+    </bpmn:subProcess>
+    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
+      <bpmn:extensionElements>
+        <camunda:in source="startdate" target="startdate" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
+      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
+        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
+        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
+    </bpmn:startEvent>
+    <bpmn:textAnnotation id="TextAnnotation_06bq0r1">
+      <bpmn:text>Hier noch modellieren wenn Bestellung nicht eingeht</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:textAnnotation id="TextAnnotation_0nhgcnq">
       <bpmn:text>Kundenstatus prüfen sollte früher im prozess bereits ausgeführt werden und variablen gespeichert</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:textAnnotation id="TextAnnotation_06bq0r1">
-      <bpmn:text>Hier noch modellieren wenn Bestellung nicht eingeht</bpmn:text>
+    <bpmn:textAnnotation id="TextAnnotation_08ki1wi">
+      <bpmn:text>Hier muss geklärt werden ob wir nur auf Rechnung kassieren. Oder bei manchen Kunden auch Vorkasse wollen</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_08tjrf8" sourceRef="Activity_1y12qqx" targetRef="TextAnnotation_06bq0r1" />
-    <bpmn:association id="Association_0xvng15" sourceRef="Activity_0vk8u53" targetRef="TextAnnotation_08ki1wi" />
     <bpmn:association id="Association_0aae3lv" sourceRef="Activity_1od81p3" targetRef="TextAnnotation_0nhgcnq" />
+    <bpmn:association id="Association_0xvng15" sourceRef="Activity_0vk8u53" targetRef="TextAnnotation_08ki1wi" />
+    <bpmn:association id="Association_08tjrf8" sourceRef="Activity_1y12qqx" targetRef="TextAnnotation_06bq0r1" />
   </bpmn:process>
   <bpmn:message id="Message_0p16amu" name="Kundenanfrage" />
   <bpmn:message id="Message_1ai0lis" name="Bestellung eingetroffen" />
@@ -466,13 +466,13 @@
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="287" y="512" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="277" y="555" width="59" height="27" />
+          <dc:Bounds x="278" y="555" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_13bja46_di" bpmnElement="Event_13bja46">
         <dc:Bounds x="1207" y="549" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1188" y="596" width="75" height="27" />
+          <dc:Bounds x="1189" y="596" width="74" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00jxmlb_di" bpmnElement="Anfrageevaluieren_ID">
@@ -722,7 +722,7 @@
         <di:waypoint x="3325" y="1148" />
         <di:waypoint x="3325" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3345" y="256" width="62" height="27" />
+          <dc:Bounds x="3345" y="256" width="63" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05642ol_di" bpmnElement="Flow_05642ol">
@@ -764,7 +764,7 @@
         <di:waypoint x="4010" y="1188" />
         <di:waypoint x="4010" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="4022" y="246" width="77" height="14" />
+          <dc:Bounds x="4022" y="246" width="78" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05jia5q_di" bpmnElement="Flow_05jia5q">
@@ -778,7 +778,7 @@
         <di:waypoint x="3760" y="1228" />
         <di:waypoint x="3760" y="2850" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3773" y="2110" width="75" height="40" />
+          <dc:Bounds x="3774" y="2110" width="74" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05d0o3r_di" bpmnElement="Flow_05d0o3r">
@@ -792,7 +792,7 @@
         <di:waypoint x="5490" y="2120" />
         <di:waypoint x="5490" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="5402" y="346" width="77" height="27" />
+          <dc:Bounds x="5403" y="346" width="76" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08lwu1c_di" bpmnElement="Flow_08lwu1c">
