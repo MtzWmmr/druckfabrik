@@ -13,7 +13,6 @@
     <bpmn:userTask id="Activity_1tr6ejj" name="Lagerbestände mit für Auftrag benötigtem Material vergleichen" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="materialVorhanden" label="Ist genug Material vorhanden?" type="boolean" />
           <camunda:formField id="benoetigteMenge" label="Für Bestellung benötigte Menge (in Gramm):" type="long" defaultValue="${benoetigteMenge}" />
           <camunda:formField id="material" label="Material: " type="string" defaultValue="${bestellung.prototyp.material}" />
           <camunda:formField id="ressourcenVorhandenTermin" label="Datum der Prüfung" type="string" defaultValue="${now()}">
@@ -21,6 +20,7 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="materialVorhanden" label="Ist genug Material vorhanden?" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_052fnbe</bpmn:incoming>
