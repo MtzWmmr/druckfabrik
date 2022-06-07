@@ -49,7 +49,7 @@
       <bpmn:extensionElements>
         <camunda:in source="bestellung" target="bestellung" />
         <camunda:out sourceExpression="${ressourcenVorhandenTermin}" target="ressourcenVorhandenTermin" />
-        <camunda:in source="prototyp" target="${prototyp}" />
+        <camunda:in source="prototyp" target="prototyp" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ahpmk7</bpmn:incoming>
       <bpmn:outgoing>Flow_13aodpe</bpmn:outgoing>
@@ -57,21 +57,39 @@
     <bpmn:sendTask id="Activity_1iazsl0" name="Bestellbestätigung an Kunden senden" camunda:class="edu.thi.druckfabrik.BestellbestaetigungSenden">
       <bpmn:incoming>Flow_1hjpc4p</bpmn:incoming>
       <bpmn:outgoing>Flow_1ahpmk7</bpmn:outgoing>
+      <bpmn:property id="Property_1bsy8bn" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_12hw43b">
+        <bpmn:sourceRef>DataObjectReference_166x5d5</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1bsy8bn</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:serviceTask id="Activity_1rxrivh" name="Bestellung anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.BestellungAnlegen">
       <bpmn:incoming>Flow_0jeu7k6</bpmn:incoming>
       <bpmn:outgoing>Flow_1hjpc4p</bpmn:outgoing>
+      <bpmn:property id="Property_0qxptz0" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1shxrtc">
+        <bpmn:sourceRef>DataObjectReference_1dny51m</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0qxptz0</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0akh1mi">
+        <bpmn:targetRef>DataObjectReference_166x5d5</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:userTask id="Activity_0a4v9u9" name="Nachricht der Bestellung prüfen und Angaben pflegen" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="angebotID" label="Bezogen auf AnfrageID:" type="string" defaultValue="${angebotID}" />
-          <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long" />
+          <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long" defaultValue="${druckanzahl}" />
           <camunda:formField id="expressversandGewuenscht" label="Expressversand gewünscht?" type="boolean" defaultValue="${expressversandGewuenscht}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_04bq3lb</bpmn:incoming>
       <bpmn:outgoing>Flow_0jeu7k6</bpmn:outgoing>
+      <bpmn:property id="Property_1l3lkhy" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_04ji9d0">
+        <bpmn:sourceRef>DataObjectReference_1dny51m</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1l3lkhy</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_04bq3lb" sourceRef="Event_1gkjh7g" targetRef="Activity_0a4v9u9" />
     <bpmn:intermediateCatchEvent id="Event_1gkjh7g" name="Bestellung des Kunden eingetroffen">
@@ -102,7 +120,23 @@
     <bpmn:serviceTask id="Activity_0vgmsk2" name="Auftrag anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.AuftragAnlegen">
       <bpmn:incoming>Flow_0k4tqjr</bpmn:incoming>
       <bpmn:outgoing>Flow_0ckgwi2</bpmn:outgoing>
+      <bpmn:property id="Property_0ff8ak2" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_13nh3mz">
+        <bpmn:sourceRef>DataObjectReference_1lixnbq</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0ff8ak2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_09guk87">
+        <bpmn:targetRef>DataObjectReference_1rlmgs0</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_1dny51m" name="Angebot" dataObjectRef="DataObject_0q7owex" />
+    <bpmn:dataObject id="DataObject_0q7owex" />
+    <bpmn:dataObjectReference id="DataObjectReference_1lixnbq" name="Kundenauftrag" dataObjectRef="DataObject_1n3j3oh" />
+    <bpmn:dataObject id="DataObject_1n3j3oh" />
+    <bpmn:dataObjectReference id="DataObjectReference_1rlmgs0" name="Veränderter Kundenauftrag" dataObjectRef="DataObject_0iurow2" />
+    <bpmn:dataObject id="DataObject_0iurow2" />
+    <bpmn:dataObjectReference id="DataObjectReference_166x5d5" name="Bestellung" dataObjectRef="DataObject_1vcllbj" />
+    <bpmn:dataObject id="DataObject_1vcllbj" />
     <bpmn:textAnnotation id="TextAnnotation_0fepemf">
       <bpmn:text>Die Ermittlung des Liefertermins erfolgt auf Basis des Datums der Ressourcenverfügbarkeit und einem Blick des Mitarbeiters in den "Produktionskalender" und auf Expertise des Mitarbeiters</bpmn:text>
     </bpmn:textAnnotation>
@@ -196,6 +230,30 @@
       <bpmndi:BPMNShape id="TextAnnotation_0fepemf_di" bpmnElement="TextAnnotation_0fepemf">
         <dc:Bounds x="1510" y="390" width="270" height="84" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1dny51m_di" bpmnElement="DataObjectReference_1dny51m">
+        <dc:Bounds x="425" y="395" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="459" y="453" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1lixnbq_di" bpmnElement="DataObjectReference_1lixnbq">
+        <dc:Bounds x="1422" y="395" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1404" y="452" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1rlmgs0_di" bpmnElement="DataObjectReference_1rlmgs0">
+        <dc:Bounds x="1627" y="465" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1609" y="522" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_166x5d5_di" bpmnElement="DataObjectReference_166x5d5">
+        <dc:Bounds x="585" y="395" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="614" y="453" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0a7ubrq_di" bpmnElement="Participant_1f9y68o" isHorizontal="true">
         <dc:Bounds x="170" y="80" width="2040" height="60" />
       </bpmndi:BPMNShape>
@@ -236,6 +294,32 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="993" y="1120" width="74" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_04ji9d0_di" bpmnElement="DataInputAssociation_04ji9d0">
+        <di:waypoint x="443" y="445" />
+        <di:waypoint x="443" y="509" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_13nh3mz_di" bpmnElement="DataInputAssociation_13nh3mz">
+        <di:waypoint x="1457" y="445" />
+        <di:waypoint x="1502" y="509" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_09guk87_di" bpmnElement="DataOutputAssociation_09guk87">
+        <di:waypoint x="1580" y="524" />
+        <di:waypoint x="1627" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0akh1mi_di" bpmnElement="DataOutputAssociation_0akh1mi">
+        <di:waypoint x="602" y="509" />
+        <di:waypoint x="601" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_12hw43b_di" bpmnElement="DataInputAssociation_12hw43b">
+        <di:waypoint x="621" y="420" />
+        <di:waypoint x="760" y="420" />
+        <di:waypoint x="760" y="509" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1shxrtc_di" bpmnElement="DataInputAssociation_1shxrtc">
+        <di:waypoint x="461" y="420" />
+        <di:waypoint x="570" y="420" />
+        <di:waypoint x="570" y="509" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

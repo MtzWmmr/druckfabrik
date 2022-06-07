@@ -51,6 +51,15 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0txol3d</bpmn:incoming>
       <bpmn:outgoing>Flow_00yxzl8</bpmn:outgoing>
+      <bpmn:property id="Property_1hugnia" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_034l12z">
+        <bpmn:sourceRef>DataObjectReference_0d6f0pp</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1hugnia</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_19uf4dx">
+        <bpmn:sourceRef>DataObjectReference_11uw35a</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1hugnia</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_095g47v" name="Anfrage valide?">
       <bpmn:incoming>Flow_1ud43w0</bpmn:incoming>
@@ -116,6 +125,15 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jos78s</bpmn:incoming>
       <bpmn:outgoing>Flow_1ud43w0</bpmn:outgoing>
+      <bpmn:property id="Property_17qbc8f" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0l9xwys">
+        <bpmn:sourceRef>DataObjectReference_11uw35a</bpmn:sourceRef>
+        <bpmn:targetRef>Property_17qbc8f</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0z7mkrj">
+        <bpmn:sourceRef>DataObjectReference_0d6f0pp</bpmn:sourceRef>
+        <bpmn:targetRef>Property_17qbc8f</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:startEvent id="Event_1v3bznt">
       <bpmn:outgoing>Flow_04udvmj</bpmn:outgoing>
@@ -153,8 +171,22 @@
     <bpmn:serviceTask id="Activity_0msfnyp" name="Angaben aktualisieren" camunda:class="edu.thi.druckfabrik.servicetasks.AngabenAktualisieren">
       <bpmn:incoming>Flow_0gf8dcv</bpmn:incoming>
       <bpmn:outgoing>Flow_0s5c4qu</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0dmkzaw">
+        <bpmn:targetRef>DataObjectReference_0g8v7i5</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_01od3an">
+        <bpmn:targetRef>DataObjectReference_1gugguo</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0s5c4qu" sourceRef="Activity_0msfnyp" targetRef="Gateway_1aqeyo4" />
+    <bpmn:dataObjectReference id="DataObjectReference_11uw35a" name="Kunde" dataObjectRef="DataObject_0o2sej0" />
+    <bpmn:dataObject id="DataObject_0o2sej0" />
+    <bpmn:dataObjectReference id="DataObjectReference_0d6f0pp" name="Anfrage" dataObjectRef="DataObject_05cobld" />
+    <bpmn:dataObject id="DataObject_05cobld" />
+    <bpmn:dataObjectReference id="DataObjectReference_1gugguo" name="Veränderte Anfrage" dataObjectRef="DataObject_1juee20" />
+    <bpmn:dataObject id="DataObject_1juee20" />
+    <bpmn:dataObjectReference id="DataObjectReference_0g8v7i5" name="Veränderter Kunde" dataObjectRef="DataObject_16liktd" />
+    <bpmn:dataObject id="DataObject_16liktd" />
   </bpmn:process>
   <bpmn:message id="Message_17hcpso" name="Veraenderte Anfrage" />
   <bpmn:escalation id="Escalation_0vx4m12" name="Keine Kundenantwort in vereinbarter Zeit" escalationCode="Keine Kundenantwort in vereinbarter Zeit" />
@@ -277,6 +309,30 @@
       <bpmndi:BPMNShape id="Activity_1c6j663_di" bpmnElement="Activity_0msfnyp">
         <dc:Bounds x="1680" y="482" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_11uw35a_di" bpmnElement="DataObjectReference_11uw35a">
+        <dc:Bounds x="472" y="715" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="474" y="772" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0d6f0pp_di" bpmnElement="DataObjectReference_0d6f0pp">
+        <dc:Bounds x="682" y="715" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="681" y="772" width="39" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1gugguo_di" bpmnElement="DataObjectReference_1gugguo">
+        <dc:Bounds x="1962" y="425" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1953" y="482" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0g8v7i5_di" bpmnElement="DataObjectReference_0g8v7i5">
+        <dc:Bounds x="1842" y="425" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1831" y="482" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1pjubr7_di" bpmnElement="Participant_1vqvyxy" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="1650" height="60" />
       </bpmndi:BPMNShape>
@@ -293,6 +349,31 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1545" y="319" width="90" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0l9xwys_di" bpmnElement="DataInputAssociation_0l9xwys">
+        <di:waypoint x="508" y="720" />
+        <di:waypoint x="591" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0z7mkrj_di" bpmnElement="DataInputAssociation_0z7mkrj">
+        <di:waypoint x="684" y="715" />
+        <di:waypoint x="631" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0dmkzaw_di" bpmnElement="DataOutputAssociation_0dmkzaw">
+        <di:waypoint x="1780" y="495" />
+        <di:waypoint x="1842" y="461" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_01od3an_di" bpmnElement="DataOutputAssociation_01od3an">
+        <di:waypoint x="1780" y="522" />
+        <di:waypoint x="1910" y="522" />
+        <di:waypoint x="1962" y="471" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_034l12z_di" bpmnElement="DataInputAssociation_034l12z">
+        <di:waypoint x="718" y="733" />
+        <di:waypoint x="980" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_19uf4dx_di" bpmnElement="DataInputAssociation_19uf4dx">
+        <di:waypoint x="508" y="735" />
+        <di:waypoint x="955" y="613" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

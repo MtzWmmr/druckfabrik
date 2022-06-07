@@ -4,8 +4,6 @@
     <bpmn:participant id="Participant_0anyurr" name="paketVersenden" processRef="paketVersenden_ID" />
     <bpmn:participant id="Participant_1i9plnd" name="Kunde" />
     <bpmn:messageFlow id="Flow_1xb386g" name="Paket mit Objekt(en)" sourceRef="Activity_03lbmci" targetRef="Participant_1i9plnd" />
-    <bpmn:group id="Group_0jlrpra" categoryValueRef="CategoryValue_19o2n3s" />
-    <bpmn:group id="Group_09p4uat" categoryValueRef="CategoryValue_1v79ulw" />
   </bpmn:collaboration>
   <bpmn:process id="paketVersenden_ID" name="paketVersenden" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_11otjzj" sourceRef="Activity_11r4sis" targetRef="Activity_03lbmci" />
@@ -80,6 +78,11 @@
     <bpmn:sendTask id="Activity_03lbmci" name="Paket versenden" camunda:class="edu.thi.druckfabrik.paketVersenden">
       <bpmn:incoming>Flow_11otjzj</bpmn:incoming>
       <bpmn:outgoing>Flow_090revf</bpmn:outgoing>
+      <bpmn:property id="Property_01ql5ex" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1tv26f6">
+        <bpmn:sourceRef>DataObjectReference_15ui39q</bpmn:sourceRef>
+        <bpmn:targetRef>Property_01ql5ex</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:endEvent id="Event_1rq52f1" name="Paket versandt">
       <bpmn:incoming>Flow_090revf</bpmn:incoming>
@@ -103,6 +106,11 @@
     <bpmn:serviceTask id="Activity_088l9si" name="Angebot ausdrucken" camunda:class="edu.thi.druckfabrik.servicetasks.AngebotDrucken">
       <bpmn:incoming>Flow_0jtl3iz</bpmn:incoming>
       <bpmn:outgoing>Flow_1x07ru3</bpmn:outgoing>
+      <bpmn:property id="Property_0a5mle7" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1xihnqp">
+        <bpmn:sourceRef>DataObjectReference_0k49b5n</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0a5mle7</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_155s0w6" sourceRef="Activity_1wztffu" targetRef="Activity_0t0vdtr" />
     <bpmn:sequenceFlow id="Flow_1pyt2ko" sourceRef="Activity_0t0vdtr" targetRef="Gateway_0c4fcy6" />
@@ -171,6 +179,11 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0sosoh8</bpmn:incoming>
       <bpmn:outgoing>Flow_06zksm4</bpmn:outgoing>
+      <bpmn:property id="Property_1mjkltl" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1uj5abj">
+        <bpmn:sourceRef>DataObjectReference_15ui39q</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1mjkltl</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1hgyns4" sourceRef="Activity_0m07ab8" targetRef="Activity_0f81vdc" />
     <bpmn:sequenceFlow id="Flow_1jfyhnx" sourceRef="Activity_0f81vdc" targetRef="Gateway_0z5zhe5" />
@@ -216,6 +229,11 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_07gytig</bpmn:incoming>
       <bpmn:outgoing>Flow_1v9vlsr</bpmn:outgoing>
+      <bpmn:property id="Property_0xw7yuk" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_07cor9g">
+        <bpmn:sourceRef>DataObjectReference_15ui39q</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0xw7yuk</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_0t0vdtr" name="Verpackung bestätigen" camunda:assignee="kermit">
       <bpmn:extensionElements>
@@ -269,13 +287,11 @@
       <bpmn:incoming>Flow_1hgyns4</bpmn:incoming>
       <bpmn:outgoing>Flow_1jfyhnx</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:dataObjectReference id="DataObjectReference_0k49b5n" name="Angebot" dataObjectRef="DataObject_1tqnlts" />
+    <bpmn:dataObject id="DataObject_1tqnlts" />
+    <bpmn:dataObjectReference id="DataObjectReference_15ui39q" name="Kunde" dataObjectRef="DataObject_0adubts" />
+    <bpmn:dataObject id="DataObject_0adubts" />
   </bpmn:process>
-  <bpmn:category id="Category_0grzkwt">
-    <bpmn:categoryValue id="CategoryValue_19o2n3s" value="Simulation Ad-Hoc Teilprozess Prototyp" />
-  </bpmn:category>
-  <bpmn:category id="Category_0w8q6gw">
-    <bpmn:categoryValue id="CategoryValue_1v79ulw" value="Simulation Ad-Hoc Teilprozess 3D-Druck" />
-  </bpmn:category>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1putgef">
       <bpmndi:BPMNShape id="Participant_0anyurr_di" bpmnElement="Participant_0anyurr" isHorizontal="true">
@@ -488,20 +504,20 @@
       <bpmndi:BPMNShape id="Activity_199sdq5_di" bpmnElement="Activity_0f81vdc">
         <dc:Bounds x="710" y="620" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0k49b5n_di" bpmnElement="DataObjectReference_0k49b5n">
+        <dc:Bounds x="962" y="555" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="960" y="612" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_15ui39q_di" bpmnElement="DataObjectReference_15ui39q">
+        <dc:Bounds x="1092" y="1065" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1094" y="1122" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1bs24qm_di" bpmnElement="Participant_1i9plnd" isHorizontal="true">
         <dc:Bounds x="620" y="80" width="710" height="60" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_0jlrpra_di" bpmnElement="Group_0jlrpra">
-        <dc:Bounds x="410" y="560" width="480" height="515" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="611" y="567" width="78" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_09p4uat_di" bpmnElement="Group_09p4uat">
-        <dc:Bounds x="410" y="1150" width="480" height="515" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="611" y="1157" width="78" height="40" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1xb386g_di" bpmnElement="Flow_1xb386g">
         <di:waypoint x="1260" y="790" />
@@ -509,6 +525,23 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1285" y="348" width="52" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1xihnqp_di" bpmnElement="DataInputAssociation_1xihnqp">
+        <di:waypoint x="962" y="592" />
+        <di:waypoint x="720" y="756" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1uj5abj_di" bpmnElement="DataInputAssociation_1uj5abj">
+        <di:waypoint x="1092" y="1088" />
+        <di:waypoint x="618" y="1026" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_07cor9g_di" bpmnElement="DataInputAssociation_07cor9g">
+        <di:waypoint x="1103" y="1115" />
+        <di:waypoint x="910" y="1810" />
+        <di:waypoint x="620" y="1595" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1tv26f6_di" bpmnElement="DataInputAssociation_1tv26f6">
+        <di:waypoint x="1126" y="1065" />
+        <di:waypoint x="1253" y="870" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
