@@ -1,3 +1,6 @@
+/*
+ * Alexander Horn
+ */
 package edu.thi.druckfabrik.beans;
 
 import java.io.Serializable;

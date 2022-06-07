@@ -1,3 +1,7 @@
+/* Matthias Wimmer
+ * Simon Kreutel
+ * Alexander Horn
+ */
 package edu.thi.druckfabrik.beans;
 
 import java.io.Serializable;

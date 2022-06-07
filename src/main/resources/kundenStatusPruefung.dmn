@@ -68,27 +68,31 @@
   </decision>
   <inputData id="InputData_1kkp4i9" name="Druckanzahl" />
   <inputData id="InputData_0xs60mn" name="Stammkunde" />
+  <inputData id="InputData_18loben" name="Simon Kreutel" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="Kundenstatus_ID">
-        <dc:Bounds height="80" width="180" x="160" y="100" />
+        <dc:Bounds height="80" width="180" x="230" y="170" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_0mz6otr" dmnElementRef="InputData_1kkp4i9">
-        <dc:Bounds height="45" width="125" x="138" y="268" />
+        <dc:Bounds height="45" width="125" x="208" y="338" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0xow8aq" dmnElementRef="InformationRequirement_0ls2kai">
-        <di:waypoint x="201" y="268" />
-        <di:waypoint x="220" y="200" />
-        <di:waypoint x="220" y="180" />
+        <di:waypoint x="271" y="338" />
+        <di:waypoint x="290" y="270" />
+        <di:waypoint x="290" y="250" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_1jtbp3i" dmnElementRef="InputData_0xs60mn">
-        <dc:Bounds height="45" width="125" x="327" y="268" />
+        <dc:Bounds height="45" width="125" x="397" y="338" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0ygm8kg" dmnElementRef="InformationRequirement_142wuwu">
-        <di:waypoint x="390" y="268" />
-        <di:waypoint x="280" y="200" />
-        <di:waypoint x="280" y="180" />
+        <di:waypoint x="460" y="338" />
+        <di:waypoint x="350" y="270" />
+        <di:waypoint x="350" y="250" />
       </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_18t65yn" dmnElementRef="InputData_18loben">
+        <dc:Bounds height="45" width="125" x="158" y="78" />
+      </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>

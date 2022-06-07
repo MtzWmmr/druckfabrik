@@ -5,6 +5,10 @@
     <bpmn:participant id="Participant_14raujv" name="Lieferant" />
     <bpmn:messageFlow id="Flow_0fg6tw0" name="Antwort des Lieferanten auf Bestellung" sourceRef="Participant_14raujv" targetRef="Event_075xt57" />
     <bpmn:messageFlow id="Flow_0p9vy5e" name="Bestellung an Lierferanten" sourceRef="Activity_0yipfmo" targetRef="Participant_14raujv" />
+    <bpmn:textAnnotation id="TextAnnotation_03mvn6y">
+      <bpmn:text>Matthias Wimmer</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0bbogif" sourceRef="Participant_0354ing" targetRef="TextAnnotation_03mvn6y" />
   </bpmn:collaboration>
   <bpmn:process id="ressourcenPruefungsprozess_ID" name="Ressourcenprüfungsprozess" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
@@ -202,6 +206,13 @@
       <bpmndi:BPMNShape id="Participant_087c1gn_di" bpmnElement="Participant_14raujv" isHorizontal="true">
         <dc:Bounds x="580" y="80" width="600" height="60" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_03mvn6y_di" bpmnElement="TextAnnotation_03mvn6y">
+        <dc:Bounds x="180" y="300" width="99.98848280098281" height="39.31203931203932" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0bbogif_di" bpmnElement="Association_0bbogif">
+        <di:waypoint x="453" y="400" />
+        <di:waypoint x="280" y="334" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0fg6tw0_di" bpmnElement="Flow_0fg6tw0">
         <di:waypoint x="1100" y="140" />
         <di:waypoint x="1100" y="652" />

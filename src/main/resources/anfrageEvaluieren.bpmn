@@ -5,6 +5,10 @@
     <bpmn:participant id="Participant_1vqvyxy" name="Kunde" />
     <bpmn:messageFlow id="Flow_0magli0" name="Rückfrage zu Kundenanfrage" sourceRef="Event_01dqa8r" targetRef="Participant_1vqvyxy" />
     <bpmn:messageFlow id="Flow_1ap4j2f" name="Veränderte Kundenanfrage zu 3D-Druck Objekt" sourceRef="Participant_1vqvyxy" targetRef="Event_1p76ykp" />
+    <bpmn:textAnnotation id="TextAnnotation_0d8cdw9">
+      <bpmn:text>Simon Kreutel</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_18ov2un" sourceRef="Participant_0dmfaf2" targetRef="TextAnnotation_0d8cdw9" />
   </bpmn:collaboration>
   <bpmn:process id="anfrageEvaluieren_ID" name="anfrageEvaluieren" isExecutable="true">
     <bpmn:intermediateThrowEvent id="Event_01dqa8r" name="Rückfrage gesendet">
@@ -280,6 +284,13 @@
       <bpmndi:BPMNShape id="Participant_1pjubr7_di" bpmnElement="Participant_1vqvyxy" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="1650" height="60" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0d8cdw9_di" bpmnElement="TextAnnotation_0d8cdw9">
+        <dc:Bounds x="170" y="330" width="99.99715391621129" height="29.997723132969035" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_18ov2un_di" bpmnElement="Association_18ov2un">
+        <di:waypoint x="384" y="411" />
+        <di:waypoint x="257" y="360" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0magli0_di" bpmnElement="Flow_0magli0">
         <di:waypoint x="1130" y="572" />
         <di:waypoint x="1130" y="140" />

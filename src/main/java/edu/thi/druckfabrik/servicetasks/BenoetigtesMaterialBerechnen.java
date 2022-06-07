@@ -1,3 +1,5 @@
+/* Matthias Wimmer
+ */
 package edu.thi.druckfabrik.servicetasks;
 
 import java.math.BigDecimal;

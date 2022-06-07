@@ -1,3 +1,7 @@
+/* Matthias Wimmer
+ * Simon Kreutel
+ * Alexander Horn
+ */
 package edu.thi.druckfabrik;
 
 import java.util.Date;
@@ -11,7 +15,6 @@ import edu.thi.druckfabrik.beans.KundenBean;
 public class KundenBeanBefuellen implements JavaDelegate{
 	
 	public void execute(DelegateExecution execution) throws Exception {
-		//am 30.05.2022 wurde diese Möglichkeit E-Mails über Google Mail zu schreiben aus Sicherheitsgründen entfernt, deshalb lediglich ausgabe in der Console
 		KundenBean kunde = new KundenBean();
 		
 		String anrede = (String) execution.getVariable("anrede");

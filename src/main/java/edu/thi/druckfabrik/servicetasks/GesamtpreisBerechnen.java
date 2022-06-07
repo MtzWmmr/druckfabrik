@@ -1,3 +1,7 @@
+/*
+ * Simon Kreutel
+ * Alexander Horn
+ */
 package edu.thi.druckfabrik.servicetasks;
 
 import java.math.BigDecimal;

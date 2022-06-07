@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="angebotPreisermittlung" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <inputData id="InputData_1t0evfk" name="Objekt Volumen" />
+  <inputData id="InputData_14vmh9y" name="Materialart" />
+  <inputData id="InputData_1rlyjll" name="Matthias Wimmer" />
   <decision id="preisProStueckErmitteln" name="Preis pro Stück ermitteln">
-    <informationRequirement id="InformationRequirement_1oyvbuu">
-      <requiredInput href="#InputData_1t0evfk" />
-    </informationRequirement>
     <informationRequirement id="InformationRequirement_19yx02q">
       <requiredInput href="#InputData_14vmh9y" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1oyvbuu">
+      <requiredInput href="#InputData_1t0evfk" />
     </informationRequirement>
     <decisionTable id="DecisionTable_0u2kmh2">
       <input id="Input_1" label="Material">
@@ -230,28 +233,29 @@
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_1t0evfk" name="Objekt Volumen" />
-  <inputData id="InputData_14vmh9y" name="Materialart" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="preisProStueckErmitteln">
-        <dc:Bounds height="80" width="180" x="220" y="100" />
-      </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_1hse3ls" dmnElementRef="InputData_1t0evfk">
-        <dc:Bounds height="45" width="125" x="157" y="337" />
+        <dc:Bounds height="45" width="125" x="457" y="607" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="DMNEdge_06gu4i2" dmnElementRef="InformationRequirement_1oyvbuu">
-        <di:waypoint x="220" y="337" />
-        <di:waypoint x="280" y="200" />
-        <di:waypoint x="280" y="180" />
-      </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_15gfbl0" dmnElementRef="InputData_14vmh9y">
-        <dc:Bounds height="45" width="125" x="327" y="337" />
+        <dc:Bounds height="45" width="125" x="627" y="607" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_06bd6o7" dmnElementRef="InputData_1rlyjll">
+        <dc:Bounds height="45" width="125" x="417" y="237" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape dmnElementRef="preisProStueckErmitteln">
+        <dc:Bounds height="80" width="180" x="520" y="370" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0ivjltk" dmnElementRef="InformationRequirement_19yx02q">
-        <di:waypoint x="390" y="337" />
-        <di:waypoint x="340" y="200" />
-        <di:waypoint x="340" y="180" />
+        <di:waypoint x="690" y="607" />
+        <di:waypoint x="640" y="470" />
+        <di:waypoint x="640" y="450" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_06gu4i2" dmnElementRef="InformationRequirement_1oyvbuu">
+        <di:waypoint x="520" y="607" />
+        <di:waypoint x="580" y="470" />
+        <di:waypoint x="580" y="450" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

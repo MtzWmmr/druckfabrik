@@ -1,3 +1,6 @@
+/*
+ * Simon Kreutel
+ */
 package edu.thi.druckfabrik.beans;
 
 import java.io.Serializable;

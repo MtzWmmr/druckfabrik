@@ -9,6 +9,10 @@
     <bpmn:messageFlow id="Flow_0mtaprb" name="Bestellung des Kunden" sourceRef="Participant_1f9y68o" targetRef="Event_1gkjh7g" />
     <bpmn:messageFlow id="Flow_0ucu51g" name="Bestellung an Lieferanten" sourceRef="Activity_156yswa" targetRef="Participant_1aam3h7" />
     <bpmn:messageFlow id="Flow_1m8hr0v" name="Antwort des Lieferanten auf Bestellung" sourceRef="Participant_1aam3h7" targetRef="Activity_156yswa" />
+    <bpmn:textAnnotation id="TextAnnotation_02wg4fc">
+      <bpmn:text>Matthias Wimmer</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0w2wy43" sourceRef="Participant_13aiefd" targetRef="TextAnnotation_02wg4fc" />
   </bpmn:collaboration>
   <bpmn:process id="bestellungBestaetigung_ID" isExecutable="true">
     <bpmn:laneSet id="LaneSet_00hahfk">
@@ -65,8 +69,16 @@
     <bpmn:userTask id="Activity_0a4v9u9" name="Nachricht der Bestellung prüfen und Angaben pflegen" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="angebotID" label="Bezogen auf AnfrageID:" type="string" defaultValue="${angebotID}" />
-          <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long" />
+          <camunda:formField id="angebotID" label="Bezogen auf AnfrageID:" type="string" defaultValue="${angebotID}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="druckanzahl" label="Anzahl benötigt:" type="long">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
           <camunda:formField id="expressversandGewuenscht" label="Expressversand gewünscht?" type="boolean" defaultValue="${expressversandGewuenscht}" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -202,6 +214,13 @@
       <bpmndi:BPMNShape id="Participant_1aam3h7_di" bpmnElement="Participant_1aam3h7" isHorizontal="true">
         <dc:Bounds x="660" y="1210" width="600" height="60" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_02wg4fc_di" bpmnElement="TextAnnotation_02wg4fc">
+        <dc:Bounds x="120" y="260" width="100" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0w2wy43_di" bpmnElement="Association_0w2wy43">
+        <di:waypoint x="269" y="379" />
+        <di:waypoint x="194" y="300" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_01wwlvy_di" bpmnElement="Flow_01wwlvy">
         <di:waypoint x="770" y="509" />
         <di:waypoint x="770" y="140" />

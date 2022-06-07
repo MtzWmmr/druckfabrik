@@ -1,3 +1,5 @@
+/* Matthias Wimmer
+ */
 package edu.thi.druckfabrik;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;

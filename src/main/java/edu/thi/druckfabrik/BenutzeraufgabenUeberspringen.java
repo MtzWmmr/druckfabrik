@@ -1,3 +1,7 @@
+/* Matthias Wimmer
+ * Simon Kreutel
+ * Alexander Horn
+ */
 package edu.thi.druckfabrik;
 
 import org.camunda.bpm.engine.TaskService;
@@ -6,6 +10,7 @@ import org.camunda.bpm.engine.delegate.TaskListener;
 import org.camunda.bpm.engine.impl.TaskServiceImpl;
 import org.camunda.bpm.engine.impl.interceptor.CommandExecutorImpl;
 
+//aus dem Skript uebernommen
 public class BenutzeraufgabenUeberspringen implements TaskListener{
 	
 	@Override

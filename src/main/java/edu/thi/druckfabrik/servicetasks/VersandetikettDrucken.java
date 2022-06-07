@@ -1,3 +1,6 @@
+/*
+ * Simon Kreutel
+ */
 package edu.thi.druckfabrik.servicetasks;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
