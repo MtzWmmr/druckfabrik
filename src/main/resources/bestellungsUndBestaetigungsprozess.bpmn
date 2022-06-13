@@ -4,11 +4,11 @@
     <bpmn:participant id="Participant_13aiefd" name="Bestellung anlegen und Auftragsbestätigung" processRef="bestellungBestaetigung_ID" />
     <bpmn:participant id="Participant_1f9y68o" name="Kunde" />
     <bpmn:participant id="Participant_1aam3h7" name="Lieferant" />
-    <bpmn:messageFlow id="Flow_01wwlvy" name="Kunden Bestellbestätigung" sourceRef="Activity_1iazsl0" targetRef="Participant_1f9y68o" />
+    <bpmn:messageFlow id="Flow_01wwlvy" name="Bestellbestätigung" sourceRef="Activity_1iazsl0" targetRef="Participant_1f9y68o" />
     <bpmn:messageFlow id="Flow_07644r9" name="Auftragsbestätigung mit Liefertermin" sourceRef="Activity_0xwy21a" targetRef="Participant_1f9y68o" />
-    <bpmn:messageFlow id="Flow_0mtaprb" name="Bestellung des Kunden" sourceRef="Participant_1f9y68o" targetRef="Event_1gkjh7g" />
-    <bpmn:messageFlow id="Flow_0ucu51g" name="Bestellung an Lieferanten" sourceRef="Activity_156yswa" targetRef="Participant_1aam3h7" />
-    <bpmn:messageFlow id="Flow_1m8hr0v" name="Antwort des Lieferanten auf Bestellung" sourceRef="Participant_1aam3h7" targetRef="Activity_156yswa" />
+    <bpmn:messageFlow id="Flow_0mtaprb" name="Bestellung" sourceRef="Participant_1f9y68o" targetRef="Event_1gkjh7g" />
+    <bpmn:messageFlow id="Flow_0ucu51g" name="Bestellung" sourceRef="Activity_156yswa" targetRef="Participant_1aam3h7" />
+    <bpmn:messageFlow id="Flow_1m8hr0v" name="Antwort auf Bestellung" sourceRef="Participant_1aam3h7" targetRef="Activity_156yswa" />
     <bpmn:textAnnotation id="TextAnnotation_02wg4fc">
       <bpmn:text>Matthias Wimmer</bpmn:text>
     </bpmn:textAnnotation>
@@ -42,7 +42,7 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0wl32qf</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:endEvent id="Event_1a9qv1p">
+    <bpmn:endEvent id="Event_1a9qv1p" name="Auftrag angelegt">
       <bpmn:incoming>Flow_1jxumvd</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sendTask id="Activity_0xwy21a" name="Auftragsbetätigung senden" camunda:class="edu.thi.druckfabrik.KundenAuftragsbestaetigungSenden">
@@ -177,6 +177,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1a9qv1p_di" bpmnElement="Event_1a9qv1p">
         <dc:Bounds x="1992" y="531" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1970" y="574" width="81" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ff18ic_di" bpmnElement="Activity_0xwy21a">
         <dc:Bounds x="1830" y="509" width="100" height="80" />
@@ -225,7 +228,7 @@
         <di:waypoint x="770" y="509" />
         <di:waypoint x="770" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="678" y="246" width="85" height="40" />
+          <dc:Bounds x="676" y="246" width="90" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07644r9_di" bpmnElement="Flow_07644r9">
@@ -239,21 +242,21 @@
         <di:waypoint x="320" y="140" />
         <di:waypoint x="320" y="531" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="323" y="252" width="73" height="27" />
+          <dc:Bounds x="334" y="252" width="52" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ucu51g_di" bpmnElement="Flow_0ucu51g">
         <di:waypoint x="920" y="920" />
         <di:waypoint x="920" y="1210" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="836" y="1062" width="67" height="27" />
+          <dc:Bounds x="844" y="1062" width="52" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1m8hr0v_di" bpmnElement="Flow_1m8hr0v">
         <di:waypoint x="980" y="1210" />
         <di:waypoint x="980" y="920" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="993" y="1120" width="74" height="40" />
+          <dc:Bounds x="1002" y="1120" width="56" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

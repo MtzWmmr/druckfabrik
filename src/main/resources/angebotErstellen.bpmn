@@ -19,7 +19,7 @@
       <bpmn:incoming>Flow_15q30h2</bpmn:incoming>
       <bpmn:outgoing>Flow_0zhqv3o</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:endEvent id="Event_0l2r5zc">
+    <bpmn:endEvent id="Event_0l2r5zc" name="Angebot erstellt">
       <bpmn:incoming>Flow_0zhqv3o</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0k9mynl" sourceRef="StartEvent_1" targetRef="Activity_1sv8c4k" />
@@ -31,17 +31,17 @@
       <bpmndi:BPMNShape id="Participant_073exrl_di" bpmnElement="Participant_073exrl" isHorizontal="true">
         <dc:Bounds x="129" y="160" width="600" height="320" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0k9mynl_di" bpmnElement="Flow_0k9mynl">
-        <di:waypoint x="238" y="270" />
-        <di:waypoint x="290" y="270" />
+      <bpmndi:BPMNEdge id="Flow_15q30h2_di" bpmnElement="Flow_15q30h2">
+        <di:waypoint x="390" y="270" />
+        <di:waypoint x="450" y="270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0zhqv3o_di" bpmnElement="Flow_0zhqv3o">
         <di:waypoint x="550" y="270" />
         <di:waypoint x="612" y="270" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_15q30h2_di" bpmnElement="Flow_15q30h2">
-        <di:waypoint x="390" y="270" />
-        <di:waypoint x="450" y="270" />
+      <bpmndi:BPMNEdge id="Flow_0k9mynl_di" bpmnElement="Flow_0k9mynl">
+        <di:waypoint x="238" y="270" />
+        <di:waypoint x="290" y="270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="202" y="252" width="36" height="36" />
@@ -54,6 +54,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0l2r5zc_di" bpmnElement="Event_0l2r5zc">
         <dc:Bounds x="612" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="592" y="295" width="77" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1tiuo5n_di" bpmnElement="TextAnnotation_1tiuo5n">
         <dc:Bounds x="160" y="80" width="100" height="40" />

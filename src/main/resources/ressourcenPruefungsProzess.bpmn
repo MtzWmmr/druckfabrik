@@ -90,7 +90,7 @@
       <bpmn:outgoing>Flow_0qzvlgx</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0qzvlgx" sourceRef="Gateway_0dmehso" targetRef="Event_0jpua90" />
-    <bpmn:endEvent id="Event_0jpua90">
+    <bpmn:endEvent id="Event_0jpua90" name="Material verfügbar">
       <bpmn:incoming>Flow_0qzvlgx</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
@@ -202,6 +202,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0jpua90_di" bpmnElement="Event_0jpua90">
         <dc:Bounds x="1422" y="507" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1396" y="550" width="89" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_087c1gn_di" bpmnElement="Participant_14raujv" isHorizontal="true">
         <dc:Bounds x="580" y="80" width="600" height="60" />
