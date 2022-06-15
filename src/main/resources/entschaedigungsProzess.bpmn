@@ -6,6 +6,10 @@
     <bpmn:participant id="Participant_13n4yed" name="Kunde" />
     <bpmn:messageFlow id="Flow_1v08zlv" name="Aufwandsentschädigungsforderung" sourceRef="Activity_1ybkljz" targetRef="Participant_13n4yed" />
     <bpmn:messageFlow id="Flow_1usgotd" name="Aufwandsentschädigung" sourceRef="Participant_13n4yed" targetRef="Event_0kkrjid" />
+    <bpmn:textAnnotation id="TextAnnotation_1771qqu">
+      <bpmn:text>Alexander Horn Simon Kreutel Matthias Wimmer</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0ubgyti" sourceRef="Participant_146m3al" targetRef="TextAnnotation_1771qqu" />
   </bpmn:collaboration>
   <bpmn:process id="EntschaedigungsProzess" name="Entschädigungsprozess" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
@@ -37,17 +41,17 @@
       <bpmndi:BPMNShape id="Participant_146m3al_di" bpmnElement="Participant_146m3al" isHorizontal="true">
         <dc:Bounds x="160" y="400" width="570" height="280" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1rmjovp_di" bpmnElement="Flow_1rmjovp">
-        <di:waypoint x="248" y="536" />
-        <di:waypoint x="320" y="536" />
+      <bpmndi:BPMNEdge id="Flow_18kj1d5_di" bpmnElement="Flow_18kj1d5">
+        <di:waypoint x="518" y="536" />
+        <di:waypoint x="612" y="536" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0f8idxl_di" bpmnElement="Flow_0f8idxl">
         <di:waypoint x="420" y="536" />
         <di:waypoint x="482" y="536" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_18kj1d5_di" bpmnElement="Flow_18kj1d5">
-        <di:waypoint x="518" y="536" />
-        <di:waypoint x="612" y="536" />
+      <bpmndi:BPMNEdge id="Flow_1rmjovp_di" bpmnElement="Flow_1rmjovp">
+        <di:waypoint x="248" y="536" />
+        <di:waypoint x="320" y="536" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="212" y="518" width="36" height="36" />
@@ -70,6 +74,13 @@
       <bpmndi:BPMNShape id="Participant_1t5xolp_di" bpmnElement="Participant_13n4yed" isHorizontal="true">
         <dc:Bounds x="180" y="80" width="480" height="60" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1771qqu_di" bpmnElement="TextAnnotation_1771qqu">
+        <dc:Bounds x="160" y="310" width="110" height="69" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0ubgyti_di" bpmnElement="Association_0ubgyti">
+        <di:waypoint x="292" y="400" />
+        <di:waypoint x="269" y="379" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1v08zlv_di" bpmnElement="Flow_1v08zlv">
         <di:waypoint x="370" y="496" />
         <di:waypoint x="370" y="140" />

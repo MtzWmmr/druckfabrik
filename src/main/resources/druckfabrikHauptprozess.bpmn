@@ -683,7 +683,7 @@
         <dc:Bounds x="3110" y="2760" width="450" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0dchhgg_di" bpmnElement="TextAnnotation_0dchhgg">
-        <dc:Bounds x="160" y="360" width="99.98611992385787" height="67.25888324873097" />
+        <dc:Bounds x="160" y="360" width="110" height="67" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0c7e5uv_di" bpmnElement="Association_0c7e5uv">
         <di:waypoint x="299" y="509" />
