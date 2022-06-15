@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_11awrce" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:message id="Message_0o8enpg" name="Aufwandsentschaedigung" />
+  <bpmn:collaboration id="Collaboration_19xz89z">
+    <bpmn:participant id="Participant_146m3al" name="Entschädigungsprozess" processRef="EntschaedigungsProzess" />
+    <bpmn:participant id="Participant_13n4yed" name="Kunde" />
+    <bpmn:messageFlow id="Flow_1v08zlv" name="Aufwandsentschädigungsforderung" sourceRef="Activity_1ybkljz" targetRef="Participant_13n4yed" />
+    <bpmn:messageFlow id="Flow_1usgotd" name="Aufwandsentschädigung" sourceRef="Participant_13n4yed" targetRef="Event_0kkrjid" />
+  </bpmn:collaboration>
+  <bpmn:process id="EntschaedigungsProzess" name="Entschädigungsprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1rmjovp</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1rmjovp" sourceRef="StartEvent_1" targetRef="Activity_1ybkljz" />
+    <bpmn:sequenceFlow id="Flow_0f8idxl" sourceRef="Activity_1ybkljz" targetRef="Event_0kkrjid" />
+    <bpmn:sequenceFlow id="Flow_18kj1d5" sourceRef="Event_0kkrjid" targetRef="Event_06o0se0" />
+    <bpmn:sendTask id="Activity_1ybkljz" name="Aufforderung für Aufwandsentschädigung senden" camunda:class="edu.thi.druckfabrik.AufwandsentschaedigungForderungSenden">
+      <bpmn:incoming>Flow_1rmjovp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f8idxl</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:intermediateCatchEvent id="Event_0kkrjid" name="Aufwandsentschädigung empfangen">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="corrKey">${BusinessKey}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0f8idxl</bpmn:incoming>
+      <bpmn:outgoing>Flow_18kj1d5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1o1ml7h" messageRef="Message_0o8enpg" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_06o0se0" name="Transaktion und Aufwandsentschädigung erfolgreich">
+      <bpmn:incoming>Flow_18kj1d5</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19xz89z">
+      <bpmndi:BPMNShape id="Participant_146m3al_di" bpmnElement="Participant_146m3al" isHorizontal="true">
+        <dc:Bounds x="160" y="400" width="570" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1rmjovp_di" bpmnElement="Flow_1rmjovp">
+        <di:waypoint x="248" y="536" />
+        <di:waypoint x="320" y="536" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0f8idxl_di" bpmnElement="Flow_0f8idxl">
+        <di:waypoint x="420" y="536" />
+        <di:waypoint x="482" y="536" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18kj1d5_di" bpmnElement="Flow_18kj1d5">
+        <di:waypoint x="518" y="536" />
+        <di:waypoint x="612" y="536" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="212" y="518" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ybkljz_di" bpmnElement="Activity_1ybkljz">
+        <dc:Bounds x="320" y="496" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0kkrjid_di" bpmnElement="Event_0kkrjid">
+        <dc:Bounds x="482" y="518" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="457" y="561" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06o0se0_di" bpmnElement="Event_06o0se0">
+        <dc:Bounds x="612" y="518" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="586" y="561" width="88" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1t5xolp_di" bpmnElement="Participant_13n4yed" isHorizontal="true">
+        <dc:Bounds x="180" y="80" width="480" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1v08zlv_di" bpmnElement="Flow_1v08zlv">
+        <di:waypoint x="370" y="496" />
+        <di:waypoint x="370" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="396" y="266" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1usgotd_di" bpmnElement="Flow_1usgotd">
+        <di:waypoint x="500" y="140" />
+        <di:waypoint x="500" y="518" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="496" y="266" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -17,8 +17,8 @@
     <bpmn:messageFlow id="Flow_05d0o3r" name="Bestell-bestätigung" sourceRef="Activity_16nmavi" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_08lwu1c" name="Auftragsbestätigung mit Liefertermin" sourceRef="Activity_16nmavi" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_1jy5ziw" name="Stornierung" sourceRef="Participant_1bjq88u" targetRef="Event_1dgzg11" />
-    <bpmn:messageFlow id="Flow_0deojr7" name="Aufwandsentschädigungsforderung" sourceRef="Activity_1ybkljz" targetRef="Participant_1bjq88u" />
-    <bpmn:messageFlow id="Flow_0oz4ovy" name="Aufwandsentschädigung" sourceRef="Participant_1bjq88u" targetRef="Event_0kkrjid" />
+    <bpmn:messageFlow id="Flow_0deojr7" name="Aufwandsentschädigungsforderung" sourceRef="Activity_1dswop2" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_0oz4ovy" name="Aufwandsentschädigung" sourceRef="Participant_1bjq88u" targetRef="Activity_1dswop2" />
     <bpmn:messageFlow id="Flow_03ypger" name="Bestätigung Anfrageverwerfung" sourceRef="Activity_0mdv3ur" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_1hcld5b" name="Zahlungserinnerung" sourceRef="Activity_1ylv7g6" targetRef="Participant_1bjq88u" />
     <bpmn:messageFlow id="Flow_1oauzvl" name="Zahlung" sourceRef="Participant_1bjq88u" targetRef="Activity_1ylv7g6" />
@@ -34,8 +34,8 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Anfrageevaluieren_ID</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_13bja46</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_094clsu</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_07tq7yu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_094clsu</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mn753d</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0zux3ma" name="3D Kreativteam">
@@ -46,46 +46,193 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_1ejx4k3" name="Finanzabteilung">
         <bpmn:flowNodeRef>Activity_1ylv7g6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1f1okuv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0kpytah</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1n7ieje</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1f1okuv</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1vm9kei" name="Versandabteilung">
+        <bpmn:flowNodeRef>Activity_16nmavi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1kw6sc9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1nf8y4j</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0a8mdu5</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_07ss5ey</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1y12qqx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_08pdrch</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_16nmavi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0a8mdu5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_07ss5ey</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_14msvf3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1wu0xo3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0xqw4dm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_13yuwsx</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0vbzfbo" name="Druckabteilung">
-        <bpmn:flowNodeRef>Activity_0vk8u53</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1wl6j4z</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0vk8u53</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
+    <bpmn:sequenceFlow id="Flow_1r4268v" sourceRef="Event_1wu0xo3" targetRef="Event_0xqw4dm" />
+    <bpmn:sequenceFlow id="Flow_1k57ekp" sourceRef="Activity_094clsu" targetRef="Prototypentwickeln_ID" />
+    <bpmn:sequenceFlow id="Flow_0krj2lh" sourceRef="Anfrageevaluieren_ID" targetRef="Activity_094clsu" />
+    <bpmn:sequenceFlow id="Flow_1pm4zee" sourceRef="Activity_16nmavi" targetRef="Activity_1ylv7g6" />
+    <bpmn:sequenceFlow id="Flow_13f7thj" sourceRef="Activity_07tq7yu" targetRef="Gateway_08pdrch" />
+    <bpmn:sequenceFlow id="Flow_177d3re" sourceRef="Prototypentwickeln_ID" targetRef="Gateway_134xxza" />
+    <bpmn:sequenceFlow id="Flow_0qua1cl" sourceRef="Activity_0a8mdu5" targetRef="Event_07ss5ey" />
+    <bpmn:sequenceFlow id="Flow_0o586jv" sourceRef="Activity_1kw6sc9" targetRef="Event_1nf8y4j" />
+    <bpmn:sequenceFlow id="Flow_1w71l24" sourceRef="Event_14msvf3" targetRef="Activity_1kw6sc9" />
+    <bpmn:sequenceFlow id="Flow_1x7u12e" sourceRef="StartEvent_1" targetRef="Anfrageevaluieren_ID" />
+    <bpmn:sequenceFlow id="Flow_1j9u447" sourceRef="Event_1da0z73" targetRef="Event_0ud0gl0" />
+    <bpmn:sequenceFlow id="Flow_0mlf1n3" sourceRef="Event_0mn753d" targetRef="Event_13bja46" />
+    <bpmn:sequenceFlow id="Flow_1tdyxcd" sourceRef="Activity_1wl6j4z" targetRef="Gateway_08pdrch" />
+    <bpmn:sequenceFlow id="Flow_1kz1vz3" sourceRef="Gateway_134xxza" targetRef="Activity_1wl6j4z" />
+    <bpmn:sequenceFlow id="Flow_0myikyz" sourceRef="Gateway_134xxza" targetRef="Activity_07tq7yu" />
+    <bpmn:sequenceFlow id="Flow_0gatfmn" sourceRef="Activity_1y12qqx" targetRef="Activity_16nmavi" />
+    <bpmn:sequenceFlow id="Flow_0zjy98m" sourceRef="Activity_0vk8u53" targetRef="Activity_0a8mdu5" />
+    <bpmn:sequenceFlow id="Flow_0l3joww" sourceRef="Gateway_08pdrch" targetRef="Activity_1y12qqx" />
+    <bpmn:sequenceFlow id="Flow_0vpvcub" sourceRef="Activity_1ylv7g6" targetRef="Activity_0vk8u53" />
+    <bpmn:sequenceFlow id="Flow_0inv9ec" sourceRef="Event_1n7ieje" targetRef="Event_1f1okuv" />
+    <bpmn:boundaryEvent id="Event_1wu0xo3" name="Keine Bestellung erhalten" attachedToRef="Activity_16nmavi">
+      <bpmn:outgoing>Flow_1r4268v</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_04ikdje" escalationRef="Escalation_1ok02h6" camunda:escalationCodeVariable="KeineBestellungErhalten" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_14msvf3" name="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" attachedToRef="Activity_16nmavi">
+      <bpmn:outgoing>Flow_1w71l24</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1nkoms2" escalationRef="Escalation_01q81fy" camunda:escalationCodeVariable="ProduktionundLieferungnichtmöglichwegenfehlendenRessourcen" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_0mn753d" name="Keine Kundenantwort in vereinbarter Zeit" attachedToRef="Anfrageevaluieren_ID">
+      <bpmn:outgoing>Flow_0mlf1n3</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1d3irdl" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_1da0z73" name="Plagiatversuch liegt vor" attachedToRef="Prototypentwickeln_ID">
+      <bpmn:outgoing>Flow_1j9u447</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1jlvb6d" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_1n7ieje" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich" attachedToRef="Activity_1ylv7g6">
+      <bpmn:outgoing>Flow_0inv9ec</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1rt4fh4" escalationRef="Escalation_1w67mwp" camunda:escalationCodeVariable="FehlendeZahlung" />
+    </bpmn:boundaryEvent>
+    <bpmn:endEvent id="Event_1f1okuv" name="Prozess beendet aufgrund nicht erhaltener Zahlung">
+      <bpmn:incoming>Flow_0inv9ec</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
+      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Activity_0a8mdu5" name="Verpackung und Versendung der gedruckten Güter" calledElement="paketVersenden_ID">
       <bpmn:extensionElements>
-        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
-        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
-        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
-      </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
-    </bpmn:startEvent>
-    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
-      <bpmn:extensionElements>
-        <camunda:in source="startdate" target="startdate" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
         <camunda:in sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
-      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
+      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
-      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
+    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vpvcub</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1ylv7g6" name="Zahlungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vpvcub</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
+      <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:parallelGateway id="Gateway_08pdrch">
+      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
+      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot Erstellung" calledElement="angebotErstellen_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:out sourceExpression="${angebot}" target="angebot" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
+      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:parallelGateway id="Gateway_134xxza">
+      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:subProcess id="Activity_0kpytah" name="Stornierungsprozess" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen">
+        <bpmn:outgoing>Flow_13u1osp</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_1i6b49o" messageRef="Message_15repjx" />
+      </bpmn:startEvent>
+      <bpmn:intermediateThrowEvent id="Event_1hex3b7" name="Datenbank Transaktionsprozess">
+        <bpmn:incoming>Flow_1d151kp</bpmn:incoming>
+        <bpmn:outgoing>Flow_1yo9jcx</bpmn:outgoing>
+        <bpmn:compensateEventDefinition id="CompensateEventDefinition_1m2ioxy" activityRef="Activity_094clsu" />
+      </bpmn:intermediateThrowEvent>
+      <bpmn:endEvent id="Event_0ppgd4g" name="Stornierung abgewickelt">
+        <bpmn:incoming>Flow_1yo9jcx</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:exclusiveGateway id="Gateway_0u0eukv" name="Datenbanktransaktionsprozess bereits durchlaufen?">
+        <bpmn:incoming>Flow_13u1osp</bpmn:incoming>
+        <bpmn:outgoing>Flow_1ibpy36</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0ct99oc</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:sequenceFlow id="Flow_13u1osp" sourceRef="Event_1dgzg11" targetRef="Gateway_0u0eukv" />
+      <bpmn:sequenceFlow id="Flow_1ibpy36" name="Ja" sourceRef="Gateway_0u0eukv" targetRef="Activity_1dswop2">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") != null}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0ct99oc" name="Nein" sourceRef="Gateway_0u0eukv" targetRef="Activity_0mdv3ur">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") == null}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:endEvent id="Event_0tljo3f" name="Anfrage verworfen">
+        <bpmn:incoming>Flow_1ofht42</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1ofht42" sourceRef="Activity_0mdv3ur" targetRef="Event_0tljo3f" />
+      <bpmn:sendTask id="Activity_0mdv3ur" name="Verwerfen der Anfrage bestätigen" camunda:class="edu.thi.druckfabrik.AnfrageverwerfungSenden">
+        <bpmn:incoming>Flow_0ct99oc</bpmn:incoming>
+        <bpmn:outgoing>Flow_1ofht42</bpmn:outgoing>
+      </bpmn:sendTask>
+      <bpmn:callActivity id="Activity_1dswop2" name="Entschädigungsprozess" calledElement="EntschaedigungsProzess">
+        <bpmn:extensionElements>
+          <camunda:in sourceExpression="${execution.getBusinessKey()}" target="BusinessKey" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1ibpy36</bpmn:incoming>
+        <bpmn:outgoing>Flow_1d151kp</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:sequenceFlow id="Flow_1yo9jcx" sourceRef="Event_1hex3b7" targetRef="Event_0ppgd4g" />
+      <bpmn:sequenceFlow id="Flow_1d151kp" sourceRef="Activity_1dswop2" targetRef="Event_1hex3b7" />
+    </bpmn:subProcess>
+    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp Entwicklung" calledElement="prototypEntwickeln_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${anfrage.link}" target="link" />
+        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
+        <camunda:out sourceExpression="${Prototyp}" target="Prototyp" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
+      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:transaction id="Activity_094clsu" name="Datenbank Transaktionsprozess">
       <bpmn:incoming>Flow_0krj2lh</bpmn:incoming>
       <bpmn:outgoing>Flow_1k57ekp</bpmn:outgoing>
@@ -117,185 +264,53 @@
       <bpmn:association id="Association_1rqqs4b" associationDirection="One" sourceRef="Event_1pi5iv9" targetRef="Activity_0zevg7n" />
       <bpmn:association id="Association_1agm2p0" associationDirection="One" sourceRef="Event_082fugp" targetRef="Activity_127lm8j" />
     </bpmn:transaction>
-    <bpmn:boundaryEvent id="Event_0mn753d" name="Keine Kundenantwort in vereinbarter Zeit" attachedToRef="Anfrageevaluieren_ID">
-      <bpmn:outgoing>Flow_0mlf1n3</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1d3irdl" />
-    </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_1k57ekp" sourceRef="Activity_094clsu" targetRef="Prototypentwickeln_ID" />
-    <bpmn:sequenceFlow id="Flow_0krj2lh" sourceRef="Anfrageevaluieren_ID" targetRef="Activity_094clsu" />
-    <bpmn:sequenceFlow id="Flow_1pm4zee" sourceRef="Activity_16nmavi" targetRef="Activity_1ylv7g6" />
-    <bpmn:sequenceFlow id="Flow_13f7thj" sourceRef="Activity_07tq7yu" targetRef="Gateway_08pdrch" />
-    <bpmn:sequenceFlow id="Flow_177d3re" sourceRef="Prototypentwickeln_ID" targetRef="Gateway_134xxza" />
-    <bpmn:sequenceFlow id="Flow_0qua1cl" sourceRef="Activity_0a8mdu5" targetRef="Event_07ss5ey" />
-    <bpmn:sequenceFlow id="Flow_0o586jv" sourceRef="Activity_1kw6sc9" targetRef="Event_1nf8y4j" />
-    <bpmn:sequenceFlow id="Flow_1w71l24" sourceRef="Event_14msvf3" targetRef="Activity_1kw6sc9" />
-    <bpmn:sequenceFlow id="Flow_1x7u12e" sourceRef="StartEvent_1" targetRef="Anfrageevaluieren_ID" />
-    <bpmn:sequenceFlow id="Flow_1j9u447" sourceRef="Event_1da0z73" targetRef="Event_0ud0gl0" />
-    <bpmn:sequenceFlow id="Flow_0mlf1n3" sourceRef="Event_0mn753d" targetRef="Event_13bja46" />
-    <bpmn:sequenceFlow id="Flow_1tdyxcd" sourceRef="Activity_1wl6j4z" targetRef="Gateway_08pdrch" />
-    <bpmn:sequenceFlow id="Flow_1kz1vz3" sourceRef="Gateway_134xxza" targetRef="Activity_1wl6j4z" />
-    <bpmn:sequenceFlow id="Flow_0myikyz" sourceRef="Gateway_134xxza" targetRef="Activity_07tq7yu" />
-    <bpmn:sequenceFlow id="Flow_0gatfmn" sourceRef="Activity_1y12qqx" targetRef="Activity_16nmavi" />
-    <bpmn:sequenceFlow id="Flow_0zjy98m" sourceRef="Activity_0vk8u53" targetRef="Activity_0a8mdu5" />
-    <bpmn:sequenceFlow id="Flow_0l3joww" sourceRef="Gateway_08pdrch" targetRef="Activity_1y12qqx" />
-    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp Entwicklung" calledElement="prototypEntwickeln_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${anfrage.link}" target="link" />
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:out sourceExpression="${Prototyp}" target="Prototyp" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
-      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:subProcess id="Activity_0kpytah" name="Stornierungsprozess" triggeredByEvent="true">
-      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen">
-        <bpmn:outgoing>Flow_13u1osp</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1i6b49o" messageRef="Message_15repjx" />
-      </bpmn:startEvent>
-      <bpmn:intermediateThrowEvent id="Event_1hex3b7" name="Datenbank Transaktionsprozess">
-        <bpmn:incoming>Flow_1ibpy36</bpmn:incoming>
-        <bpmn:outgoing>Flow_0ulqt17</bpmn:outgoing>
-        <bpmn:compensateEventDefinition id="CompensateEventDefinition_1m2ioxy" activityRef="Activity_094clsu" />
-      </bpmn:intermediateThrowEvent>
-      <bpmn:sequenceFlow id="Flow_0ulqt17" sourceRef="Event_1hex3b7" targetRef="Activity_1ybkljz" />
-      <bpmn:sendTask id="Activity_1ybkljz" name="Aufforderung für Aufwandsentschädigung senden" camunda:class="edu.thi.druckfabrik.AufwandsentschaedigungForderungSenden">
-        <bpmn:incoming>Flow_0ulqt17</bpmn:incoming>
-        <bpmn:outgoing>Flow_0f8idxl</bpmn:outgoing>
-      </bpmn:sendTask>
-      <bpmn:sequenceFlow id="Flow_0f8idxl" sourceRef="Activity_1ybkljz" targetRef="Event_0kkrjid" />
-      <bpmn:intermediateCatchEvent id="Event_0kkrjid" name="Aufwandsentschädigung empfangen">
-        <bpmn:incoming>Flow_0f8idxl</bpmn:incoming>
-        <bpmn:outgoing>Flow_14ar6r2</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_1o1ml7h" messageRef="Message_15wf81a" />
-      </bpmn:intermediateCatchEvent>
-      <bpmn:endEvent id="Event_0ppgd4g" name="Stornierung abgewickelt">
-        <bpmn:incoming>Flow_14ar6r2</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_14ar6r2" sourceRef="Event_0kkrjid" targetRef="Event_0ppgd4g" />
-      <bpmn:exclusiveGateway id="Gateway_0u0eukv" name="Datenbanktransaktionsprozess bereits durchlaufen?">
-        <bpmn:incoming>Flow_13u1osp</bpmn:incoming>
-        <bpmn:outgoing>Flow_1ibpy36</bpmn:outgoing>
-        <bpmn:outgoing>Flow_0ct99oc</bpmn:outgoing>
-      </bpmn:exclusiveGateway>
-      <bpmn:sequenceFlow id="Flow_13u1osp" sourceRef="Event_1dgzg11" targetRef="Gateway_0u0eukv" />
-      <bpmn:sequenceFlow id="Flow_1ibpy36" name="Ja" sourceRef="Gateway_0u0eukv" targetRef="Event_1hex3b7">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") != null}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:sequenceFlow id="Flow_0ct99oc" name="Nein" sourceRef="Gateway_0u0eukv" targetRef="Activity_0mdv3ur">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") == null}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:endEvent id="Event_0tljo3f" name="Anfrage verworfen">
-        <bpmn:incoming>Flow_1ofht42</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_1ofht42" sourceRef="Activity_0mdv3ur" targetRef="Event_0tljo3f" />
-      <bpmn:sendTask id="Activity_0mdv3ur" name="Verwerfen der Anfrage bestätigen" camunda:class="edu.thi.druckfabrik.AnfrageverwerfungSenden">
-        <bpmn:incoming>Flow_0ct99oc</bpmn:incoming>
-        <bpmn:outgoing>Flow_1ofht42</bpmn:outgoing>
-      </bpmn:sendTask>
-    </bpmn:subProcess>
-    <bpmn:boundaryEvent id="Event_1da0z73" name="Plagiatversuch liegt vor" attachedToRef="Prototypentwickeln_ID">
-      <bpmn:outgoing>Flow_1j9u447</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1jlvb6d" />
-    </bpmn:boundaryEvent>
-    <bpmn:parallelGateway id="Gateway_134xxza">
-      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot Erstellung" calledElement="angebotErstellen_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:out sourceExpression="${angebot}" target="angebot" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
-      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp.anzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:parallelGateway id="Gateway_08pdrch">
-      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
-      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
-      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
-      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:boundaryEvent id="Event_14msvf3" name="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" attachedToRef="Activity_16nmavi">
-      <bpmn:outgoing>Flow_1w71l24</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1nkoms2" />
-    </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
-      <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
+    <bpmn:endEvent id="Event_1nf8y4j" name="Produktion nicht möglich">
+      <bpmn:incoming>Flow_0o586jv</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sendTask id="Activity_1kw6sc9" name="Auftragsabsage senden" camunda:class="edu.thi.druckfabrik.AuftragsabsageSenden">
       <bpmn:incoming>Flow_1w71l24</bpmn:incoming>
       <bpmn:outgoing>Flow_0o586jv</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:endEvent id="Event_1nf8y4j" name="Prozess beendet aufgrund nicht möglicher Produktion">
-      <bpmn:incoming>Flow_0o586jv</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_1ylv7g6" name="Zahlungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
+    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
       <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
         <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
-      <bpmn:outgoing>Flow_0vpvcub</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0vpvcub</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_0a8mdu5" name="Verpackung und Versendung der gedruckten Güter" calledElement="paketVersenden_ID">
-      <bpmn:extensionElements>
         <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="anzahl" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${execution.getBusinessKey()}" target="BusinessKey" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
+      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
+      <bpmn:extensionElements>
+        <camunda:in source="startdate" target="startdate" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
         <camunda:in sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
-      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
+      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
-      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
+    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())} }" event="start" />
+        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
+        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_16kp1wc" sourceRef="Event_0xqw4dm" targetRef="Event_13yuwsx" />
+    <bpmn:intermediateThrowEvent id="Event_0xqw4dm" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_1r4268v</bpmn:incoming>
+      <bpmn:outgoing>Flow_16kp1wc</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_10lw5gy" activityRef="Activity_094clsu" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_13yuwsx" name="Keine Bestellung erhatlen">
+      <bpmn:incoming>Flow_16kp1wc</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0vpvcub" sourceRef="Activity_1ylv7g6" targetRef="Activity_0vk8u53" />
-    <bpmn:boundaryEvent id="Event_1n7ieje" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich" attachedToRef="Activity_1ylv7g6">
-      <bpmn:outgoing>Flow_0inv9ec</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1rt4fh4" escalationRef="Escalation_1w67mwp" camunda:escalationCodeVariable="FehlendeZahlung" />
-    </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_1f1okuv" name="Prozess beendet aufgrund nicht erhaltener Zahlung">
-      <bpmn:incoming>Flow_0inv9ec</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0inv9ec" sourceRef="Event_1n7ieje" targetRef="Event_1f1okuv" />
   </bpmn:process>
   <bpmn:message id="Message_0p16amu" name="Kundenanfrage" />
   <bpmn:message id="Message_1ai0lis" name="Bestellung eingetroffen" />
@@ -303,10 +318,12 @@
   <bpmn:message id="Message_15wf81a" name="Aufwandsentschaedigung" />
   <bpmn:message id="Message_15repjx" name="Stornierung" />
   <bpmn:escalation id="Escalation_1w67mwp" name="Fehlende Zahlung" escalationCode="Fehlende Zahlung" />
+  <bpmn:escalation id="Escalation_1ok02h6" name="KeineBestellungErhalten" escalationCode="KeineBestellungErhalten" />
+  <bpmn:escalation id="Escalation_01q81fy" name="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" escalationCode="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_02t2uqa">
       <bpmndi:BPMNShape id="Participant_0vu7uw4_di" bpmnElement="Participant_0vu7uw4" isHorizontal="true">
-        <dc:Bounds x="225" y="509" width="4435" height="2141" />
+        <dc:Bounds x="225" y="509" width="4435" height="2001" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0vbzfbo_di" bpmnElement="Lane_0vbzfbo" isHorizontal="true">
         <dc:Bounds x="255" y="1587" width="4405" height="370" />
@@ -315,7 +332,7 @@
         <dc:Bounds x="255" y="1263" width="4405" height="324" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1ejx4k3_di" bpmnElement="Lane_1ejx4k3" isHorizontal="true">
-        <dc:Bounds x="255" y="1957" width="4405" height="693" />
+        <dc:Bounds x="255" y="1957" width="4405" height="553" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0zux3ma_di" bpmnElement="Lane_0zux3ma" isHorizontal="true">
         <dc:Bounds x="255" y="890" width="4405" height="373" />
@@ -346,7 +363,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0gatfmn_di" bpmnElement="Flow_0gatfmn">
         <di:waypoint x="3105" y="1417" />
-        <di:waypoint x="3300" y="1417" />
+        <di:waypoint x="3240" y="1417" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0myikyz_di" bpmnElement="Flow_0myikyz">
         <di:waypoint x="2590" y="1074" />
@@ -377,13 +394,13 @@
         <di:waypoint x="1105" y="739" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1w71l24_di" bpmnElement="Flow_1w71l24">
-        <di:waypoint x="3400" y="1475" />
-        <di:waypoint x="3400" y="1490" />
-        <di:waypoint x="3510" y="1490" />
+        <di:waypoint x="3340" y="1475" />
+        <di:waypoint x="3340" y="1520" />
+        <di:waypoint x="3460" y="1520" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0o586jv_di" bpmnElement="Flow_0o586jv">
-        <di:waypoint x="3610" y="1490" />
-        <di:waypoint x="3702" y="1490" />
+        <di:waypoint x="3560" y="1520" />
+        <di:waypoint x="3662" y="1520" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qua1cl_di" bpmnElement="Flow_0qua1cl">
         <di:waypoint x="4475" y="1417" />
@@ -399,7 +416,7 @@
         <di:waypoint x="2925" y="1392" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pm4zee_di" bpmnElement="Flow_1pm4zee">
-        <di:waypoint x="3400" y="1417" />
+        <di:waypoint x="3340" y="1417" />
         <di:waypoint x="3770" y="1417" />
         <di:waypoint x="3770" y="2205" />
         <di:waypoint x="3820" y="2205" />
@@ -414,10 +431,19 @@
         <di:waypoint x="2333" y="1099" />
         <di:waypoint x="2355" y="1099" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r4268v_di" bpmnElement="Flow_1r4268v">
+        <di:waypoint x="3340" y="1359" />
+        <di:waypoint x="3340" y="1330" />
+        <di:waypoint x="3412" y="1330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16kp1wc_di" bpmnElement="Flow_16kp1wc">
+        <di:waypoint x="3448" y="1330" />
+        <di:waypoint x="3662" y="1330" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="327" y="721" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="318" y="764" width="58" height="27" />
+          <dc:Bounds x="318" y="764" width="59" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00jxmlb_di" bpmnElement="Anfrageevaluieren_ID">
@@ -426,7 +452,31 @@
       <bpmndi:BPMNShape id="Event_13bja46_di" bpmnElement="Event_13bja46">
         <dc:Bounds x="1407" y="758" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1389" y="805" width="74" height="27" />
+          <dc:Bounds x="1389" y="805" width="75" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g6u6pt_di" bpmnElement="Activity_16nmavi">
+        <dc:Bounds x="3240" y="1377" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kw6sc9_di" bpmnElement="Activity_1kw6sc9">
+        <dc:Bounds x="3460" y="1480" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1nf8y4j_di" bpmnElement="Event_1nf8y4j">
+        <dc:Bounds x="3662" y="1502" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3642" y="1545" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0xqw4dm_di" bpmnElement="Event_0xqw4dm">
+        <dc:Bounds x="3412" y="1312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3388" y="1262" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13yuwsx_di" bpmnElement="Event_13yuwsx">
+        <dc:Bounds x="3662" y="1312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3639" y="1355" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1bq8h8e_di" bpmnElement="Activity_094clsu" isExpanded="true">
@@ -462,7 +512,7 @@
       <bpmndi:BPMNShape id="Event_0i9sp3d_di" bpmnElement="Event_0i9sp3d">
         <dc:Bounds x="2102" y="661" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2093" y="704" width="54" height="40" />
+          <dc:Bounds x="2093" y="704" width="55" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0kr614a_di" bpmnElement="Event_082fugp">
@@ -485,84 +535,74 @@
         <dc:Bounds x="2355" y="1059" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0im2hon_di" bpmnElement="Activity_0kpytah" isExpanded="true">
-        <dc:Bounds x="400" y="2159" width="730" height="340" />
+        <dc:Bounds x="400" y="2159" width="700" height="331" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1ofht42_di" bpmnElement="Flow_1ofht42">
-        <di:waypoint x="800" y="2369" />
-        <di:waypoint x="1052" y="2369" />
+        <di:waypoint x="870" y="2369" />
+        <di:waypoint x="982" y="2369" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ct99oc_di" bpmnElement="Flow_0ct99oc">
         <di:waypoint x="560" y="2284" />
         <di:waypoint x="560" y="2369" />
-        <di:waypoint x="700" y="2369" />
+        <di:waypoint x="770" y="2369" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="564" y="2324" width="23" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ibpy36_di" bpmnElement="Flow_1ibpy36">
         <di:waypoint x="585" y="2259" />
-        <di:waypoint x="692" y="2259" />
+        <di:waypoint x="650" y="2259" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="633" y="2241" width="12" height="14" />
+          <dc:Bounds x="724" y="2241" width="12" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_13u1osp_di" bpmnElement="Flow_13u1osp">
         <di:waypoint x="476" y="2259" />
         <di:waypoint x="535" y="2259" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_14ar6r2_di" bpmnElement="Flow_14ar6r2">
-        <di:waypoint x="988" y="2259" />
-        <di:waypoint x="1052" y="2259" />
+      <bpmndi:BPMNEdge id="Flow_1yo9jcx_di" bpmnElement="Flow_1yo9jcx">
+        <di:waypoint x="908" y="2259" />
+        <di:waypoint x="982" y="2259" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0f8idxl_di" bpmnElement="Flow_0f8idxl">
-        <di:waypoint x="890" y="2259" />
-        <di:waypoint x="952" y="2259" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ulqt17_di" bpmnElement="Flow_0ulqt17">
-        <di:waypoint x="728" y="2259" />
-        <di:waypoint x="790" y="2259" />
+      <bpmndi:BPMNEdge id="Flow_1d151kp_di" bpmnElement="Flow_1d151kp">
+        <di:waypoint x="750" y="2259" />
+        <di:waypoint x="872" y="2259" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1d2wj0f_di" bpmnElement="Event_1dgzg11">
         <dc:Bounds x="440" y="2241" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="431" y="2290" width="58" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ymialp_di" bpmnElement="Event_1hex3b7">
-        <dc:Bounds x="692" y="2241" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="668" y="2191" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0ra2bg8_di" bpmnElement="Activity_1ybkljz">
-        <dc:Bounds x="790" y="2219" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0f9tjng_di" bpmnElement="Event_0kkrjid">
-        <dc:Bounds x="952" y="2241" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="927" y="2284" width="87" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ppgd4g_di" bpmnElement="Event_0ppgd4g">
-        <dc:Bounds x="1052" y="2241" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1041" y="2284" width="58" height="27" />
+          <dc:Bounds x="431" y="2290" width="59" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0u0eukv_di" bpmnElement="Gateway_0u0eukv" isMarkerVisible="true">
         <dc:Bounds x="535" y="2234" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="515" y="2171" width="90" height="53" />
+          <dc:Bounds x="518" y="2171" width="85" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ppgd4g_di" bpmnElement="Event_0ppgd4g">
+        <dc:Bounds x="982" y="2241" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="971" y="2284" width="59" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0tljo3f_di" bpmnElement="Event_0tljo3f">
-        <dc:Bounds x="1052" y="2351" width="36" height="36" />
+        <dc:Bounds x="982" y="2351" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1025" y="2394" width="90" height="14" />
+          <dc:Bounds x="955" y="2394" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ymialp_di" bpmnElement="Event_1hex3b7">
+        <dc:Bounds x="872" y="2241" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="848" y="2191" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_08s8qxt_di" bpmnElement="Activity_0mdv3ur">
-        <dc:Bounds x="700" y="2329" width="100" height="80" />
+        <dc:Bounds x="770" y="2329" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kopz7s_di" bpmnElement="Activity_1dswop2">
+        <dc:Bounds x="650" y="2219" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_134xxza_di" bpmnElement="Gateway_134xxza">
         <dc:Bounds x="2565" y="1074" width="50" height="50" />
@@ -579,22 +619,10 @@
       <bpmndi:BPMNShape id="Gateway_08pdrch_di" bpmnElement="Gateway_08pdrch">
         <dc:Bounds x="2900" y="1392" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1g6u6pt_di" bpmnElement="Activity_16nmavi">
-        <dc:Bounds x="3300" y="1377" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ud0gl0_di" bpmnElement="Event_0ud0gl0">
         <dc:Bounds x="2502" y="1161" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2481" y="1204" width="81" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1kw6sc9_di" bpmnElement="Activity_1kw6sc9">
-        <dc:Bounds x="3510" y="1450" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1nf8y4j_di" bpmnElement="Event_1nf8y4j">
-        <dc:Bounds x="3702" y="1472" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3680" y="1515" width="83" height="53" />
+          <dc:Bounds x="2481" y="1204" width="82" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_19idyq1_di" bpmnElement="Activity_1ylv7g6">
@@ -615,19 +643,13 @@
       <bpmndi:BPMNShape id="Event_1f1okuv_di" bpmnElement="Event_1f1okuv">
         <dc:Bounds x="3992" y="2312" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3969" y="2355" width="83" height="53" />
+          <dc:Bounds x="3969" y="2355" width="84" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1r7451r_di" bpmnElement="Event_1n7ieje">
         <dc:Bounds x="3902" y="2231" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3947.5" y="2229" width="89" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_14msvf3_di" bpmnElement="Event_14msvf3">
-        <dc:Bounds x="3382" y="1439" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3363" y="1497" width="74" height="66" />
+          <dc:Bounds x="3948" y="2229" width="89" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0zhw1iz_di" bpmnElement="Event_1da0z73">
@@ -640,6 +662,18 @@
         <dc:Bounds x="1187" y="758" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1212" y="797" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14msvf3_di" bpmnElement="Event_14msvf3">
+        <dc:Bounds x="3322" y="1439" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3367.5" y="1437" width="75" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0spsds3_di" bpmnElement="Event_1wu0xo3">
+        <dc:Bounds x="3322" y="1359" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3363" y="1366" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0fnodvi_di" bpmnElement="Participant_1bjq88u" isHorizontal="true">
@@ -656,10 +690,10 @@
         <di:waypoint x="245" y="427" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0n7m140_di" bpmnElement="Flow_0n7m140">
-        <di:waypoint x="3310" y="140" />
-        <di:waypoint x="3310" y="1377" />
+        <di:waypoint x="3250" y="140" />
+        <di:waypoint x="3250" y="1377" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3244" y="343" width="52" height="14" />
+          <dc:Bounds x="3184" y="343" width="52" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16cs8f6_di" bpmnElement="Flow_16cs8f6">
@@ -673,7 +707,7 @@
         <di:waypoint x="345" y="140" />
         <di:waypoint x="345" y="721" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="355" y="313" width="90" height="27" />
+          <dc:Bounds x="362" y="313" width="76" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xukdau_di" bpmnElement="Flow_0xukdau">
@@ -694,7 +728,7 @@
         <di:waypoint x="1180" y="140" />
         <di:waypoint x="1180" y="696" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1185" y="312" width="90" height="40" />
+          <dc:Bounds x="1192" y="312" width="76" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14ma33p_di" bpmnElement="Flow_14ma33p">
@@ -705,67 +739,66 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1luqvig_di" bpmnElement="Flow_1luqvig">
-        <di:waypoint x="3560" y="1450" />
-        <di:waypoint x="3560" y="140" />
+        <di:waypoint x="3510" y="1480" />
+        <di:waypoint x="3510" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3573" y="273" width="78" height="14" />
+          <dc:Bounds x="3524" y="276" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05jia5q_di" bpmnElement="Flow_05jia5q">
-        <di:waypoint x="3335" y="2760" />
-        <di:waypoint x="3335" y="1457" />
+        <di:waypoint x="3275" y="2760" />
+        <di:waypoint x="3275" y="1457" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3234" y="2286" width="52" height="14" />
+          <dc:Bounds x="3184" y="2593" width="52" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_016kaz9_di" bpmnElement="Flow_016kaz9">
-        <di:waypoint x="3310" y="1457" />
-        <di:waypoint x="3310" y="2760" />
+        <di:waypoint x="3250" y="1457" />
+        <di:waypoint x="3250" y="2760" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3352" y="2330" width="56" height="27" />
+          <dc:Bounds x="3292" y="2596" width="56" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05d0o3r_di" bpmnElement="Flow_05d0o3r">
-        <di:waypoint x="3350" y="1377" />
-        <di:waypoint x="3350" y="140" />
+        <di:waypoint x="3290" y="1377" />
+        <di:waypoint x="3290" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3351" y="221" width="57" height="27" />
+          <dc:Bounds x="3291" y="221" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08lwu1c_di" bpmnElement="Flow_08lwu1c">
-        <di:waypoint x="3400" y="1417" />
-        <di:waypoint x="3420" y="1417" />
-        <di:waypoint x="3420" y="140" />
+        <di:waypoint x="3290" y="1377" />
+        <di:waypoint x="3290" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3427" y="416" width="86" height="40" />
+          <dc:Bounds x="3437" y="416" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jy5ziw_di" bpmnElement="Flow_1jy5ziw">
         <di:waypoint x="458" y="140" />
         <di:waypoint x="458" y="2241" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="461" y="268" width="57" height="14" />
+          <dc:Bounds x="461" y="268" width="58" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0deojr7_di" bpmnElement="Flow_0deojr7">
-        <di:waypoint x="840" y="2219" />
-        <di:waypoint x="840" y="140" />
+        <di:waypoint x="670" y="2219" />
+        <di:waypoint x="670" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="846" y="207" width="87" height="27" />
+          <dc:Bounds x="586" y="207" width="87" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0oz4ovy_di" bpmnElement="Flow_0oz4ovy">
-        <di:waypoint x="970" y="140" />
-        <di:waypoint x="970" y="2241" />
+        <di:waypoint x="730" y="140" />
+        <di:waypoint x="730" y="2219" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="976" y="259" width="87" height="27" />
+          <dc:Bounds x="736" y="257" width="87" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03ypger_di" bpmnElement="Flow_03ypger">
-        <di:waypoint x="750" y="2329" />
-        <di:waypoint x="750" y="140" />
+        <di:waypoint x="820" y="2329" />
+        <di:waypoint x="820" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="666" y="253" width="87" height="40" />
+          <dc:Bounds x="806" y="220" width="87" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hcld5b_di" bpmnElement="Flow_1hcld5b">
@@ -779,14 +812,14 @@
         <di:waypoint x="3870" y="140" />
         <di:waypoint x="3870" y="2169" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3850" y="343" width="40" height="14" />
+          <dc:Bounds x="3850" y="343" width="41" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1insa22_di" bpmnElement="Flow_1insa22">
         <di:waypoint x="3920" y="2170" />
         <di:waypoint x="3920" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3931" y="483" width="57" height="14" />
+          <dc:Bounds x="3931" y="483" width="58" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

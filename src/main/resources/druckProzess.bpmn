@@ -29,7 +29,7 @@
       </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0chl7gj" sourceRef="Activity_0vji9p1" targetRef="Activity_1mvyv7m" />
-    <bpmn:userTask id="Activity_0vji9p1" name="Materialbefüllung bestätigen">
+    <bpmn:userTask id="Activity_0vji9p1" name="Materialbefüllung bestätigen" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="befuellungBestaetigt" label="Material für Druck eingefüllt?" type="boolean" defaultValue="true">
@@ -48,21 +48,21 @@
       <bpmndi:BPMNShape id="Participant_1j5j0qx_di" bpmnElement="Participant_1j5j0qx" isHorizontal="true">
         <dc:Bounds x="130" y="170" width="820" height="315" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_01bb0xq_di" bpmnElement="Flow_01bb0xq">
-        <di:waypoint x="710" y="290" />
-        <di:waypoint x="822" y="290" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1lzm2ig_di" bpmnElement="Flow_1lzm2ig">
-        <di:waypoint x="228" y="290" />
-        <di:waypoint x="280" y="290" />
+      <bpmndi:BPMNEdge id="Flow_0chl7gj_di" bpmnElement="Flow_0chl7gj">
+        <di:waypoint x="540" y="290" />
+        <di:waypoint x="610" y="290" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1wlqpi8_di" bpmnElement="Flow_1wlqpi8">
         <di:waypoint x="380" y="290" />
         <di:waypoint x="440" y="290" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0chl7gj_di" bpmnElement="Flow_0chl7gj">
-        <di:waypoint x="540" y="290" />
-        <di:waypoint x="610" y="290" />
+      <bpmndi:BPMNEdge id="Flow_1lzm2ig_di" bpmnElement="Flow_1lzm2ig">
+        <di:waypoint x="228" y="290" />
+        <di:waypoint x="280" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01bb0xq_di" bpmnElement="Flow_01bb0xq">
+        <di:waypoint x="710" y="290" />
+        <di:waypoint x="822" y="290" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1qovbgm_di" bpmnElement="Event_1qovbgm">
         <dc:Bounds x="192" y="272" width="36" height="36" />
