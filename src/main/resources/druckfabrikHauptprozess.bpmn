@@ -413,8 +413,6 @@
     <bpmn:endEvent id="Event_1f1okuv" name="Prozess beendet aufgrund nicht erhaltener Zahlung">
       <bpmn:incoming>Flow_0inv9ec</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_0bfmg09" name="Kundenauftrag" dataObjectRef="DataObject_0kbyr6u" />
-    <bpmn:dataObject id="DataObject_0kbyr6u" />
     <bpmn:dataObjectReference id="DataObjectReference_1ftnto8" name="BusinessKey" dataObjectRef="DataObject_05oucdo" />
     <bpmn:dataObject id="DataObject_05oucdo" />
     <bpmn:dataObjectReference id="DataObjectReference_123fbai" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_1d7tw5n" />
@@ -547,6 +545,8 @@
     <bpmn:dataObject id="DataObject_0cqr8vv" />
     <bpmn:dataObjectReference id="DataObjectReference_0bjr2qk" name="Anfrage" dataObjectRef="DataObject_0tvs3lk" />
     <bpmn:dataObject id="DataObject_0tvs3lk" />
+    <bpmn:dataObjectReference id="DataObjectReference_0bfmg09" name="Kundenauftrag" dataObjectRef="DataObject_0kbyr6u" />
+    <bpmn:dataObject id="DataObject_0kbyr6u" />
   </bpmn:process>
   <bpmn:message id="Message_0p16amu" name="Kundenanfrage" />
   <bpmn:message id="Message_1ai0lis" name="Bestellung eingetroffen" />
@@ -781,12 +781,6 @@
           <dc:Bounds x="2828" y="1275" width="64" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0bfmg09_di" bpmnElement="DataObjectReference_0bfmg09">
-        <dc:Bounds x="2912" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2894" y="1275" width="73" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1f1okuv_di" bpmnElement="Event_1f1okuv">
         <dc:Bounds x="3872" y="2312" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -932,6 +926,12 @@
         <dc:Bounds x="392" y="545" width="36" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="391" y="523" width="39" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0bfmg09_di" bpmnElement="DataObjectReference_0bfmg09">
+        <dc:Bounds x="2922" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2904" y="1275" width="73" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0im2hon_di" bpmnElement="Activity_0kpytah" isExpanded="true">
@@ -1398,8 +1398,8 @@
         <di:waypoint x="3120" y="1397" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1n2r889_di" bpmnElement="DataInputAssociation_1n2r889">
-        <di:waypoint x="2930" y="1355" />
-        <di:waypoint x="2930" y="1390" />
+        <di:waypoint x="2940" y="1355" />
+        <di:waypoint x="2940" y="1390" />
         <di:waypoint x="3120" y="1390" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0nlirvx_di" bpmnElement="DataOutputAssociation_0nlirvx">
