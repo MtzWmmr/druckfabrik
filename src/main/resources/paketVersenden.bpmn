@@ -41,28 +41,16 @@
       <bpmn:outgoing>Flow_0mhw2wf</bpmn:outgoing>
       <bpmn:outgoing>Flow_07gytig</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:manualTask id="Activity_12sfqkv" name="Passenden Karton finden">
-      <bpmn:incoming>Flow_0w3s1ay</bpmn:incoming>
-      <bpmn:outgoing>Flow_13vdt5y</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:userTask id="Activity_02llijh" name="Kartonfindung bestätigen" camunda:assignee="kermit">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="kartonGefunden" label="Passenden Karton gefunden?" type="boolean" defaultValue="true">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_13vdt5y</bpmn:incoming>
-      <bpmn:outgoing>Flow_1b1loy1</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:manualTask id="Activity_1wztffu" name="3D-Druck in Verpackungmaterial einwickeln">
       <bpmn:incoming>Flow_0mhw2wf</bpmn:incoming>
       <bpmn:outgoing>Flow_155s0w6</bpmn:outgoing>
+      <bpmn:property id="Property_0yiritx" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0jnwo0g">
+        <bpmn:sourceRef>DataObjectReference_0opw2n9</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0yiritx</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
       <bpmn:multiInstanceLoopCharacteristics>
-        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">${anzahl}</bpmn:loopCardinality>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">${druckanzahl}</bpmn:loopCardinality>
       </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:manualTask>
     <bpmn:userTask id="Activity_0t0vdtr" name="Verpackung bestätigen" camunda:assignee="kermit">
@@ -81,7 +69,7 @@
     <bpmn:callActivity id="Activity_11r4sis" name="Paket versandfertig machen" calledElement="paketVersandfertigMachen_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${kundenauftragVorhanden}" target="kundenauftragVorhanden" />
-        <camunda:in sourceExpression="${anzahl}" target="anzahl" />
+        <camunda:in sourceExpression="${druckanzahl}" target="druckanzahl" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1tb735s</bpmn:incoming>
       <bpmn:outgoing>Flow_11otjzj</bpmn:outgoing>
@@ -121,15 +109,39 @@
       <bpmn:incoming>Flow_07gytig</bpmn:incoming>
       <bpmn:outgoing>Flow_0yvy4sb</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:manualTask id="Activity_12sfqkv" name="Passenden Karton finden">
+      <bpmn:incoming>Flow_0w3s1ay</bpmn:incoming>
+      <bpmn:outgoing>Flow_13vdt5y</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:dataObjectReference id="DataObjectReference_0opw2n9" name="druckanzahl" dataObjectRef="DataObject_0vqmpj5" />
+    <bpmn:dataObject id="DataObject_0vqmpj5" />
+    <bpmn:userTask id="Activity_02llijh" name="Kartonfindung bestätigen" camunda:assignee="kermit">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="kartonGefunden" label="Passenden Karton gefunden?" type="boolean" defaultValue="true">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_13vdt5y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b1loy1</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1putgef">
       <bpmndi:BPMNShape id="Participant_0anyurr_di" bpmnElement="Participant_0anyurr" isHorizontal="true">
         <dc:Bounds x="140" y="340" width="1518" height="1060" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0yvy4sb_di" bpmnElement="Flow_0yvy4sb">
+        <di:waypoint x="600" y="980" />
+        <di:waypoint x="790" y="980" />
+        <di:waypoint x="790" y="855" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_13vdt5y_di" bpmnElement="Flow_13vdt5y">
-        <di:waypoint x="510" y="690" />
-        <di:waypoint x="600" y="690" />
+        <di:waypoint x="510" y="630" />
+        <di:waypoint x="600" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_155s0w6_di" bpmnElement="Flow_155s0w6">
         <di:waypoint x="510" y="830" />
@@ -160,18 +172,13 @@
         <di:waypoint x="865" y="830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1b1loy1_di" bpmnElement="Flow_1b1loy1">
-        <di:waypoint x="700" y="690" />
-        <di:waypoint x="790" y="690" />
+        <di:waypoint x="700" y="630" />
+        <di:waypoint x="790" y="630" />
         <di:waypoint x="790" y="805" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1pyt2ko_di" bpmnElement="Flow_1pyt2ko">
         <di:waypoint x="700" y="830" />
         <di:waypoint x="765" y="830" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0yvy4sb_di" bpmnElement="Flow_0yvy4sb">
-        <di:waypoint x="600" y="980" />
-        <di:waypoint x="790" y="980" />
-        <di:waypoint x="790" y="855" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07gytig_di" bpmnElement="Flow_07gytig">
         <di:waypoint x="320" y="855" />
@@ -184,8 +191,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0w3s1ay_di" bpmnElement="Flow_0w3s1ay">
         <di:waypoint x="320" y="805" />
-        <di:waypoint x="320" y="690" />
-        <di:waypoint x="410" y="690" />
+        <di:waypoint x="320" y="630" />
+        <di:waypoint x="410" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1tb735s_di" bpmnElement="Flow_1tb735s">
         <di:waypoint x="1125" y="830" />
@@ -208,12 +215,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_03gvw4t_di" bpmnElement="Gateway_03gvw4t">
         <dc:Bounds x="295" y="805" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12sfqkv_di" bpmnElement="Activity_12sfqkv">
-        <dc:Bounds x="410" y="650" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_199dmvd_di" bpmnElement="Activity_02llijh">
-        <dc:Bounds x="600" y="650" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1wztffu_di" bpmnElement="Activity_1wztffu">
         <dc:Bounds x="410" y="790" width="100" height="80" />
@@ -251,6 +252,18 @@
       <bpmndi:BPMNShape id="Activity_1ed9kas_di" bpmnElement="Activity_1nt9x9q">
         <dc:Bounds x="500" y="940" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12sfqkv_di" bpmnElement="Activity_12sfqkv">
+        <dc:Bounds x="410" y="590" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0opw2n9_di" bpmnElement="DataObjectReference_0opw2n9">
+        <dc:Bounds x="442" y="705" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="430" y="681" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_199dmvd_di" bpmnElement="Activity_02llijh">
+        <dc:Bounds x="600" y="590" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1bs24qm_di" bpmnElement="Participant_1i9plnd" isHorizontal="true">
         <dc:Bounds x="510" y="80" width="960" height="60" />
       </bpmndi:BPMNShape>
@@ -267,6 +280,10 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1425" y="348" width="52" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0jnwo0g_di" bpmnElement="DataInputAssociation_0jnwo0g">
+        <di:waypoint x="460" y="755" />
+        <di:waypoint x="460" y="790" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
