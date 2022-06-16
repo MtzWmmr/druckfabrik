@@ -19,18 +19,45 @@
     <bpmn:serviceTask id="Activity_1m034b5" name="Gesamtpreis berechnen" camunda:class="edu.thi.druckfabrik.servicetasks.GesamtpreisBerechnen">
       <bpmn:incoming>Flow_1mgic8t</bpmn:incoming>
       <bpmn:outgoing>Flow_0atq2ue</bpmn:outgoing>
+      <bpmn:property id="Property_0nhys09" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0xi6xzv">
+        <bpmn:sourceRef>DataObjectReference_06qmf5w</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0nhys09</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0619kbb">
+        <bpmn:sourceRef>DataObjectReference_0mxrmv6</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0nhys09</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1cbxqyk">
+        <bpmn:targetRef>DataObjectReference_1aj647a</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sendTask id="Activity_0an8kw3" name="Rechnung erstellen und versenden" camunda:class="edu.thi.druckfabrik.RechnungSenden">
       <bpmn:incoming>Flow_0atq2ue</bpmn:incoming>
       <bpmn:outgoing>Flow_0k598gb</bpmn:outgoing>
+      <bpmn:property id="Property_0sawzw0" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1g5y11x">
+        <bpmn:sourceRef>DataObjectReference_1aj647a</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0sawzw0</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:businessRuleTask id="Activity_1od81p3" name="Kundenstatus prüfen" camunda:resultVariable="gratisExpressversand" camunda:decisionRef="Kundenstatus_ID" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_1pfwrx5</bpmn:incoming>
       <bpmn:outgoing>Flow_1mgic8t</bpmn:outgoing>
+      <bpmn:property id="Property_10ajbdi" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1cdksna">
+        <bpmn:sourceRef>DataObjectReference_1xkkla8</bpmn:sourceRef>
+        <bpmn:targetRef>Property_10ajbdi</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:businessRuleTask>
     <bpmn:sendTask id="Activity_19ffhe2" name="Zahlungserinnerung senden" camunda:class="edu.thi.druckfabrik.ZahlungserinnerungSenden">
       <bpmn:incoming>Flow_0u8esgs</bpmn:incoming>
       <bpmn:outgoing>Flow_04gr3mg</bpmn:outgoing>
+      <bpmn:property id="Property_1xcvpr7" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1oxtw8e">
+        <bpmn:sourceRef>DataObjectReference_13i454u</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1xcvpr7</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:endEvent id="Event_0hi6twg" name="Zahlungserinnerung gesendet">
       <bpmn:incoming>Flow_04gr3mg</bpmn:incoming>
@@ -38,6 +65,11 @@
     <bpmn:sendTask id="Activity_0cl0y0p" name="Stornierung senden" camunda:class="edu.thi.druckfabrik.StornierungSenden">
       <bpmn:incoming>Flow_10f55jn</bpmn:incoming>
       <bpmn:outgoing>Flow_15528gb</bpmn:outgoing>
+      <bpmn:property id="Property_0q11q4c" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0hg971w">
+        <bpmn:sourceRef>DataObjectReference_05n3yqt</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0q11q4c</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:sendTask>
     <bpmn:receiveTask id="Activity_1yaiym0" name="Zahlung empfangen" messageRef="Message_11mxll6">
       <bpmn:extensionElements>
@@ -76,6 +108,18 @@
     <bpmn:sequenceFlow id="Flow_10f55jn" sourceRef="Event_1e45mj8" targetRef="Activity_0cl0y0p" />
     <bpmn:sequenceFlow id="Flow_0k598gb" sourceRef="Activity_0an8kw3" targetRef="Activity_1yaiym0" />
     <bpmn:sequenceFlow id="Flow_0tj9mka" sourceRef="Activity_1yaiym0" targetRef="Event_0gkge0h" />
+    <bpmn:dataObjectReference id="DataObjectReference_1xkkla8" name="Überprüfter Kunde" dataObjectRef="DataObject_0a3bfbl" />
+    <bpmn:dataObject id="DataObject_0a3bfbl" />
+    <bpmn:dataObjectReference id="DataObjectReference_0mxrmv6" name="Befüllter Kundenauftrag" dataObjectRef="DataObject_0ufi99p" />
+    <bpmn:dataObject id="DataObject_0ufi99p" />
+    <bpmn:dataObjectReference id="DataObjectReference_06qmf5w" name="Angebot" dataObjectRef="DataObject_1ivl5y7" />
+    <bpmn:dataObject id="DataObject_1ivl5y7" />
+    <bpmn:dataObjectReference id="DataObjectReference_1aj647a" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_1afysam" />
+    <bpmn:dataObject id="DataObject_1afysam" />
+    <bpmn:dataObjectReference id="DataObjectReference_05n3yqt" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_1ajqm8n" />
+    <bpmn:dataObject id="DataObject_1ajqm8n" />
+    <bpmn:dataObjectReference id="DataObjectReference_13i454u" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_1y70ku4" />
+    <bpmn:dataObject id="DataObject_1y70ku4" />
   </bpmn:process>
   <bpmn:message id="Message_11mxll6" name="Zahlung empfangen" />
   <bpmn:escalation id="Escalation_07cl1w2" name="Fehlende Zahlung" escalationCode="Fehlende Zahlung" />
@@ -161,6 +205,42 @@
           <dc:Bounds x="1425" y="630" width="89" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1xkkla8_di" bpmnElement="DataObjectReference_1xkkla8">
+        <dc:Bounds x="352" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="342" y="246" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0mxrmv6_di" bpmnElement="DataObjectReference_0mxrmv6">
+        <dc:Bounds x="472" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="454" y="246" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_06qmf5w_di" bpmnElement="DataObjectReference_06qmf5w">
+        <dc:Bounds x="532" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="530" y="253" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1aj647a_di" bpmnElement="DataObjectReference_1aj647a">
+        <dc:Bounds x="622" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="606" y="246" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_05n3yqt_di" bpmnElement="DataObjectReference_05n3yqt">
+        <dc:Bounds x="1132" y="465" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1116" y="426" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_13i454u_di" bpmnElement="DataObjectReference_13i454u">
+        <dc:Bounds x="1002" y="635" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="986" y="596" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1e45mj8_di" bpmnElement="Event_1e45mj8">
         <dc:Bounds x="952" y="432" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -210,6 +290,42 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="930" y="203" width="40" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1cdksna_di" bpmnElement="DataInputAssociation_1cdksna">
+        <di:waypoint x="388" y="310" />
+        <di:waypoint x="420" y="310" />
+        <di:waypoint x="420" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0xi6xzv_di" bpmnElement="DataInputAssociation_0xi6xzv">
+        <di:waypoint x="550" y="335" />
+        <di:waypoint x="550" y="350" />
+        <di:waypoint x="550" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0619kbb_di" bpmnElement="DataInputAssociation_0619kbb">
+        <di:waypoint x="490" y="335" />
+        <di:waypoint x="490" y="350" />
+        <di:waypoint x="550" y="350" />
+        <di:waypoint x="550" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1cbxqyk_di" bpmnElement="DataOutputAssociation_1cbxqyk">
+        <di:waypoint x="600" y="370" />
+        <di:waypoint x="600" y="305" />
+        <di:waypoint x="622" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1g5y11x_di" bpmnElement="DataInputAssociation_1g5y11x">
+        <di:waypoint x="658" y="300" />
+        <di:waypoint x="720" y="300" />
+        <di:waypoint x="720" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0hg971w_di" bpmnElement="DataInputAssociation_0hg971w">
+        <di:waypoint x="1168" y="490" />
+        <di:waypoint x="1210" y="490" />
+        <di:waypoint x="1210" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1oxtw8e_di" bpmnElement="DataInputAssociation_1oxtw8e">
+        <di:waypoint x="1038" y="660" />
+        <di:waypoint x="1080" y="660" />
+        <di:waypoint x="1080" y="700" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

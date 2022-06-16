@@ -18,7 +18,7 @@ public class LieferantenBestellung implements JavaDelegate{
 		
 		int lieferantenbestellungID = new Random().nextInt(900000) + 100000;
 		//aufrunden auf den naechsten Tausender. Filament wird oft in 1KG=1000g Gebinden als kleinste Groeße angeboten 
-		Long bestellmenge = (((menge+1500)/1000)*1000);
+		Long bestellmenge = (((menge+1000)/1000)*1000);
 		
 		execution.setVariable("lieferantenbestellungID", lieferantenbestellungID);
 		
