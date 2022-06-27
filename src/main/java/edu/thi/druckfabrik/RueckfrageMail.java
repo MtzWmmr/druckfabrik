@@ -24,6 +24,23 @@ public class RueckfrageMail implements JavaDelegate{
 		AnfrageBean anfrage = (AnfrageBean) execution.getVariable("anfrage");
 		
 		String reason = (String) execution.getVariable("rueckfragegrund");
+		switch(reason) {
+			case "datei":
+				reason = "Datei fehlt";
+				break;
+			case "angaben":
+				reason = "Angaben unvollständig";
+				break;
+			case "invalide":
+				reason = "Angaben invalide";
+				break;
+			case "informationen":
+				reason = "Mehr Informationen nötig";
+				break;
+			case "sonstiges":
+				reason = "Sonstiges";
+				break;
+		}
 		String text = (String) execution.getVariable("rueckfragetext");
 		String anrede = kunde.getAnrede();
 		String nachname = kunde.getNachname();
