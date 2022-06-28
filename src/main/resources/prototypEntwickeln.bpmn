@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qz12rm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_0jqipzc">
-    <bpmn:participant id="Participant_00o1z6u" name="3D Kreativteam" processRef="prototypEntwickeln_ID" />
+    <bpmn:participant id="Participant_00o1z6u" name="Prototypentwicklung" processRef="prototypEntwickeln_ID" />
     <bpmn:textAnnotation id="TextAnnotation_0x7u22e">
       <bpmn:text>Alexander Horn</bpmn:text>
     </bpmn:textAnnotation>
@@ -242,10 +242,6 @@
       <bpmndi:BPMNShape id="TextAnnotation_0x7u22e_di" bpmnElement="TextAnnotation_0x7u22e">
         <dc:Bounds x="190" y="80" width="99.9872590808006" height="29.981699406968126" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_1ehov68_di" bpmnElement="Association_1ehov68">
-        <di:waypoint x="353" y="140" />
-        <di:waypoint x="278" y="110" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1jsfd4w_di" bpmnElement="DataInputAssociation_1jsfd4w">
         <di:waypoint x="1200" y="225" />
         <di:waypoint x="1200" y="247" />
@@ -253,6 +249,10 @@
       <bpmndi:BPMNEdge id="DataOutputAssociation_1lpn7ql_di" bpmnElement="DataOutputAssociation_1lpn7ql">
         <di:waypoint x="1262" y="247" />
         <di:waypoint x="1262" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ehov68_di" bpmnElement="Association_1ehov68">
+        <di:waypoint x="353" y="140" />
+        <di:waypoint x="278" y="110" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -25,7 +25,7 @@ public class LieferantenBestellung implements JavaDelegate{
 		System.out.println("Hallo " + lieferant + ",");
 		System.out.println("bitte schicken Sie uns folgende Artikel.");
 		System.out.println(material + " : " + bestellmenge + "g");
-		System.out.println("[KORRELATION INFO] Bitte verwenden Sie für Ihre Antwort die folgende LieferantenbestellungsID: " + lieferantenbestellungID);
+		System.out.println("Bitte verwenden Sie für Ihre Antwort die folgende LieferantenbestellungsID: " + lieferantenbestellungID);
 		
 	}
 	

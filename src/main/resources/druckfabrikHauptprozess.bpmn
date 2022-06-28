@@ -112,7 +112,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_16kp1wc" sourceRef="Event_0xqw4dm" targetRef="Event_13yuwsx" />
-    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage Evaluation" calledElement="anfrageEvaluieren_ID">
+    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage-evaluation" calledElement="anfrageEvaluieren_ID">
       <bpmn:extensionElements>
         <camunda:in source="startdate" target="startdate" />
         <camunda:in sourceExpression="${anfrage}" target="anfrage" />
@@ -189,7 +189,7 @@
     <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
       <bpmn:incoming>Flow_1j9u447</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot Erstellung" calledElement="angebotErstellen_ID">
+    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot-erstellung" calledElement="angebotErstellen_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
         <camunda:out sourceExpression="${angebot}" target="angebot" />
@@ -210,7 +210,7 @@
       <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
       <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp Entwicklung" calledElement="prototypEntwickeln_ID">
+    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp-entwicklung" calledElement="prototypEntwickeln_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${anfrage.link}" target="link" />
         <camunda:in sourceExpression="${Prototyp}" target="Prototyp" />
@@ -262,11 +262,6 @@
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_1lgx581</bpmn:incoming>
         <bpmn:outgoing>Flow_1v59amw</bpmn:outgoing>
-        <bpmn:property id="Property_0gfjbp4" name="__targetRef_placeholder" />
-        <bpmn:dataInputAssociation id="DataInputAssociation_0axn6fl">
-          <bpmn:sourceRef>DataObjectReference_033zp68</bpmn:sourceRef>
-          <bpmn:targetRef>Property_0gfjbp4</bpmn:targetRef>
-        </bpmn:dataInputAssociation>
       </bpmn:callActivity>
       <bpmn:intermediateThrowEvent id="Event_1i7zriq" name="Datenbank Transaktionsprozess">
         <bpmn:incoming>Flow_1v59amw</bpmn:incoming>
@@ -298,8 +293,6 @@
       <bpmn:sequenceFlow id="Flow_1lgx581" name="Ja" sourceRef="Gateway_063sqs9" targetRef="Activity_0l92he3">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") != null}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
-      <bpmn:dataObjectReference id="DataObjectReference_033zp68" name="BusinessKey" dataObjectRef="DataObject_0pftzhy" />
-      <bpmn:dataObject id="DataObject_0pftzhy" />
     </bpmn:subProcess>
     <bpmn:subProcess id="Activity_0kpytah" name="Stornierungsprozess" triggeredByEvent="true">
       <bpmn:exclusiveGateway id="Gateway_0u0eukv" name="Stornierung möglich?">
@@ -446,7 +439,7 @@
         <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_0a8mdu5" name="Verpackung und Versendung der gedruckten Güter" calledElement="paketVersenden_ID">
+    <bpmn:callActivity id="Activity_0a8mdu5" name="Versandprozess" calledElement="paketVersenden_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
         <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="druckanzahl" />
@@ -496,7 +489,7 @@
     <bpmn:dataObject id="DataObject_1msdofp" />
     <bpmn:dataObjectReference id="DataObjectReference_123fbai" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_1d7tw5n" />
     <bpmn:dataObject id="DataObject_1d7tw5n" />
-    <bpmn:callActivity id="Activity_1y12qqx" name="Versendung Angebot und Prototyp" calledElement="paketVersenden_ID">
+    <bpmn:callActivity id="Activity_1y12qqx" name="Versandprozess" calledElement="paketVersenden_ID">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${Prototyp.anzahl}" target="druckanzahl" />
         <camunda:in sourceExpression="${angebot}" target="angebot" />
@@ -580,7 +573,7 @@
     <bpmn:sequenceFlow id="Flow_0j3q03k" name="Kundenbewertung &#62;=7" sourceRef="Gateway_1g1g00c" targetRef="Event_1ak8tue">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${kundenbewertung &gt;= 7}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:userTask id="Activity_06mjgyx" name="Klärendes Gespräch mit Kunden führen" camunda:assignee="kermit">
+    <bpmn:userTask id="Activity_06mjgyx" name="Klärendes Gespräch mit Kunde führen" camunda:assignee="kermit">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="telefonnummer" label="Telefonnummer:" type="string" defaultValue="${telefonnummer}">
@@ -939,12 +932,6 @@
           <dc:Bounds x="1474" y="2205" width="90" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_033zp68_di" bpmnElement="DataObjectReference_033zp68">
-        <dc:Bounds x="1642" y="2155" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1628" y="2133" width="64" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0im2hon_di" bpmnElement="Activity_0kpytah" isExpanded="true">
         <dc:Bounds x="400" y="2159" width="700" height="331" />
       </bpmndi:BPMNShape>
@@ -964,7 +951,7 @@
         <di:waypoint x="585" y="2259" />
         <di:waypoint x="842" y="2259" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="709" y="2241" width="12" height="14" />
+          <dc:Bounds x="614" y="2241" width="12" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_13u1osp_di" bpmnElement="Flow_13u1osp">
@@ -1380,11 +1367,6 @@
         <di:waypoint x="2040" y="950" />
         <di:waypoint x="2072" y="950" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0axn6fl_di" bpmnElement="DataInputAssociation_0axn6fl">
-        <di:waypoint x="1678" y="2180" />
-        <di:waypoint x="1710" y="2180" />
-        <di:waypoint x="1710" y="2240" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0xptyx4_di" bpmnElement="DataInputAssociation_0xptyx4">
         <di:waypoint x="3020" y="1355" />
         <di:waypoint x="3020" y="1397" />
@@ -1619,7 +1601,7 @@
         <di:waypoint x="350" y="2750" />
         <di:waypoint x="350" y="3072" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2380" y="2706" width="81" height="27" />
+          <dc:Bounds x="4399" y="1526" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1csqtu4_di" bpmnElement="Flow_1csqtu4">
@@ -1628,7 +1610,7 @@
         <di:waypoint x="700" y="2880" />
         <di:waypoint x="700" y="3002" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2736" y="2836" width="88" height="27" />
+          <dc:Bounds x="4876" y="269" width="88" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1yd3zq0_di" bpmnElement="Flow_1yd3zq0">
@@ -1637,7 +1619,7 @@
         <di:waypoint x="4760" y="2810" />
         <di:waypoint x="4760" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2571" y="2792" width="88" height="14" />
+          <dc:Bounds x="4656" y="276" width="88" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

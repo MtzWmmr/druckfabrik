@@ -31,7 +31,7 @@ public class AngebotAnlegen implements JavaDelegate {
 		
 		execution.setVariable("angebot", angebot);
 		
-		System.out.println("[KORRELATION INFO] Beim Übersenden der Bestellung bitte folgende AngebotID verwenden: " + angebot.getAngebotID());
+		System.out.println("Beim Übersenden der Bestellung bitte folgende AngebotID verwenden: " + angebot.getAngebotID());
 	}
 
 }
