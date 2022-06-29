@@ -13,7 +13,7 @@
     <decisionTable id="DecisionTable_0u2kmh2">
       <input id="Input_1" label="Material">
         <inputExpression id="InputExpression_1" typeRef="string">
-          <text>Prototyp.material</text>
+          <text>prototyp.material</text>
         </inputExpression>
         <inputValues id="UnaryTests_0qkp8ti">
           <text>"PLA","PET","TPU","ABS"</text>
@@ -21,7 +21,7 @@
       </input>
       <input id="InputClause_0lrg5l8" label="Objekt Volumen">
         <inputExpression id="LiteralExpression_1syinmf" typeRef="long">
-          <text>Prototyp.hoehe*Prototyp.laenge*Prototyp.breite</text>
+          <text>prototyp.hoehe*prototyp.laenge*prototyp.breite</text>
         </inputExpression>
       </input>
       <output id="Output_1" label="Preis pro Stück ab 1 Stück" name="preis1" typeRef="double" />

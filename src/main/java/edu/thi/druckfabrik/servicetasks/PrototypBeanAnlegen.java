@@ -14,7 +14,7 @@ public class PrototypBeanAnlegen implements JavaDelegate{
 	public void execute(DelegateExecution execution) throws Exception {		
 		PrototypBean prototyp = new PrototypBean();
 		
-		execution.setVariable("Prototyp", prototyp);
+		execution.setVariable("prototyp", prototyp);
 		
 	}
 	

@@ -17,14 +17,14 @@ public class PrototypBeanBefuellen implements JavaDelegate{
 		long laenge = (long) execution.getVariable("laenge");
 		
 		
-		PrototypBean prototyp = (PrototypBean) execution.getVariable("Prototyp");
+		PrototypBean prototyp = (PrototypBean) execution.getVariable("prototyp");
 		prototyp.setMaterial(material);
 		prototyp.setHoehe(hoehe);
 		prototyp.setBreite(breite);
 		prototyp.setLaenge(laenge);
 		prototyp.setAnzahl(Long.valueOf(1));
 		
-		execution.setVariable("Prototyp", prototyp);
+		execution.setVariable("prototyp", prototyp);
 		
 	}
 	

@@ -16,7 +16,7 @@ public class AngebotAnlegen implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-		PrototypBean prototyp = (PrototypBean) execution.getVariable("Prototyp");
+		PrototypBean prototyp = (PrototypBean) execution.getVariable("prototyp");
 		Map <String, Object> preise = (Map <String, Object>) execution.getVariable("preise");
 		double preis1 = (double) preise.get("preis1");
 		double preis100 = (double) preise.get("preis100");
