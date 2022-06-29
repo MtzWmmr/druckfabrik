@@ -10,7 +10,7 @@ public class PrototypBeanLoeschen implements JavaDelegate{
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {		
-		execution.removeVariable("Prototyp");
+		execution.removeVariable("prototyp");
 		
 	}
 	
