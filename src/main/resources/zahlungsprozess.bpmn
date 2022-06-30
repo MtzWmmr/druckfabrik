@@ -88,7 +88,7 @@
     <bpmn:boundaryEvent id="Event_1e45mj8" name="14 Tage vergangen" attachedToRef="Activity_1yaiym0">
       <bpmn:outgoing>Flow_10f55jn</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_11f5i4k">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P14D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_0atq2ue" sourceRef="Activity_1m034b5" targetRef="Activity_0an8kw3" />
@@ -138,6 +138,10 @@
       <bpmndi:BPMNShape id="Participant_1pgm7yy_di" bpmnElement="Participant_1pgm7yy" isHorizontal="true">
         <dc:Bounds x="160" y="230" width="1480" height="600" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tjupi2_di" bpmnElement="Flow_0tjupi2">
+        <di:waypoint x="1470" y="590" />
+        <di:waypoint x="1542" y="590" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0tj9mka_di" bpmnElement="Flow_0tj9mka">
         <di:waypoint x="970" y="410" />
         <di:waypoint x="1542" y="410" />
@@ -175,10 +179,6 @@
       <bpmndi:BPMNEdge id="Flow_0atq2ue_di" bpmnElement="Flow_0atq2ue">
         <di:waypoint x="630" y="410" />
         <di:waypoint x="690" y="410" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0tjupi2_di" bpmnElement="Flow_0tjupi2">
-        <di:waypoint x="1470" y="590" />
-        <di:waypoint x="1542" y="590" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="259" y="392" width="36" height="36" />
