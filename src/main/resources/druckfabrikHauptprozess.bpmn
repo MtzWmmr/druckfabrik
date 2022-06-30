@@ -28,6 +28,8 @@
     <bpmn:messageFlow id="Flow_0khdfg5" name="Kundeninformationen" sourceRef="Event_0sv7x5e" targetRef="Event_0cuhcwr" />
     <bpmn:messageFlow id="Flow_1csqtu4" name="Ausgefüllte Kundenbefragung" sourceRef="Participant_1bjq88u" targetRef="Event_0nlb6qn" />
     <bpmn:messageFlow id="Flow_1yd3zq0" name="Kundenbefragung" sourceRef="Activity_1n4toa7" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_0dcwtf3" name="Aufwandsentschädigungsforderung" sourceRef="Activity_1ylv7g6" targetRef="Participant_1bjq88u" />
+    <bpmn:messageFlow id="Flow_0hzspjn" name="Aufwandsentschädigung" sourceRef="Participant_1bjq88u" targetRef="Activity_1ylv7g6" />
     <bpmn:textAnnotation id="TextAnnotation_0dchhgg">
       <bpmn:text>Matthias Wimmer, Simon Kreutel, Alexander Horn</bpmn:text>
     </bpmn:textAnnotation>
@@ -44,11 +46,11 @@
         <bpmn:flowNodeRef>Event_0mn753d</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0zux3ma" name="3D Kreativteam">
-        <bpmn:flowNodeRef>Gateway_134xxza</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Prototypentwickeln_ID</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1da0z73</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_134xxza</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ud0gl0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ey59sn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1da0z73</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1vm9kei" name="Versandabteilung">
         <bpmn:flowNodeRef>Event_0sv7x5e</bpmn:flowNodeRef>
@@ -60,10 +62,10 @@
         <bpmn:flowNodeRef>Activity_16nmavi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1nf8y4j</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ud6t23</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_1wu0xo3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_14msvf3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_13yuwsx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0xqw4dm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_14msvf3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1wu0xo3</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ejx4k3" name="Finanzabteilung">
         <bpmn:flowNodeRef>Activity_1ylv7g6</bpmn:flowNodeRef>
@@ -95,127 +97,311 @@
     <bpmn:sequenceFlow id="Flow_0zjy98m" sourceRef="Activity_0vk8u53" targetRef="Activity_0a8mdu5" />
     <bpmn:sequenceFlow id="Flow_0l3joww" sourceRef="Gateway_08pdrch" targetRef="Activity_1y12qqx" />
     <bpmn:sequenceFlow id="Flow_0vpvcub" sourceRef="Activity_1ylv7g6" targetRef="Activity_0vk8u53" />
-    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
-      <bpmn:extensionElements>
-        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())}" event="start" />
-        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
-        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
-        <camunda:executionListener expression="${execution.setVariable(&#34;bereitsGezahlt&#34;, false)}" event="start" />
-      </bpmn:extensionElements>
-      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_18wcsp8">
-        <bpmn:targetRef>DataObjectReference_0bjr2qk</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1mfmtow">
-        <bpmn:targetRef>DataObjectReference_1m975tg</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
-    </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_16kp1wc" sourceRef="Event_0xqw4dm" targetRef="Event_13yuwsx" />
-    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage-evaluation" calledElement="anfrageEvaluieren_ID">
-      <bpmn:extensionElements>
-        <camunda:in source="startdate" target="startdate" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-        <camunda:out sourceExpression="${anfrage}" target="anfrage" />
-        <camunda:out sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
-      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
-      <bpmn:property id="Property_1cj1lsb" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1kfehto">
-        <bpmn:sourceRef>DataObjectReference_0bjr2qk</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1cj1lsb</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_1s07eyg">
-        <bpmn:sourceRef>DataObjectReference_1m975tg</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1cj1lsb</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0q4wcek">
-        <bpmn:targetRef>DataObjectReference_0ew94kk</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ecdy0w">
-        <bpmn:targetRef>DataObjectReference_1qdov09</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_18f1v5o" sourceRef="Event_0sv7x5e" targetRef="Event_07ss5ey" />
+    <bpmn:sequenceFlow id="Flow_1g98ywf" sourceRef="Event_0ey59sn" targetRef="Event_0ud0gl0" />
+    <bpmn:sequenceFlow id="Flow_1238fqh" sourceRef="Event_1da0z73" targetRef="Event_0ey59sn" />
+    <bpmn:sequenceFlow id="Flow_1sh0sp9" sourceRef="Activity_1kw6sc9" targetRef="Event_0ud6t23" />
+    <bpmn:sequenceFlow id="Flow_067mxni" sourceRef="Event_0ud6t23" targetRef="Event_1nf8y4j" />
+    <bpmn:sequenceFlow id="Flow_0rp81gw" sourceRef="Event_1n7ieje" targetRef="Event_0ghuka6" />
+    <bpmn:sequenceFlow id="Flow_1gs4ye2" sourceRef="Event_0ghuka6" targetRef="Event_1f1okuv" />
     <bpmn:boundaryEvent id="Event_0mn753d" name="Keine Kundenantwort in vereinbarter Zeit" attachedToRef="Anfrageevaluieren_ID">
       <bpmn:outgoing>Flow_0mlf1n3</bpmn:outgoing>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1d3irdl" />
     </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
-      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:transaction id="Activity_094clsu" name="Datenbank Transaktionsprozess">
-      <bpmn:incoming>Flow_0krj2lh</bpmn:incoming>
-      <bpmn:outgoing>Flow_1k57ekp</bpmn:outgoing>
-      <bpmn:startEvent id="Event_1iou2lm">
-        <bpmn:outgoing>Flow_0u8vqnx</bpmn:outgoing>
-      </bpmn:startEvent>
-      <bpmn:sequenceFlow id="Flow_0u8vqnx" sourceRef="Event_1iou2lm" targetRef="Activity_1gj8ncu" />
-      <bpmn:serviceTask id="Activity_1gj8ncu" name="Prototyp in Datenbank anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.PrototypBeanAnlegen">
-        <bpmn:incoming>Flow_0u8vqnx</bpmn:incoming>
-        <bpmn:outgoing>Flow_1tk63r8</bpmn:outgoing>
-        <bpmn:dataOutputAssociation id="DataOutputAssociation_0f0oejn">
-          <bpmn:targetRef>DataObjectReference_0bbadlp</bpmn:targetRef>
-        </bpmn:dataOutputAssociation>
-      </bpmn:serviceTask>
-      <bpmn:serviceTask id="Activity_1y3qta9" name="Kundenauftrag in Datenbank anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.KundenauftragBeanAnlegen">
-        <bpmn:incoming>Flow_1tk63r8</bpmn:incoming>
-        <bpmn:outgoing>Flow_15gmpuz</bpmn:outgoing>
-        <bpmn:dataOutputAssociation id="DataOutputAssociation_0b3zxxz">
-          <bpmn:targetRef>DataObjectReference_0assynr</bpmn:targetRef>
-        </bpmn:dataOutputAssociation>
-      </bpmn:serviceTask>
-      <bpmn:boundaryEvent id="Event_1pi5iv9" attachedToRef="Activity_1gj8ncu">
-        <bpmn:compensateEventDefinition id="CompensateEventDefinition_0yzjux2" />
-      </bpmn:boundaryEvent>
-      <bpmn:serviceTask id="Activity_0zevg7n" name="Prototyp aus Datenbank löschen" isForCompensation="true" camunda:class="edu.thi.druckfabrik.servicetasks.PrototypBeanLoeschen" />
-      <bpmn:boundaryEvent id="Event_082fugp" attachedToRef="Activity_1y3qta9">
-        <bpmn:compensateEventDefinition id="CompensateEventDefinition_069k1sw" />
-      </bpmn:boundaryEvent>
-      <bpmn:serviceTask id="Activity_127lm8j" name="Kundenauftrag aus Datenbank löschen" isForCompensation="true" camunda:class="edu.thi.druckfabrik.servicetasks.KundenauftragBeanLoeschen" />
-      <bpmn:endEvent id="Event_0i9sp3d" name="Einträge in Datenbank angelegt">
-        <bpmn:incoming>Flow_15gmpuz</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:dataObjectReference id="DataObjectReference_0bbadlp" name="Prototyp" dataObjectRef="DataObject_1cev84i" />
-      <bpmn:dataObject id="DataObject_1cev84i" />
-      <bpmn:dataObjectReference id="DataObjectReference_0assynr" name="Kundenauftrag" dataObjectRef="DataObject_0w8bk6k" />
-      <bpmn:dataObject id="DataObject_0w8bk6k" />
-      <bpmn:sequenceFlow id="Flow_1tk63r8" sourceRef="Activity_1gj8ncu" targetRef="Activity_1y3qta9" />
-      <bpmn:sequenceFlow id="Flow_15gmpuz" sourceRef="Activity_1y3qta9" targetRef="Event_0i9sp3d" />
-      <bpmn:association id="Association_1rqqs4b" associationDirection="One" sourceRef="Event_1pi5iv9" targetRef="Activity_0zevg7n" />
-      <bpmn:association id="Association_1agm2p0" associationDirection="One" sourceRef="Event_082fugp" targetRef="Activity_127lm8j" />
-    </bpmn:transaction>
-    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp-entwicklung" calledElement="prototypEntwickeln_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${anfrage.link}" target="link" />
-        <camunda:in sourceExpression="${prototyp}" target="prototyp" />
-        <camunda:out sourceExpression="${prototyp}" target="prototyp" />
-        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
-      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
-      <bpmn:property id="Property_0s5n0ad" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_10z5tp8">
-        <bpmn:sourceRef>DataObjectReference_0n0cctp</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0s5n0ad</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_1r751tb">
-        <bpmn:sourceRef>DataObjectReference_10iqqct</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0s5n0ad</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0jfx2xw">
-        <bpmn:targetRef>DataObjectReference_1qjadrb</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:callActivity>
     <bpmn:boundaryEvent id="Event_1da0z73" name="Plagiatversuch liegt vor" attachedToRef="Prototypentwickeln_ID">
       <bpmn:outgoing>Flow_1238fqh</bpmn:outgoing>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1jlvb6d" />
     </bpmn:boundaryEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_0n0cctp" name="Prototyp" dataObjectRef="DataObject_11mq7sr" />
-    <bpmn:dataObject id="DataObject_11mq7sr" />
-    <bpmn:dataObjectReference id="DataObjectReference_1qjadrb" name="Entwickelter Prototyp" dataObjectRef="DataObject_1up35xf" />
-    <bpmn:dataObject id="DataObject_1up35xf" />
+    <bpmn:boundaryEvent id="Event_1wu0xo3" name="Keine Bestellung erhalten" attachedToRef="Activity_16nmavi">
+      <bpmn:outgoing>Flow_1r4268v</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_04ikdje" escalationRef="Escalation_1ok02h6" camunda:escalationCodeVariable="KeineBestellungErhalten" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_14msvf3" name="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" attachedToRef="Activity_16nmavi">
+      <bpmn:outgoing>Flow_1w71l24</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1nkoms2" escalationRef="Escalation_01q81fy" camunda:escalationCodeVariable="ProduktionundLieferungnichtmöglichwegenfehlendenRessourcen" />
+    </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_1n7ieje" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich" attachedToRef="Activity_1ylv7g6">
+      <bpmn:outgoing>Flow_0rp81gw</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1rt4fh4" escalationRef="Escalation_1w67mwp" camunda:escalationCodeVariable="FehlendeZahlung" />
+    </bpmn:boundaryEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_0bfq72s" name="Überprüfter Kunde" dataObjectRef="DataObject_1msdofp" />
+    <bpmn:dataObject id="DataObject_1msdofp" />
+    <bpmn:dataObjectReference id="DataObjectReference_15xzewu" name="Befüllter Kundenauftrag" dataObjectRef="DataObject_1fj8pik" />
+    <bpmn:dataObject id="DataObject_1fj8pik" />
+    <bpmn:intermediateThrowEvent id="Event_0xqw4dm" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_1r4268v</bpmn:incoming>
+      <bpmn:outgoing>Flow_16kp1wc</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_10lw5gy" activityRef="Activity_094clsu" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_13yuwsx" name="Keine Bestellung erhatlen">
+      <bpmn:incoming>Flow_16kp1wc</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_0ey59sn" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_1238fqh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1g98ywf</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1wsedoz" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
+      <bpmn:incoming>Flow_1g98ywf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_0ghuka6" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_0rp81gw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gs4ye2</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0alve7p" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_1f1okuv" name="Prozess beendet aufgrund nicht erhaltener Zahlung">
+      <bpmn:incoming>Flow_1gs4ye2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_0ud6t23" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_1sh0sp9</bpmn:incoming>
+      <bpmn:outgoing>Flow_067mxni</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1inwplb" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="Event_1nf8y4j" name="Produktion nicht möglich">
+      <bpmn:incoming>Flow_067mxni</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot-erstellung" calledElement="angebotErstellen_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${prototyp}" target="prototyp" />
+        <camunda:out sourceExpression="${angebot}" target="angebot" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
+      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
+      <bpmn:property id="Property_08kwtkr" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1vdxyft">
+        <bpmn:sourceRef>DataObjectReference_0p37ktv</bpmn:sourceRef>
+        <bpmn:targetRef>Property_08kwtkr</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1jfvdz1">
+        <bpmn:targetRef>DataObjectReference_13df6k7</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:callActivity>
+    <bpmn:parallelGateway id="Gateway_134xxza">
+      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:dataObjectReference id="DataObjectReference_0p37ktv" name="Entwickelter Prototyp" dataObjectRef="DataObject_1356le3" />
+    <bpmn:dataObject id="DataObject_1356le3" />
+    <bpmn:dataObjectReference id="DataObjectReference_13df6k7" name="Angebot" dataObjectRef="DataObject_0mjh3ot" />
+    <bpmn:dataObject id="DataObject_0mjh3ot" />
+    <bpmn:dataObjectReference id="DataObjectReference_1q7c9k1" name="Angebot" dataObjectRef="DataObject_06p8r12" />
+    <bpmn:dataObject id="DataObject_06p8r12" />
+    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${execution.getBusinessKey()}" target="BusinessKey" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
+      <bpmn:property id="Property_0x7ca07" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0xptyx4">
+        <bpmn:sourceRef>DataObjectReference_1q7c9k1</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0x7ca07</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0u53dgf">
+        <bpmn:sourceRef>DataObjectReference_1ftnto8</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0x7ca07</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0nlirvx">
+        <bpmn:targetRef>DataObjectReference_15xzewu</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:callActivity>
+    <bpmn:sendTask id="Activity_1kw6sc9" name="Auftragsabsage senden" camunda:class="edu.thi.druckfabrik.AuftragsabsageSenden">
+      <bpmn:incoming>Flow_1w71l24</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sh0sp9</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:callActivity id="Activity_1ylv7g6" name="Zahlungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
+        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+        <camunda:executionListener expression="${execution.setVariable(&#34;bereitsGezahlt&#34;, true) }" event="end" />
+        <camunda:in sourceExpression="${execution.getBusinessKey()}" target="BusinessKey" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vpvcub</bpmn:outgoing>
+      <bpmn:property id="Property_0s6ev3o" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1pv0jct">
+        <bpmn:sourceRef>DataObjectReference_0mxrmv6</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1b90fvv">
+        <bpmn:sourceRef>DataObjectReference_06qmf5w</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0wng5oe">
+        <bpmn:sourceRef>DataObjectReference_1xkkla8</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0fnsmfh">
+        <bpmn:targetRef>DataObjectReference_1aj647a</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${prototyp.anzahl}" target="druckanzahl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
+      <bpmn:property id="Property_0iqxogs" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0198d7b">
+        <bpmn:sourceRef>DataObjectReference_1s47llu</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0iqxogs</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:parallelGateway id="Gateway_08pdrch">
+      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
+      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:dataObjectReference id="DataObjectReference_1xkkla8" name="Überprüfter Kunde" dataObjectRef="DataObject_0zoj1c5" />
+    <bpmn:dataObject id="DataObject_0zoj1c5" />
+    <bpmn:dataObjectReference id="DataObjectReference_1aj647a" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_16yvjt3" />
+    <bpmn:dataObject id="DataObject_16yvjt3" />
+    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${prototyp}" target="prototyp" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="druckanzahl" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vpvcub</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
+      <bpmn:property id="Property_06ocfwc" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1pa5pr1">
+        <bpmn:sourceRef>DataObjectReference_1ii2f2d</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0a3mn94">
+        <bpmn:sourceRef>DataObjectReference_0mjy2ib</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0ctvpcm">
+        <bpmn:sourceRef>DataObjectReference_010f93f</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_0a8mdu5" name="Versandprozess" calledElement="paketVersenden_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="druckanzahl" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
+      <bpmn:property id="Property_0up7ml2" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1jfz3rx">
+        <bpmn:sourceRef>DataObjectReference_1ecfwmy</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0tvh9yh">
+        <bpmn:sourceRef>DataObjectReference_06duwn9</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_013fggt">
+        <bpmn:sourceRef>DataObjectReference_0adxhu2</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:dataObjectReference id="DataObjectReference_1ii2f2d" name="Evaluierte Anfrage" dataObjectRef="DataObject_0gevqsc" />
+    <bpmn:dataObject id="DataObject_0gevqsc" />
+    <bpmn:dataObjectReference id="DataObjectReference_0mjy2ib" name="Entwickelter Prototyp" dataObjectRef="DataObject_1b5fj5g" />
+    <bpmn:dataObject id="DataObject_1b5fj5g" />
+    <bpmn:dataObjectReference id="DataObjectReference_010f93f" name="Erweiterter Kundenauftrag.Druckanzahl" dataObjectRef="DataObject_1s5y5y0" />
+    <bpmn:dataObject id="DataObject_1s5y5y0" />
+    <bpmn:dataObjectReference id="DataObjectReference_1s47llu" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_0sqrnsi" />
+    <bpmn:dataObject id="DataObject_0sqrnsi" />
+    <bpmn:dataObjectReference id="DataObjectReference_1ftnto8" name="Kundenauftrag" dataObjectRef="DataObject_05oucdo" />
+    <bpmn:dataObject id="DataObject_05oucdo" />
+    <bpmn:dataObjectReference id="DataObjectReference_06qmf5w" name="Angebot" dataObjectRef="DataObject_0c1jicm" />
+    <bpmn:dataObject id="DataObject_0c1jicm" />
+    <bpmn:dataObjectReference id="DataObjectReference_0mxrmv6" name="Befüllter Kundenauftrag" dataObjectRef="DataObject_0oaczs8" />
+    <bpmn:dataObject id="DataObject_0oaczs8" />
+    <bpmn:dataObjectReference id="DataObjectReference_1a7athd" name="Angebot" dataObjectRef="DataObject_0do4wcv" />
+    <bpmn:dataObject id="DataObject_0do4wcv" />
+    <bpmn:dataObjectReference id="DataObjectReference_123fbai" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_1d7tw5n" />
+    <bpmn:dataObject id="DataObject_1d7tw5n" />
+    <bpmn:callActivity id="Activity_1y12qqx" name="Versandprozess" calledElement="paketVersenden_ID">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${prototyp.anzahl}" target="druckanzahl" />
+        <camunda:in sourceExpression="${angebot}" target="angebot" />
+        <camunda:in sourceExpression="${kunde}" target="kunde" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
+      <bpmn:property id="Property_07t31m3" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1a4qq5p">
+        <bpmn:sourceRef>DataObjectReference_123fbai</bpmn:sourceRef>
+        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_11yo9bc">
+        <bpmn:sourceRef>DataObjectReference_1a7athd</bpmn:sourceRef>
+        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1nl7wp8">
+        <bpmn:sourceRef>DataObjectReference_0bfq72s</bpmn:sourceRef>
+        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:dataObjectReference id="DataObjectReference_1ecfwmy" name="Erweiterter Kundenauftrag.Druckanzahl" dataObjectRef="DataObject_1t2wgtn" />
+    <bpmn:dataObject id="DataObject_1t2wgtn" />
+    <bpmn:dataObjectReference id="DataObjectReference_06duwn9" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_17ru13f" />
+    <bpmn:dataObject id="DataObject_17ru13f" />
+    <bpmn:dataObjectReference id="DataObjectReference_0adxhu2" name="Überprüfter Kunde" dataObjectRef="DataObject_09r12e4" />
+    <bpmn:dataObject id="DataObject_09r12e4" />
+    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
+      <bpmn:incoming>Flow_18f1v5o</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_0sv7x5e" name="Kundeninformationen für Kundenbefragung senden">
+      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
+      <bpmn:outgoing>Flow_18f1v5o</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1oq8hf3" messageRef="Message_13rpp8b" camunda:expression="${execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation(&#34;Kundeninformationen&#34;).setVariable(&#34;corrKey&#34;,execution.getBusinessKey()).setVariable(&#34;telefonnummer&#34;, kunde.telefonnummer).setVariable(&#34;nachname&#34;, kunde.nachname).correlateWithResult()}" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_10iqqct" name="Evaluierte Anfrage" dataObjectRef="DataObject_17kdqzh" />
+    <bpmn:dataObject id="DataObject_17kdqzh" />
+    <bpmn:dataObjectReference id="DataObjectReference_0bjr2qk" name="Anfrage" dataObjectRef="DataObject_0tvs3lk" />
+    <bpmn:dataObject id="DataObject_0tvs3lk" />
+    <bpmn:dataObjectReference id="DataObjectReference_1m975tg" name="Kunde" dataObjectRef="DataObject_0cqr8vv" />
+    <bpmn:dataObject id="DataObject_0cqr8vv" />
+    <bpmn:dataObjectReference id="DataObjectReference_0ew94kk" name="Evaluierte Anfrage" dataObjectRef="DataObject_0r8so3p" />
+    <bpmn:dataObject id="DataObject_0r8so3p" />
+    <bpmn:dataObjectReference id="DataObjectReference_1qdov09" name="Überprüfter Kunde" dataObjectRef="DataObject_1s4jb9z" />
+    <bpmn:dataObject id="DataObject_1s4jb9z" />
+    <bpmn:subProcess id="Activity_0kpytah" name="Stornierung Überprüfungsprozess" triggeredByEvent="true">
+      <bpmn:exclusiveGateway id="Gateway_0u0eukv" name="Stornierung möglich?">
+        <bpmn:incoming>Flow_13u1osp</bpmn:incoming>
+        <bpmn:outgoing>Flow_1uhomi3</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1lwrjwt</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:sequenceFlow id="Flow_13u1osp" sourceRef="Event_1dgzg11" targetRef="Gateway_0u0eukv" />
+      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen" isInterrupting="false">
+        <bpmn:outgoing>Flow_13u1osp</bpmn:outgoing>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_0tt8klf" messageRef="Message_15repjx" />
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_1uhomi3" name="Ja" sourceRef="Gateway_0u0eukv" targetRef="Event_0zrm31o">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bereitsGezahlt==false}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:endEvent id="Event_0zrm31o" name="Stornierung möglich">
+        <bpmn:incoming>Flow_1uhomi3</bpmn:incoming>
+        <bpmn:escalationEventDefinition id="EscalationEventDefinition_15ntm1g" escalationRef="Escalation_0vxnryx" />
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1lwrjwt" name="Nein" sourceRef="Gateway_0u0eukv" targetRef="Activity_007ekks">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bereitsGezahlt==true}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sendTask id="Activity_007ekks" name="Stornierungsablehnung senden" camunda:class="edu.thi.druckfabrik.StornierungsablehnungSenden">
+        <bpmn:incoming>Flow_1lwrjwt</bpmn:incoming>
+        <bpmn:outgoing>Flow_1au8xqh</bpmn:outgoing>
+      </bpmn:sendTask>
+      <bpmn:endEvent id="Event_18zdntu" name="Stornierung abgelehnt">
+        <bpmn:incoming>Flow_1au8xqh</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1au8xqh" sourceRef="Activity_007ekks" targetRef="Event_18zdntu" />
+    </bpmn:subProcess>
     <bpmn:subProcess id="Activity_0l92h7d" name="Stornierungsprozess" triggeredByEvent="true">
       <bpmn:startEvent id="Event_0ri4i7i" name="Stornierung möglich">
         <bpmn:outgoing>Flow_0v9lqsh</bpmn:outgoing>
@@ -259,301 +445,118 @@
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable("kundenauftrag") != null}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
     </bpmn:subProcess>
-    <bpmn:subProcess id="Activity_0kpytah" name="Stornierung Überprüfungsprozess" triggeredByEvent="true">
-      <bpmn:exclusiveGateway id="Gateway_0u0eukv" name="Stornierung möglich?">
-        <bpmn:incoming>Flow_13u1osp</bpmn:incoming>
-        <bpmn:outgoing>Flow_1uhomi3</bpmn:outgoing>
-        <bpmn:outgoing>Flow_1lwrjwt</bpmn:outgoing>
-      </bpmn:exclusiveGateway>
-      <bpmn:sequenceFlow id="Flow_13u1osp" sourceRef="Event_1dgzg11" targetRef="Gateway_0u0eukv" />
-      <bpmn:startEvent id="Event_1dgzg11" name="Stornierung eingetroffen" isInterrupting="false">
-        <bpmn:outgoing>Flow_13u1osp</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_0tt8klf" messageRef="Message_15repjx" />
-      </bpmn:startEvent>
-      <bpmn:sequenceFlow id="Flow_1uhomi3" name="Ja" sourceRef="Gateway_0u0eukv" targetRef="Event_0zrm31o">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bereitsGezahlt==false}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:endEvent id="Event_0zrm31o" name="Stornierung möglich">
-        <bpmn:incoming>Flow_1uhomi3</bpmn:incoming>
-        <bpmn:escalationEventDefinition id="EscalationEventDefinition_15ntm1g" escalationRef="Escalation_0vxnryx" />
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_1lwrjwt" name="Nein" sourceRef="Gateway_0u0eukv" targetRef="Activity_007ekks">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bereitsGezahlt==true}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:sendTask id="Activity_007ekks" name="Stornierungsablehnung senden" camunda:class="edu.thi.druckfabrik.StornierungsablehnungSenden">
-        <bpmn:incoming>Flow_1lwrjwt</bpmn:incoming>
-        <bpmn:outgoing>Flow_1au8xqh</bpmn:outgoing>
-      </bpmn:sendTask>
-      <bpmn:endEvent id="Event_18zdntu" name="Stornierung abgelehnt">
-        <bpmn:incoming>Flow_1au8xqh</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_1au8xqh" sourceRef="Activity_007ekks" targetRef="Event_18zdntu" />
-    </bpmn:subProcess>
-    <bpmn:dataObjectReference id="DataObjectReference_1qdov09" name="Überprüfter Kunde" dataObjectRef="DataObject_1s4jb9z" />
-    <bpmn:dataObject id="DataObject_1s4jb9z" />
-    <bpmn:dataObjectReference id="DataObjectReference_0ew94kk" name="Evaluierte Anfrage" dataObjectRef="DataObject_0r8so3p" />
-    <bpmn:dataObject id="DataObject_0r8so3p" />
-    <bpmn:dataObjectReference id="DataObjectReference_1m975tg" name="Kunde" dataObjectRef="DataObject_0cqr8vv" />
-    <bpmn:dataObject id="DataObject_0cqr8vv" />
-    <bpmn:dataObjectReference id="DataObjectReference_0bjr2qk" name="Anfrage" dataObjectRef="DataObject_0tvs3lk" />
-    <bpmn:dataObject id="DataObject_0tvs3lk" />
-    <bpmn:sequenceFlow id="Flow_18f1v5o" sourceRef="Event_0sv7x5e" targetRef="Event_07ss5ey" />
-    <bpmn:sequenceFlow id="Flow_1g98ywf" sourceRef="Event_0ey59sn" targetRef="Event_0ud0gl0" />
-    <bpmn:sequenceFlow id="Flow_1238fqh" sourceRef="Event_1da0z73" targetRef="Event_0ey59sn" />
-    <bpmn:sequenceFlow id="Flow_1sh0sp9" sourceRef="Activity_1kw6sc9" targetRef="Event_0ud6t23" />
-    <bpmn:sequenceFlow id="Flow_067mxni" sourceRef="Event_0ud6t23" targetRef="Event_1nf8y4j" />
-    <bpmn:sequenceFlow id="Flow_0rp81gw" sourceRef="Event_1n7ieje" targetRef="Event_0ghuka6" />
-    <bpmn:sequenceFlow id="Flow_1gs4ye2" sourceRef="Event_0ghuka6" targetRef="Event_1f1okuv" />
-    <bpmn:dataObjectReference id="DataObjectReference_10iqqct" name="Evaluierte Anfrage" dataObjectRef="DataObject_17kdqzh" />
-    <bpmn:dataObject id="DataObject_17kdqzh" />
-    <bpmn:intermediateThrowEvent id="Event_0sv7x5e" name="Kundeninformationen für Kundenbefragung senden">
-      <bpmn:incoming>Flow_0qua1cl</bpmn:incoming>
-      <bpmn:outgoing>Flow_18f1v5o</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1oq8hf3" messageRef="Message_13rpp8b" camunda:expression="${execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation(&#34;Kundeninformationen&#34;).setVariable(&#34;corrKey&#34;,execution.getBusinessKey()).setVariable(&#34;telefonnummer&#34;, kunde.telefonnummer).setVariable(&#34;nachname&#34;, kunde.nachname).correlateWithResult()}" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:endEvent id="Event_07ss5ey" name="Kundenauftrag erfolgreich abgewickelt">
-      <bpmn:incoming>Flow_18f1v5o</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_0adxhu2" name="Überprüfter Kunde" dataObjectRef="DataObject_09r12e4" />
-    <bpmn:dataObject id="DataObject_09r12e4" />
-    <bpmn:dataObjectReference id="DataObjectReference_06duwn9" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_17ru13f" />
-    <bpmn:dataObject id="DataObject_17ru13f" />
-    <bpmn:dataObjectReference id="DataObjectReference_1ecfwmy" name="Erweiterter Kundenauftrag.Druckanzahl" dataObjectRef="DataObject_1t2wgtn" />
-    <bpmn:dataObject id="DataObject_1t2wgtn" />
-    <bpmn:callActivity id="Activity_1y12qqx" name="Versandprozess" calledElement="paketVersenden_ID">
+    <bpmn:dataObjectReference id="DataObjectReference_1qjadrb" name="Entwickelter Prototyp" dataObjectRef="DataObject_1up35xf" />
+    <bpmn:dataObject id="DataObject_1up35xf" />
+    <bpmn:dataObjectReference id="DataObjectReference_0n0cctp" name="Prototyp" dataObjectRef="DataObject_11mq7sr" />
+    <bpmn:dataObject id="DataObject_11mq7sr" />
+    <bpmn:callActivity id="Prototypentwickeln_ID" name="Prototyp-entwicklung" calledElement="prototypEntwickeln_ID">
       <bpmn:extensionElements>
-        <camunda:in sourceExpression="${prototyp.anzahl}" target="druckanzahl" />
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0l3joww</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gatfmn</bpmn:outgoing>
-      <bpmn:property id="Property_07t31m3" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1a4qq5p">
-        <bpmn:sourceRef>DataObjectReference_123fbai</bpmn:sourceRef>
-        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_11yo9bc">
-        <bpmn:sourceRef>DataObjectReference_1a7athd</bpmn:sourceRef>
-        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_1nl7wp8">
-        <bpmn:sourceRef>DataObjectReference_0bfq72s</bpmn:sourceRef>
-        <bpmn:targetRef>Property_07t31m3</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:callActivity>
-    <bpmn:dataObjectReference id="DataObjectReference_123fbai" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_1d7tw5n" />
-    <bpmn:dataObject id="DataObject_1d7tw5n" />
-    <bpmn:dataObjectReference id="DataObjectReference_1a7athd" name="Angebot" dataObjectRef="DataObject_0do4wcv" />
-    <bpmn:dataObject id="DataObject_0do4wcv" />
-    <bpmn:dataObjectReference id="DataObjectReference_0mxrmv6" name="Befüllter Kundenauftrag" dataObjectRef="DataObject_0oaczs8" />
-    <bpmn:dataObject id="DataObject_0oaczs8" />
-    <bpmn:dataObjectReference id="DataObjectReference_06qmf5w" name="Angebot" dataObjectRef="DataObject_0c1jicm" />
-    <bpmn:dataObject id="DataObject_0c1jicm" />
-    <bpmn:dataObjectReference id="DataObjectReference_1ftnto8" name="Kundenauftrag" dataObjectRef="DataObject_05oucdo" />
-    <bpmn:dataObject id="DataObject_05oucdo" />
-    <bpmn:dataObjectReference id="DataObjectReference_1s47llu" name="Entwickelter Prototyp.Anzahl" dataObjectRef="DataObject_0sqrnsi" />
-    <bpmn:dataObject id="DataObject_0sqrnsi" />
-    <bpmn:dataObjectReference id="DataObjectReference_010f93f" name="Erweiterter Kundenauftrag.Druckanzahl" dataObjectRef="DataObject_1s5y5y0" />
-    <bpmn:dataObject id="DataObject_1s5y5y0" />
-    <bpmn:dataObjectReference id="DataObjectReference_0mjy2ib" name="Entwickelter Prototyp" dataObjectRef="DataObject_1b5fj5g" />
-    <bpmn:dataObject id="DataObject_1b5fj5g" />
-    <bpmn:dataObjectReference id="DataObjectReference_1ii2f2d" name="Evaluierte Anfrage" dataObjectRef="DataObject_0gevqsc" />
-    <bpmn:dataObject id="DataObject_0gevqsc" />
-    <bpmn:callActivity id="Activity_0a8mdu5" name="Versandprozess" calledElement="paketVersenden_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="druckanzahl" />
-        <camunda:in sourceExpression="${kunde}" target="kunde" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0zjy98m</bpmn:incoming>
-      <bpmn:outgoing>Flow_0qua1cl</bpmn:outgoing>
-      <bpmn:property id="Property_0up7ml2" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1jfz3rx">
-        <bpmn:sourceRef>DataObjectReference_1ecfwmy</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_0tvh9yh">
-        <bpmn:sourceRef>DataObjectReference_06duwn9</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_013fggt">
-        <bpmn:sourceRef>DataObjectReference_0adxhu2</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0up7ml2</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_0vk8u53" name="Druckprozess" calledElement="druckProzess_ID">
-      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${anfrage.link}" target="link" />
         <camunda:in sourceExpression="${prototyp}" target="prototyp" />
-        <camunda:in sourceExpression="${kundenauftrag.druckanzahl}" target="druckanzahl" />
+        <camunda:out sourceExpression="${prototyp}" target="prototyp" />
         <camunda:in sourceExpression="${anfrage}" target="anfrage" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0vpvcub</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zjy98m</bpmn:outgoing>
-      <bpmn:property id="Property_06ocfwc" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1pa5pr1">
-        <bpmn:sourceRef>DataObjectReference_1ii2f2d</bpmn:sourceRef>
-        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
+      <bpmn:incoming>Flow_1k57ekp</bpmn:incoming>
+      <bpmn:outgoing>Flow_177d3re</bpmn:outgoing>
+      <bpmn:property id="Property_0s5n0ad" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_10z5tp8">
+        <bpmn:sourceRef>DataObjectReference_0n0cctp</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0s5n0ad</bpmn:targetRef>
       </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_0a3mn94">
-        <bpmn:sourceRef>DataObjectReference_0mjy2ib</bpmn:sourceRef>
-        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1r751tb">
+        <bpmn:sourceRef>DataObjectReference_10iqqct</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0s5n0ad</bpmn:targetRef>
       </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_0ctvpcm">
-        <bpmn:sourceRef>DataObjectReference_010f93f</bpmn:sourceRef>
-        <bpmn:targetRef>Property_06ocfwc</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0jfx2xw">
+        <bpmn:targetRef>DataObjectReference_1qjadrb</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:callActivity>
-    <bpmn:dataObjectReference id="DataObjectReference_1aj647a" name="Erweiterter Kundenauftrag" dataObjectRef="DataObject_16yvjt3" />
-    <bpmn:dataObject id="DataObject_16yvjt3" />
-    <bpmn:dataObjectReference id="DataObjectReference_1xkkla8" name="Überprüfter Kunde" dataObjectRef="DataObject_0zoj1c5" />
-    <bpmn:dataObject id="DataObject_0zoj1c5" />
-    <bpmn:parallelGateway id="Gateway_08pdrch">
-      <bpmn:incoming>Flow_1tdyxcd</bpmn:incoming>
-      <bpmn:incoming>Flow_13f7thj</bpmn:incoming>
-      <bpmn:outgoing>Flow_0l3joww</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:callActivity id="Activity_1wl6j4z" name="Druckprozess" calledElement="druckProzess_ID">
+    <bpmn:transaction id="Activity_094clsu" name="Datenbank Transaktionsprozess">
+      <bpmn:incoming>Flow_0krj2lh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1k57ekp</bpmn:outgoing>
+      <bpmn:startEvent id="Event_1iou2lm">
+        <bpmn:outgoing>Flow_0u8vqnx</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0u8vqnx" sourceRef="Event_1iou2lm" targetRef="Activity_1gj8ncu" />
+      <bpmn:serviceTask id="Activity_1gj8ncu" name="Prototyp in Datenbank anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.PrototypBeanAnlegen">
+        <bpmn:incoming>Flow_0u8vqnx</bpmn:incoming>
+        <bpmn:outgoing>Flow_1tk63r8</bpmn:outgoing>
+        <bpmn:dataOutputAssociation id="DataOutputAssociation_0f0oejn">
+          <bpmn:targetRef>DataObjectReference_0bbadlp</bpmn:targetRef>
+        </bpmn:dataOutputAssociation>
+      </bpmn:serviceTask>
+      <bpmn:serviceTask id="Activity_1y3qta9" name="Kundenauftrag in Datenbank anlegen" camunda:class="edu.thi.druckfabrik.servicetasks.KundenauftragBeanAnlegen">
+        <bpmn:incoming>Flow_1tk63r8</bpmn:incoming>
+        <bpmn:outgoing>Flow_15gmpuz</bpmn:outgoing>
+        <bpmn:dataOutputAssociation id="DataOutputAssociation_0b3zxxz">
+          <bpmn:targetRef>DataObjectReference_0assynr</bpmn:targetRef>
+        </bpmn:dataOutputAssociation>
+      </bpmn:serviceTask>
+      <bpmn:boundaryEvent id="Event_1pi5iv9" attachedToRef="Activity_1gj8ncu">
+        <bpmn:compensateEventDefinition id="CompensateEventDefinition_0yzjux2" />
+      </bpmn:boundaryEvent>
+      <bpmn:serviceTask id="Activity_0zevg7n" name="Prototyp aus Datenbank löschen" isForCompensation="true" camunda:class="edu.thi.druckfabrik.servicetasks.PrototypBeanLoeschen" />
+      <bpmn:boundaryEvent id="Event_082fugp" attachedToRef="Activity_1y3qta9">
+        <bpmn:compensateEventDefinition id="CompensateEventDefinition_069k1sw" />
+      </bpmn:boundaryEvent>
+      <bpmn:serviceTask id="Activity_127lm8j" name="Kundenauftrag aus Datenbank löschen" isForCompensation="true" camunda:class="edu.thi.druckfabrik.servicetasks.KundenauftragBeanLoeschen" />
+      <bpmn:endEvent id="Event_0i9sp3d" name="Einträge in Datenbank angelegt">
+        <bpmn:incoming>Flow_15gmpuz</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:dataObjectReference id="DataObjectReference_0bbadlp" name="Prototyp" dataObjectRef="DataObject_1cev84i" />
+      <bpmn:dataObject id="DataObject_1cev84i" />
+      <bpmn:dataObjectReference id="DataObjectReference_0assynr" name="Kundenauftrag" dataObjectRef="DataObject_0w8bk6k" />
+      <bpmn:dataObject id="DataObject_0w8bk6k" />
+      <bpmn:sequenceFlow id="Flow_1tk63r8" sourceRef="Activity_1gj8ncu" targetRef="Activity_1y3qta9" />
+      <bpmn:sequenceFlow id="Flow_15gmpuz" sourceRef="Activity_1y3qta9" targetRef="Event_0i9sp3d" />
+      <bpmn:association id="Association_1rqqs4b" associationDirection="One" sourceRef="Event_1pi5iv9" targetRef="Activity_0zevg7n" />
+      <bpmn:association id="Association_1agm2p0" associationDirection="One" sourceRef="Event_082fugp" targetRef="Activity_127lm8j" />
+    </bpmn:transaction>
+    <bpmn:endEvent id="Event_13bja46" name="Kundenkontakt gescheitert">
+      <bpmn:incoming>Flow_0mlf1n3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="Anfrageevaluieren_ID" name="Anfrage-evaluation" calledElement="anfrageEvaluieren_ID">
       <bpmn:extensionElements>
-        <camunda:in sourceExpression="${prototyp.anzahl}" target="druckanzahl" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1kz1vz3</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tdyxcd</bpmn:outgoing>
-      <bpmn:property id="Property_0iqxogs" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0198d7b">
-        <bpmn:sourceRef>DataObjectReference_1s47llu</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0iqxogs</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:callActivity>
-    <bpmn:callActivity id="Activity_1ylv7g6" name="Zahlungs-prozess" calledElement="rechnungsErstellungsProzess_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in source="gratisExpressversand" target="gratisExpressversand" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
+        <camunda:in source="startdate" target="startdate" />
+        <camunda:in sourceExpression="${anfrage}" target="anfrage" />
         <camunda:in sourceExpression="${kunde}" target="kunde" />
-        <camunda:executionListener expression="${execution.setVariable(&#34;bereitsGezahlt&#34;, true) }" event="end" />
+        <camunda:out sourceExpression="${anfrage}" target="anfrage" />
+        <camunda:out sourceExpression="${kunde}" target="kunde" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1pm4zee</bpmn:incoming>
-      <bpmn:outgoing>Flow_0vpvcub</bpmn:outgoing>
-      <bpmn:property id="Property_0s6ev3o" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1pv0jct">
-        <bpmn:sourceRef>DataObjectReference_0mxrmv6</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
+      <bpmn:incoming>Flow_1x7u12e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0krj2lh</bpmn:outgoing>
+      <bpmn:property id="Property_1cj1lsb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1kfehto">
+        <bpmn:sourceRef>DataObjectReference_0bjr2qk</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1cj1lsb</bpmn:targetRef>
       </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_1b90fvv">
-        <bpmn:sourceRef>DataObjectReference_06qmf5w</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1s07eyg">
+        <bpmn:sourceRef>DataObjectReference_1m975tg</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1cj1lsb</bpmn:targetRef>
       </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_0wng5oe">
-        <bpmn:sourceRef>DataObjectReference_1xkkla8</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0s6ev3o</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0fnsmfh">
-        <bpmn:targetRef>DataObjectReference_1aj647a</bpmn:targetRef>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0q4wcek">
+        <bpmn:targetRef>DataObjectReference_0ew94kk</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ecdy0w">
+        <bpmn:targetRef>DataObjectReference_1qdov09</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:callActivity>
-    <bpmn:sendTask id="Activity_1kw6sc9" name="Auftragsabsage senden" camunda:class="edu.thi.druckfabrik.AuftragsabsageSenden">
-      <bpmn:incoming>Flow_1w71l24</bpmn:incoming>
-      <bpmn:outgoing>Flow_1sh0sp9</bpmn:outgoing>
-    </bpmn:sendTask>
-    <bpmn:callActivity id="Activity_16nmavi" name="Bestell- und Bestätigungsprozess" calledElement="bestellungBestaetigung_ID">
+    <bpmn:startEvent id="StartEvent_1" name="Anfrage eingetroffen">
       <bpmn:extensionElements>
-        <camunda:in sourceExpression="${angebot}" target="angebot" />
-        <camunda:in sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:out sourceExpression="${kundenauftrag}" target="kundenauftrag" />
-        <camunda:in sourceExpression="${execution.getBusinessKey()}" target="BusinessKey" />
+        <camunda:executionListener expression="${execution.setVariable(&#34;startdate&#34;, now())}" event="start" />
+        <camunda:executionListener class="edu.thi.druckfabrik.AnfrageBeanBefuellen" event="end" />
+        <camunda:executionListener class="edu.thi.druckfabrik.KundenBeanBefuellen" event="start" />
+        <camunda:executionListener expression="${execution.setVariable(&#34;bereitsGezahlt&#34;, false)}" event="start" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0gatfmn</bpmn:incoming>
-      <bpmn:outgoing>Flow_1pm4zee</bpmn:outgoing>
-      <bpmn:property id="Property_0x7ca07" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0xptyx4">
-        <bpmn:sourceRef>DataObjectReference_1q7c9k1</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0x7ca07</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataInputAssociation id="DataInputAssociation_0u53dgf">
-        <bpmn:sourceRef>DataObjectReference_1ftnto8</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0x7ca07</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0nlirvx">
-        <bpmn:targetRef>DataObjectReference_15xzewu</bpmn:targetRef>
+      <bpmn:outgoing>Flow_1x7u12e</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_18wcsp8">
+        <bpmn:targetRef>DataObjectReference_0bjr2qk</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
-    </bpmn:callActivity>
-    <bpmn:dataObjectReference id="DataObjectReference_1q7c9k1" name="Angebot" dataObjectRef="DataObject_06p8r12" />
-    <bpmn:dataObject id="DataObject_06p8r12" />
-    <bpmn:dataObjectReference id="DataObjectReference_13df6k7" name="Angebot" dataObjectRef="DataObject_0mjh3ot" />
-    <bpmn:dataObject id="DataObject_0mjh3ot" />
-    <bpmn:dataObjectReference id="DataObjectReference_0p37ktv" name="Entwickelter Prototyp" dataObjectRef="DataObject_1356le3" />
-    <bpmn:dataObject id="DataObject_1356le3" />
-    <bpmn:parallelGateway id="Gateway_134xxza">
-      <bpmn:incoming>Flow_177d3re</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kz1vz3</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0myikyz</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:callActivity id="Activity_07tq7yu" name="Angebot-erstellung" calledElement="angebotErstellen_ID">
-      <bpmn:extensionElements>
-        <camunda:in sourceExpression="${prototyp}" target="prototyp" />
-        <camunda:out sourceExpression="${angebot}" target="angebot" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0myikyz</bpmn:incoming>
-      <bpmn:outgoing>Flow_13f7thj</bpmn:outgoing>
-      <bpmn:property id="Property_08kwtkr" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1vdxyft">
-        <bpmn:sourceRef>DataObjectReference_0p37ktv</bpmn:sourceRef>
-        <bpmn:targetRef>Property_08kwtkr</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1jfvdz1">
-        <bpmn:targetRef>DataObjectReference_13df6k7</bpmn:targetRef>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1mfmtow">
+        <bpmn:targetRef>DataObjectReference_1m975tg</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
-    </bpmn:callActivity>
-    <bpmn:endEvent id="Event_1nf8y4j" name="Produktion nicht möglich">
-      <bpmn:incoming>Flow_067mxni</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="Event_0ud6t23" name="Datenbank Transaktionsprozess">
-      <bpmn:incoming>Flow_1sh0sp9</bpmn:incoming>
-      <bpmn:outgoing>Flow_067mxni</bpmn:outgoing>
-      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1inwplb" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:endEvent id="Event_1f1okuv" name="Prozess beendet aufgrund nicht erhaltener Zahlung">
-      <bpmn:incoming>Flow_1gs4ye2</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="Event_0ghuka6" name="Datenbank Transaktionsprozess">
-      <bpmn:incoming>Flow_0rp81gw</bpmn:incoming>
-      <bpmn:outgoing>Flow_1gs4ye2</bpmn:outgoing>
-      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0alve7p" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:boundaryEvent id="Event_1wu0xo3" name="Keine Bestellung erhalten" attachedToRef="Activity_16nmavi">
-      <bpmn:outgoing>Flow_1r4268v</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_04ikdje" escalationRef="Escalation_1ok02h6" camunda:escalationCodeVariable="KeineBestellungErhalten" />
-    </bpmn:boundaryEvent>
-    <bpmn:boundaryEvent id="Event_14msvf3" name="Produktion und Lieferung nicht möglich wegen fehlenden Ressourcen" attachedToRef="Activity_16nmavi">
-      <bpmn:outgoing>Flow_1w71l24</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1nkoms2" escalationRef="Escalation_01q81fy" camunda:escalationCodeVariable="ProduktionundLieferungnichtmöglichwegenfehlendenRessourcen" />
-    </bpmn:boundaryEvent>
-    <bpmn:boundaryEvent id="Event_1n7ieje" name="Prozess aufgrund fehlender Zahlung nicht erfolgreich" attachedToRef="Activity_1ylv7g6">
-      <bpmn:outgoing>Flow_0rp81gw</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1rt4fh4" escalationRef="Escalation_1w67mwp" camunda:escalationCodeVariable="FehlendeZahlung" />
-    </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_0ud0gl0" name="Kundenkontakt aufgrund Plagiat abgebrochen">
-      <bpmn:incoming>Flow_1g98ywf</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="Event_0ey59sn" name="Datenbank Transaktionsprozess">
-      <bpmn:incoming>Flow_1238fqh</bpmn:incoming>
-      <bpmn:outgoing>Flow_1g98ywf</bpmn:outgoing>
-      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1wsedoz" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:endEvent id="Event_13yuwsx" name="Keine Bestellung erhatlen">
-      <bpmn:incoming>Flow_16kp1wc</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="Event_0xqw4dm" name="Datenbank Transaktionsprozess">
-      <bpmn:incoming>Flow_1r4268v</bpmn:incoming>
-      <bpmn:outgoing>Flow_16kp1wc</bpmn:outgoing>
-      <bpmn:compensateEventDefinition id="CompensateEventDefinition_10lw5gy" activityRef="Activity_094clsu" />
-    </bpmn:intermediateThrowEvent>
-    <bpmn:dataObjectReference id="DataObjectReference_15xzewu" name="Befüllter Kundenauftrag" dataObjectRef="DataObject_1fj8pik" />
-    <bpmn:dataObject id="DataObject_1fj8pik" />
-    <bpmn:dataObjectReference id="DataObjectReference_0bfq72s" name="Überprüfter Kunde" dataObjectRef="DataObject_1msdofp" />
-    <bpmn:dataObject id="DataObject_1msdofp" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1pbrgsk" messageRef="Message_0p16amu" />
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:message id="Message_0p16amu" name="Kundenanfrage" />
   <bpmn:message id="Message_1ai0lis" name="Bestellung eingetroffen" />
@@ -787,7 +790,7 @@
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="327" y="721" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="318" y="764" width="59" height="27" />
+          <dc:Bounds x="319" y="764" width="58" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00jxmlb_di" bpmnElement="Anfrageevaluieren_ID">
@@ -797,210 +800,6 @@
         <dc:Bounds x="762" y="758" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="745" y="805" width="74" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1tdahqr_di" bpmnElement="Event_0sv7x5e">
-        <dc:Bounds x="4592" y="1399" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4566" y="1333" width="88" height="53" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_07ss5ey_di" bpmnElement="Event_07ss5ey">
-        <dc:Bounds x="4722" y="1399" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4704" y="1442" width="73" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0adxhu2_di" bpmnElement="DataObjectReference_0adxhu2">
-        <dc:Bounds x="4382" y="1315" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4372" y="1268" width="56" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_06duwn9_di" bpmnElement="DataObjectReference_06duwn9">
-        <dc:Bounds x="4292" y="1315" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4276" y="1266" width="73" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1ecfwmy_di" bpmnElement="DataObjectReference_1ecfwmy">
-        <dc:Bounds x="4202" y="1315" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4178" y="1260" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1e9zayl_di" bpmnElement="Activity_1y12qqx">
-        <dc:Bounds x="2840" y="1377" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_123fbai_di" bpmnElement="DataObjectReference_123fbai">
-        <dc:Bounds x="2702" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2680" y="1268" width="78" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0bfq72s_di" bpmnElement="DataObjectReference_0bfq72s">
-        <dc:Bounds x="2832" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2822" y="1268" width="56" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1a7athd_di" bpmnElement="DataObjectReference_1a7athd">
-        <dc:Bounds x="2772" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2770" y="1273" width="41" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0mxrmv6_di" bpmnElement="DataObjectReference_0mxrmv6">
-        <dc:Bounds x="3532" y="2065" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3514" y="2026" width="73" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_06qmf5w_di" bpmnElement="DataObjectReference_06qmf5w">
-        <dc:Bounds x="3612" y="2065" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3610" y="2033" width="41" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1ftnto8_di" bpmnElement="DataObjectReference_1ftnto8">
-        <dc:Bounds x="3042" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3024" y="1275" width="73" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1s47llu_di" bpmnElement="DataObjectReference_1s47llu">
-        <dc:Bounds x="2462" y="1705" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2441" y="1676" width="78" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_010f93f_di" bpmnElement="DataObjectReference_010f93f">
-        <dc:Bounds x="4262" y="1645" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4238" y="1590" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0mjy2ib_di" bpmnElement="DataObjectReference_0mjy2ib">
-        <dc:Bounds x="4172" y="1645" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4160" y="1596" width="60" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1ii2f2d_di" bpmnElement="DataObjectReference_1ii2f2d">
-        <dc:Bounds x="4082" y="1645" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4075" y="1596" width="49" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0yqfm7x_di" bpmnElement="Activity_0a8mdu5">
-        <dc:Bounds x="4420" y="1377" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0vk8u53_di" bpmnElement="Activity_0vk8u53">
-        <dc:Bounds x="4140" y="1737" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1aj647a_di" bpmnElement="DataObjectReference_1aj647a">
-        <dc:Bounds x="3972" y="2065" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3956" y="2026" width="73" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1xkkla8_di" bpmnElement="DataObjectReference_1xkkla8">
-        <dc:Bounds x="3692" y="2065" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3682" y="2026" width="56" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_08pdrch_di" bpmnElement="Gateway_08pdrch">
-        <dc:Bounds x="2630" y="1392" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1wl6j4z_di" bpmnElement="Activity_1wl6j4z">
-        <dc:Bounds x="2430" y="1800" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_19idyq1_di" bpmnElement="Activity_1ylv7g6">
-        <dc:Bounds x="3820" y="2169" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1kw6sc9_di" bpmnElement="Activity_1kw6sc9">
-        <dc:Bounds x="3460" y="1480" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1g6u6pt_di" bpmnElement="Activity_16nmavi">
-        <dc:Bounds x="3240" y="1377" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_1q7c9k1_di" bpmnElement="DataObjectReference_1q7c9k1">
-        <dc:Bounds x="3122" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3120" y="1275" width="41" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_13df6k7_di" bpmnElement="DataObjectReference_13df6k7">
-        <dc:Bounds x="2542" y="585" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2540" y="553" width="41" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0p37ktv_di" bpmnElement="DataObjectReference_0p37ktv">
-        <dc:Bounds x="2402" y="585" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2390" y="546" width="60" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_134xxza_di" bpmnElement="Gateway_134xxza">
-        <dc:Bounds x="2295" y="1074" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06qmglf_di" bpmnElement="Activity_07tq7yu">
-        <dc:Bounds x="2430" y="707" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1nf8y4j_di" bpmnElement="Event_1nf8y4j">
-        <dc:Bounds x="3702" y="1502" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3684" y="1545" width="79" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ud6t23_di" bpmnElement="Event_0ud6t23">
-        <dc:Bounds x="3612" y="1502" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3588" y="1548" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1f1okuv_di" bpmnElement="Event_1f1okuv">
-        <dc:Bounds x="4062" y="2312" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4040" y="2355" width="83" height="53" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ghuka6_di" bpmnElement="Event_0ghuka6">
-        <dc:Bounds x="3962" y="2312" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3938" y="2358" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ud0gl0_di" bpmnElement="Event_0ud0gl0">
-        <dc:Bounds x="2242" y="1152" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2222" y="1195" width="81" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ey59sn_di" bpmnElement="Event_0ey59sn">
-        <dc:Bounds x="2142" y="1152" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2118" y="1198" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_13yuwsx_di" bpmnElement="Event_13yuwsx">
-        <dc:Bounds x="3702" y="1359" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3681" y="1326" width="83" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0xqw4dm_di" bpmnElement="Event_0xqw4dm">
-        <dc:Bounds x="3612" y="1359" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3589" y="1309" width="84" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_15xzewu_di" bpmnElement="DataObjectReference_15xzewu">
-        <dc:Bounds x="3452" y="1305" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3433" y="1268" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1bq8h8e_di" bpmnElement="Activity_094clsu" isExpanded="true">
@@ -1235,6 +1034,228 @@
           <dc:Bounds x="1856" y="896" width="49" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tdahqr_di" bpmnElement="Event_0sv7x5e">
+        <dc:Bounds x="4592" y="1399" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4566" y="1333" width="88" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_07ss5ey_di" bpmnElement="Event_07ss5ey">
+        <dc:Bounds x="4722" y="1399" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4704" y="1442" width="73" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0adxhu2_di" bpmnElement="DataObjectReference_0adxhu2">
+        <dc:Bounds x="4382" y="1315" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4372" y="1268" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_06duwn9_di" bpmnElement="DataObjectReference_06duwn9">
+        <dc:Bounds x="4292" y="1315" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4276" y="1266" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ecfwmy_di" bpmnElement="DataObjectReference_1ecfwmy">
+        <dc:Bounds x="4202" y="1315" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4178" y="1260" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1e9zayl_di" bpmnElement="Activity_1y12qqx">
+        <dc:Bounds x="2840" y="1377" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_123fbai_di" bpmnElement="DataObjectReference_123fbai">
+        <dc:Bounds x="2702" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2680" y="1268" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1a7athd_di" bpmnElement="DataObjectReference_1a7athd">
+        <dc:Bounds x="2772" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2770" y="1273" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0mxrmv6_di" bpmnElement="DataObjectReference_0mxrmv6">
+        <dc:Bounds x="3532" y="2065" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3514" y="2026" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_06qmf5w_di" bpmnElement="DataObjectReference_06qmf5w">
+        <dc:Bounds x="3612" y="2065" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3610" y="2033" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ftnto8_di" bpmnElement="DataObjectReference_1ftnto8">
+        <dc:Bounds x="3042" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3024" y="1275" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1s47llu_di" bpmnElement="DataObjectReference_1s47llu">
+        <dc:Bounds x="2462" y="1705" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2441" y="1676" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_010f93f_di" bpmnElement="DataObjectReference_010f93f">
+        <dc:Bounds x="4262" y="1645" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4238" y="1590" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0mjy2ib_di" bpmnElement="DataObjectReference_0mjy2ib">
+        <dc:Bounds x="4172" y="1645" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4160" y="1596" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ii2f2d_di" bpmnElement="DataObjectReference_1ii2f2d">
+        <dc:Bounds x="4082" y="1645" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4075" y="1596" width="49" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yqfm7x_di" bpmnElement="Activity_0a8mdu5">
+        <dc:Bounds x="4420" y="1377" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vk8u53_di" bpmnElement="Activity_0vk8u53">
+        <dc:Bounds x="4140" y="1737" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1aj647a_di" bpmnElement="DataObjectReference_1aj647a">
+        <dc:Bounds x="3972" y="2065" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3956" y="2026" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1xkkla8_di" bpmnElement="DataObjectReference_1xkkla8">
+        <dc:Bounds x="3692" y="2065" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3682" y="2026" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_08pdrch_di" bpmnElement="Gateway_08pdrch">
+        <dc:Bounds x="2630" y="1392" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wl6j4z_di" bpmnElement="Activity_1wl6j4z">
+        <dc:Bounds x="2430" y="1800" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19idyq1_di" bpmnElement="Activity_1ylv7g6">
+        <dc:Bounds x="3820" y="2169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kw6sc9_di" bpmnElement="Activity_1kw6sc9">
+        <dc:Bounds x="3460" y="1480" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g6u6pt_di" bpmnElement="Activity_16nmavi">
+        <dc:Bounds x="3240" y="1377" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1q7c9k1_di" bpmnElement="DataObjectReference_1q7c9k1">
+        <dc:Bounds x="3122" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3120" y="1275" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_13df6k7_di" bpmnElement="DataObjectReference_13df6k7">
+        <dc:Bounds x="2542" y="585" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2540" y="553" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0p37ktv_di" bpmnElement="DataObjectReference_0p37ktv">
+        <dc:Bounds x="2402" y="585" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2390" y="546" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_134xxza_di" bpmnElement="Gateway_134xxza">
+        <dc:Bounds x="2295" y="1074" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06qmglf_di" bpmnElement="Activity_07tq7yu">
+        <dc:Bounds x="2430" y="707" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1nf8y4j_di" bpmnElement="Event_1nf8y4j">
+        <dc:Bounds x="3702" y="1502" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3684" y="1545" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ud6t23_di" bpmnElement="Event_0ud6t23">
+        <dc:Bounds x="3612" y="1502" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3588" y="1548" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1f1okuv_di" bpmnElement="Event_1f1okuv">
+        <dc:Bounds x="4062" y="2312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4040" y="2355" width="83" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ghuka6_di" bpmnElement="Event_0ghuka6">
+        <dc:Bounds x="3962" y="2312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3938" y="2358" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ud0gl0_di" bpmnElement="Event_0ud0gl0">
+        <dc:Bounds x="2242" y="1152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2222" y="1195" width="81" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ey59sn_di" bpmnElement="Event_0ey59sn">
+        <dc:Bounds x="2142" y="1152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2118" y="1198" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13yuwsx_di" bpmnElement="Event_13yuwsx">
+        <dc:Bounds x="3702" y="1359" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3681" y="1326" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0xqw4dm_di" bpmnElement="Event_0xqw4dm">
+        <dc:Bounds x="3612" y="1359" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3589" y="1309" width="84" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_15xzewu_di" bpmnElement="DataObjectReference_15xzewu">
+        <dc:Bounds x="3452" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3433" y="1268" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0bfq72s_di" bpmnElement="DataObjectReference_0bfq72s">
+        <dc:Bounds x="2832" y="1305" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2822" y="1268" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1r7451r_di" bpmnElement="Event_1n7ieje">
+        <dc:Bounds x="3902" y="2231" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3948" y="2229" width="89" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14msvf3_di" bpmnElement="Event_14msvf3">
+        <dc:Bounds x="3322" y="1439" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3368" y="1437" width="74" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0spsds3_di" bpmnElement="Event_1wu0xo3">
+        <dc:Bounds x="3322" y="1359" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3338" y="1336" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0zhw1iz_di" bpmnElement="Event_1da0z73">
         <dc:Bounds x="2047" y="1121" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -1247,26 +1268,11 @@
           <dc:Bounds x="620" y="797" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0spsds3_di" bpmnElement="Event_1wu0xo3">
-        <dc:Bounds x="3322" y="1359" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3338" y="1336" width="83" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_14msvf3_di" bpmnElement="Event_14msvf3">
-        <dc:Bounds x="3322" y="1439" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3368" y="1437" width="74" height="66" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1r7451r_di" bpmnElement="Event_1n7ieje">
-        <dc:Bounds x="3902" y="2231" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3948" y="2229" width="89" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0fnodvi_di" bpmnElement="Participant_1bjq88u" isHorizontal="true">
         <dc:Bounds x="320" y="80" width="4860" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1bs6irc_di" bpmnElement="Participant_1aam3h7" isHorizontal="true">
+        <dc:Bounds x="2850" y="2640" width="720" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1tnvn2g_di" bpmnElement="Participant_1tnvn2g" isHorizontal="true">
         <dc:Bounds x="225" y="2940" width="1045" height="350" />
@@ -1366,9 +1372,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="674" y="3245" width="52" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_1bs6irc_di" bpmnElement="Participant_1aam3h7" isHorizontal="true">
-        <dc:Bounds x="2850" y="2640" width="720" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0dchhgg_di" bpmnElement="TextAnnotation_0dchhgg">
         <dc:Bounds x="160" y="360" width="110" height="67" />
@@ -1632,10 +1635,10 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1insa22_di" bpmnElement="Flow_1insa22">
-        <di:waypoint x="3920" y="2179" />
+        <di:waypoint x="3920" y="2170" />
         <di:waypoint x="3920" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3932" y="483" width="57" height="14" />
+          <dc:Bounds x="3932" y="481" width="57" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1kr1m0c_di" bpmnElement="Flow_1kr1m0c">
@@ -1691,6 +1694,22 @@
         <di:waypoint x="4890" y="140" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="4896" y="290" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dcwtf3_di" bpmnElement="Flow_0dcwtf3">
+        <di:waypoint x="3920" y="2180" />
+        <di:waypoint x="4060" y="2180" />
+        <di:waypoint x="4060" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3966" y="253" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hzspjn_di" bpmnElement="Flow_0hzspjn">
+        <di:waypoint x="4070" y="140" />
+        <di:waypoint x="4070" y="2190" />
+        <di:waypoint x="3920" y="2190" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4076" y="418" width="87" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

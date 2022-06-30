@@ -59,7 +59,7 @@ public class RueckfrageMail implements JavaDelegate{
 		
 		StringBuilder nachricht = new StringBuilder();
 		nachricht.append("Hallo " + anrede +" " + nachname + ",\n");
-		nachricht.append("Vielen Dank für Ihre Anfrage vom " + day + "." + month + "." + year + " " + minutes + ":" + hours + ".\n");
+		nachricht.append("Vielen Dank für Ihre Anfrage vom " + day + "." + month + "." + year + " " + hours + ":" + minutes + ".\n");
 		nachricht.append("AnfrageID: " + anfrageID + "\nBitte geben Sie diese ID bei Ihrer Antwort an \n");
 		nachricht.append(text);
 		nachricht.append("\n\nViele Grüße \nIhr Druckfabrik-Team");
