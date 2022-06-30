@@ -9,6 +9,8 @@
     <bpmn:messageFlow id="Flow_0mtaprb" name="Bestellung" sourceRef="Participant_1f9y68o" targetRef="Event_1gkjh7g" />
     <bpmn:messageFlow id="Flow_0ucu51g" name="Bestellung" sourceRef="Activity_156yswa" targetRef="Participant_1aam3h7" />
     <bpmn:messageFlow id="Flow_1m8hr0v" name="Antwort auf Bestellung" sourceRef="Participant_1aam3h7" targetRef="Activity_156yswa" />
+    <bpmn:messageFlow id="Flow_1bau592" name="Aufwandsentschädigungsforderung" sourceRef="Activity_0wdbi59" targetRef="Participant_1f9y68o" />
+    <bpmn:messageFlow id="Flow_0auhdo5" name="Aufwandsentschädigung" sourceRef="Participant_1f9y68o" targetRef="Activity_0wdbi59" />
     <bpmn:textAnnotation id="TextAnnotation_02wg4fc">
       <bpmn:text>Matthias Wimmer</bpmn:text>
     </bpmn:textAnnotation>
@@ -392,14 +394,14 @@
         <di:waypoint x="930" y="509" />
         <di:waypoint x="930" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="835" y="263" width="90" height="14" />
+          <dc:Bounds x="935" y="263" width="90" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07644r9_di" bpmnElement="Flow_07644r9">
         <di:waypoint x="2050" y="580" />
         <di:waypoint x="2050" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1967" y="264" width="85" height="40" />
+          <dc:Bounds x="1967" y="250" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0mtaprb_di" bpmnElement="Flow_0mtaprb">
@@ -413,14 +415,28 @@
         <di:waypoint x="1080" y="1010" />
         <di:waypoint x="1080" y="1520" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="854" y="1325" width="52" height="14" />
+          <dc:Bounds x="1014" y="1380" width="52" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1m8hr0v_di" bpmnElement="Flow_1m8hr0v">
         <di:waypoint x="1140" y="1520" />
         <di:waypoint x="1140" y="1010" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1012" y="1373" width="56" height="27" />
+          <dc:Bounds x="1152" y="1373" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bau592_di" bpmnElement="Flow_1bau592">
+        <di:waypoint x="780" y="1080" />
+        <di:waypoint x="780" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="686" y="256" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0auhdo5_di" bpmnElement="Flow_0auhdo5">
+        <di:waypoint x="800" y="140" />
+        <di:waypoint x="800" y="1080" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="806" y="256" width="87" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

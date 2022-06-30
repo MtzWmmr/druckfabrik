@@ -93,7 +93,7 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P7D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
-    <bpmn:boundaryEvent id="Event_1e45mj8" name="Keine Zahlung innerhalb von 14 Tage erhalten" attachedToRef="Activity_1yaiym0">
+    <bpmn:boundaryEvent id="Event_1e45mj8" name="14 Tage vergangen" attachedToRef="Activity_1yaiym0">
       <bpmn:outgoing>Flow_10f55jn</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_11f5i4k">
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P14D</bpmn:timeDuration>
@@ -244,13 +244,13 @@
       <bpmndi:BPMNShape id="Event_1e45mj8_di" bpmnElement="Event_1e45mj8">
         <dc:Bounds x="952" y="432" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="979" y="490" width="82" height="40" />
+          <dc:Bounds x="989" y="466" width="52" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1a8nbrh_di" bpmnElement="Event_1a8nbrh">
         <dc:Bounds x="852" y="432" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="765" y="493" width="89" height="14" />
+          <dc:Bounds x="765" y="473" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_19wu660_di" bpmnElement="Participant_0f2ok73" isHorizontal="true">
@@ -303,7 +303,7 @@
         <di:waypoint x="1230" y="550" />
         <di:waypoint x="1230" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1241" y="203" width="57" height="14" />
+          <dc:Bounds x="1241" y="193" width="57" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xefrcd_di" bpmnElement="Flow_1xefrcd">
@@ -317,14 +317,14 @@
         <di:waypoint x="740" y="370" />
         <di:waypoint x="740" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="754" y="203" width="51" height="14" />
+          <dc:Bounds x="754" y="193" width="51" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_00lo02x_di" bpmnElement="Flow_00lo02x">
         <di:waypoint x="920" y="140" />
         <di:waypoint x="920" y="370" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="930" y="203" width="40" height="14" />
+          <dc:Bounds x="930" y="193" width="40" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
